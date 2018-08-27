@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'pa-account',
-  templateUrl: './account.component.html',
-  styleUrls: [ './account.component.css' ]
+  templateUrl: './accounts.component.html',
+  styleUrls: [ './accounts.component.css' ]
 })
 
-export class AccountComponent implements OnInit {
+export class AccountsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }

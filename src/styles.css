@@ -150,3 +150,13 @@ body {
 .pa_padding-0 {
   padding-right:0;
 }
+
+i {
+  margin-right: 10px;
+}
+
+main {
+  border-top: thin #faa824 solid;
+  padding-left: 14%;
+  padding-top:10px;
+}
