@@ -5,11 +5,16 @@ import { RedemptionsComponent } from './components/redemptions/redemptions.compo
 import { RenewalsComponent } from './components/renewals/renewals.component';
 import { ItemsComponent } from './components/items/items.component';
 import { LoansComponent } from './components/loans/loans.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export const appRoutes: Routes = [
 	{
-		path: 'dashboard',
+    path: 'dashboard',
 		children: [
+      {
+				path: '',
+				component: DashboardComponent
+      },
 			{
 				path: 'accounts',
 				component: AccountsComponent

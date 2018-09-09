@@ -10,6 +10,7 @@ import { RenewalsComponent } from './components/renewals/renewals.component';
 import { RoutingModule } from './routing';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TopnavComponent } from './components/topnav/topnav.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TopnavComponent } from './components/topnav/topnav.component';
     LoansComponent,
     RedemptionsComponent,
     RenewalsComponent,
-    TopnavComponent
+    TopnavComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
