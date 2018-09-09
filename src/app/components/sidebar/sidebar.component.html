@@ -1,42 +1,30 @@
-<nav class="col-md-2 d-none d-md-block sidebar">
-  <div class="sidebar-sticky">
-    <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link active" [routerLink]="['dashboard/account']">
-          <span data-feather="home"></span>
-          <i class="fas fa-home fa-2x"></i>Dashboard <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['dashboard/accounts']">
-          <span data-feather="file"></span>
-          <i class="fas fa-user-circle fa-2x"></i> Account
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['dashboard/loans']">
-          <span data-feather="file"></span>
-          <i class="far fa-check-circle fa-2x"></i> Loans
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['dashboard/items']">
-          <span data-feather="file"></span>
-          <i class="fas fa-box fa-2x"></i> Item
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['dashboard/renewals']">
-          <span data-feather="file"></span>
-          <i class="fas fa-archive fa-2x"></i> Renewal
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['dashboard/redemptions']">
-          <span data-feather="file"></span>
-          <i class="fas fa-window-restore fa-2x"></i> Redemption
-        </a>
-      </li>
-    </ul>
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <h3><i class="fas fa-gem"></i> PawnApp</h3>
   </div>
+
+  <ul class="list-unstyled components">
+    <li class="active">
+      <a href="#"><i class="fas fa-chart-pie"></i> Dashboard</a>
+    </li>
+    <li>
+      <a href="#"><i class="fas fa-user"></i> Account</a>
+    </li>
+    <li>
+      <a href="#"><i class="fas fa-gem"></i> Loans</a>
+    </li>
+    <li>
+      <a href="#"><i class="fas fa-align-justify"></i> Items</a>
+    </li>
+    <li>
+      <a href="#"><i class="fas fa-sync-alt"></i> Renewal</a>
+    </li>
+    <li>
+      <a href="#"><i class="fas fa-gift"></i> Redemption</a>
+    </li>
+  </ul>
+
 </nav>
+
+
+
