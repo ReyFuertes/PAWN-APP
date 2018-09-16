@@ -1,8 +1,9 @@
 <div class="pa_accounts-table">
+    <h3 class="pa_card-header-title pa_font-w-300">Accounts</h3>
   <div class="pa_card-header">
     <div class="row">
       <div class="col-8">
-        <h3 class="pa_card-header-title">Accounts</h3>
+        <button class="btn btn-md btn-w-90 btn-success"><i class="fas fa-plus"></i> Add</button>
       </div>
       <div class="col-4">
         <div class="pa_search-container">
@@ -25,6 +26,7 @@
         <th *ngFor="let col of columns">
           {{col.header}}
         </th>
+        <th></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -35,6 +37,7 @@
         <td *ngFor="let col of columns">
           {{rowData[col.field]}}
         </td>
+        <td><i class="fas fa-ellipsis-v fa-2x"></i></td>
       </tr>
     </ng-template>
   </p-table>
