@@ -4,7 +4,7 @@ import * as Chart from "chart.js";
 @Component({
   selector: 'pa-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.html']
+  styleUrls: ['./dashboard.component.scss']
 })
 
 export class DashboardComponent implements AfterViewInit {
@@ -14,6 +14,7 @@ export class DashboardComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.canvas = document.getElementById('myChart');
     this.ctx = this.canvas.getContext('2d');
+    
     var myChart = new Chart(this.ctx, {
       type: 'bar',
       data: {
@@ -49,7 +50,7 @@ export class DashboardComponent implements AfterViewInit {
               }]
           }
       }
-    }
+    })
   }
 
 }

@@ -12,6 +12,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TopnavComponent } from './components/topnav/topnav.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
+import {TableModule} from 'primeng/table';
+import {PaginatorModule} from 'primeng/paginator';
+
 @NgModule({
   declarations: [
     SidebarComponent,
@@ -26,7 +29,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
   ],
   imports: [
     BrowserModule,
-    RoutingModule
+    RoutingModule,
+    TableModule,
+    PaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

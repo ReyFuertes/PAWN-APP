@@ -47,9 +47,8 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   }
 
   public gotoRoute(event: any): void {
-    let links = document.querySelectorAll(".router-link-item");
+    let links = Array.from(document.querySelectorAll(".router-link-item"));
 
-    console.log(links);
     links.forEach(link => {
       link.classList.remove('active');
     });

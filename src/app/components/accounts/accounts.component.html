@@ -1,1 +1,42 @@
-<h1>This is accounts component</h1>
+<div class="pa_accounts-table">
+  <div class="pa_card-header">
+    <div class="row">
+      <div class="col-8">
+        <h3 class="pa_card-header-title">Accounts</h3>
+      </div>
+      <div class="col-4">
+        <div class="pa_search-container">
+            <div class="row">
+              <i class="fas fa-filter"></i>
+              <div class="col-12">
+                <input class="form-control form-control-sm" type="search" placeholder="Search Keyword">
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p-table [columns]="cols" [value]="accounts" selectionMode="multiple" [(selection)]="selectedAccount" dataKey="account_id">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th style="width: 3em">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th *ngFor="let col of columns">
+          {{col.header}}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData">
+        <td>
+          <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+        </td>
+        <td *ngFor="let col of columns">
+          {{rowData[col.field]}}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-paginator [rows]="10" [totalRecords]="100"></p-paginator>
+</div>

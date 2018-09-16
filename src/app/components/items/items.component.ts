@@ -1,13 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'pa-items',
-  templateUrl: './items.component.html',
-  styleUrls: [ './items.component.css' ]
+  selector: "pa-items",
+  templateUrl: "./items.component.html",
+  styleUrls: ["./items.component.scss"]
 })
-
 export class ItemsComponent implements OnInit {
-  constructor() { }
+  public cols: any[];
+  
+  constructor() {}
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.cols = [
+      { field: "vin", header: "Vin" },
+      { field: "year", header: "Year" },
+      { field: "brand", header: "Brand" },
+      { field: "color", header: "Color" }
+    ];
+  }
 }
