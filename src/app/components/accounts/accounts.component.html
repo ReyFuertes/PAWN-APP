@@ -1,45 +1,17 @@
-<div class="pa_accounts-table">
-    <h3 class="pa_card-header-title pa_font-w-300">Accounts</h3>
+<div class="pa_search-table">
+  <h3 class="pa_card-header-title pa_font-w-300">Accounts</h3>
   <div class="pa_card-header">
     <div class="row">
-      <div class="col-8">
-        <button class="btn btn-md btn-w-90 btn-success"><i class="fas fa-plus"></i> Add</button>
+      <div class="col-8" [ngStyle]="{'padding': '3px 20px'}">
+        <button class="btn btn-sm btn-w-90 btn-success"><i class="fas fa-plus"></i> Add</button>
+        <button class="btn btn-sm btn-w-90 btn-default"><i class="fas fa-pen"></i> Edit</button>
+        <button class="btn btn-sm btn-w-90 btn-default"><i class="fas fa-sync"></i> Refresh</button>
+        <button class="btn btn-sm btn-w-90 btn-danger"><i class="far fa-trash-alt"></i> Delete</button>
       </div>
       <div class="col-4">
-        <div class="pa_search-container">
-            <div class="row">
-              <i class="fas fa-filter"></i>
-              <div class="col-12">
-                <input class="form-control form-control-sm" type="search" placeholder="Search Keyword">
-              </div>
-            </div>
-        </div>
+        <pa-filter-table></pa-filter-table>
       </div>
     </div>
   </div>
-  <p-table [columns]="cols" [value]="accounts" selectionMode="multiple" [(selection)]="selectedAccount" dataKey="account_id">
-    <ng-template pTemplate="header" let-columns>
-      <tr>
-        <th style="width: 3em">
-          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-        </th>
-        <th *ngFor="let col of columns">
-          {{col.header}}
-        </th>
-        <th></th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-      <tr [pSelectableRow]="rowData">
-        <td>
-          <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
-        </td>
-        <td *ngFor="let col of columns">
-          {{rowData[col.field]}}
-        </td>
-        <td><i class="fas fa-ellipsis-v fa-2x"></i></td>
-      </tr>
-    </ng-template>
-  </p-table>
-  <p-paginator [rows]="10" [totalRecords]="100"></p-paginator>
+  <pa-search-table [cols]="cols" [rows]="accounts" ></pa-search-table>
 </div>

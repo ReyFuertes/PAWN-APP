@@ -1,16 +1,19 @@
 import { Component, OnInit } from "@angular/core";
+import { GenericTablePageComponent } from "../../shared/generic-table-page.component";
 
 @Component({
   selector: "pa-account",
   templateUrl: "./accounts.component.html",
   styleUrls: ["./accounts.component.scss"]
 })
-export class AccountsComponent implements OnInit {
+export class AccountsComponent extends GenericTablePageComponent implements OnInit {
   public cols: any[];
   public accounts: any[];
   public selectedAccount: any;
 
-  constructor() {}
+  constructor() {
+    super();
+  }
 
   ngOnInit() {
     this.cols = [
@@ -124,5 +127,12 @@ export class AccountsComponent implements OnInit {
         address: "Grand Residences Mabolo Cebu City"
       }
     ];
+  
+  }
+
+  public clickStopper(event: any) {
+    event.stopPropagation();
+    console.log('clickStopper');
+    return;
   }
 }

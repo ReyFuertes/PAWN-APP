@@ -11,6 +11,8 @@ import { RoutingModule } from './routing';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TopnavComponent } from './components/topnav/topnav.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SearchTableComponent } from './shared/search-table/search-table.component';
+import { FilterTableComponent } from './shared/filter-table/filter-table.component';
 
 import {TableModule} from 'primeng/table';
 import {PaginatorModule} from 'primeng/paginator';
@@ -25,7 +27,9 @@ import {PaginatorModule} from 'primeng/paginator';
     RedemptionsComponent,
     RenewalsComponent,
     TopnavComponent,
-    DashboardComponent
+    DashboardComponent,
+    SearchTableComponent,
+    FilterTableComponent
   ],
   imports: [
     BrowserModule,
