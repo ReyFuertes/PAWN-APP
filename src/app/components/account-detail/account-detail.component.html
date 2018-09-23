@@ -1,7 +1,7 @@
 <div class="pa_card">
   <div class="row pa_card-header">
     <div class="col-6">
-      <h4 class="pa_card-header-title pa_font-w-300">New Account</h4>
+      <h4 class="pa_card-header-title pa_font-w-300">{{pageTitle}}</h4>
     </div>
     <div class="col-6 pull-right"><a routerLink="/dashboard/accounts" class="float-right">Back to Accounts</a></div>
   </div>
@@ -52,7 +52,7 @@
       </div>
       <div class="float-right">
           <button type="button" class="btn btn-md btn-success pa_button pa_button-green"><i class="fas fa-plus"></i> Add</button>
-          <button type="button" class="btn btn-md btn-default pa_button pa_button-black"><i class="fas fa-ban"></i> Cancel</button>
+          <button type="button" routerLink="/dashboard/accounts" class="btn btn-md btn-default pa_button pa_button-black"><i class="fas fa-ban"></i> Cancel</button>
       </div>
     </div>
   </div>

@@ -7,6 +7,8 @@ import { ItemsComponent } from './components/items/items.component';
 import { LoansComponent } from './components/loans/loans.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AccountDetailComponent } from './components/account-detail/account-detail.component';
+import { NewAccountComponent } from './components/account-new/account-new.component';
+import { EditAccountComponent } from './components/account-edit/account-edit.component';
 
 export const appRoutes: Routes = [
 	{
@@ -21,8 +23,11 @@ export const appRoutes: Routes = [
 				component: AccountsComponent
       },
 			{
-				path: 'account/detail/new',
-				component: AccountDetailComponent
+				path: 'account/new',
+				component: NewAccountComponent
+      },{
+				path: 'account/edit/:id',
+				component: EditAccountComponent
       },
       {
 				path: 'loans',

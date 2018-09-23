@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { GenericTablePageComponent } from "../../shared/generic-table-page.component";
+import { GenericTablePageComponent } from "../../shared/search-table/search-table.component";
 
 @Component({
   selector: "pa-account",
@@ -130,9 +130,6 @@ export class AccountsComponent extends GenericTablePageComponent implements OnIn
   
   }
 
-  public clickStopper(event: any) {
-    event.stopPropagation();
-    console.log('clickStopper');
-    return;
-  }
+
+
 }

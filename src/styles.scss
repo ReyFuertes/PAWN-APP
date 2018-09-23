@@ -185,29 +185,6 @@ ul ul a {
   background: #777;
 }
 
-ul.CTAs {
-  padding: 20px;
-}
-
-ul.CTAs a {
-  text-align: center;
-  font-size: 0.9em !important;
-  display: block;
-  border-radius: 5px;
-  margin-bottom: 5px;
-}
-
-a.download {
-  background: #fff;
-  color: #7386d5;
-}
-
-a.article,
-a.article:hover {
-  background: #6d7fcc !important;
-  color: #fff !important;
-}
-
 .pa_button {
   min-width: 120px;
   margin-right: 5px;
@@ -218,6 +195,10 @@ a.article:hover {
     background-color: #999 !important;
     border: 1px solid #999 !important;
   }
+}
+
+.btn-success, .btn-danger {
+  color:#eee;
 }
 
 /* ---------------------------------------------------

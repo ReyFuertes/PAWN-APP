@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'pa-account-detail',
@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class AccountDetailComponent implements OnInit {
+  @Input()
+  public pageTitle: string = '';
+
   constructor() { }
 
   ngOnInit() { }
