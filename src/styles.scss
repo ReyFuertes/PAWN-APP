@@ -208,8 +208,17 @@ a.article:hover {
   color: #fff !important;
 }
 
+.pa_button {
+  min-width: 120px;
+  margin-right: 5px;
+}
 
-
+.pa_button-upload-container {
+  .ui-button {
+    background-color: #999 !important;
+    border: 1px solid #999 !important;
+  }
+}
 
 /* ---------------------------------------------------
     CONTENT STYLE

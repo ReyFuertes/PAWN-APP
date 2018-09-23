@@ -8,6 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 
 export class TextareaComponent implements OnInit {
   @Input()
+  public rows: number = 5;
+  @Input()
   public textareaStyle: string = '';
   @Input()
   public placeholder: string = 'Enter Keyword';

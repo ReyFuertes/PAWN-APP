@@ -18,6 +18,7 @@ import {TableModule} from 'primeng/table';
 import {PaginatorModule} from 'primeng/paginator';
 import { AccountDetailComponent } from './components/account-detail/account-detail.component';
 import { CoreModule } from './core/core.module';
+import {FileUploadModule} from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { CoreModule } from './core/core.module';
     RoutingModule,
     TableModule,
     PaginatorModule,
-    CoreModule
+    CoreModule,
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]
