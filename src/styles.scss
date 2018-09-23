@@ -71,7 +71,24 @@ a:focus {
   font-weight: 300;
 }
 
-.pa_card-header {
+.pa_card {
+  border-top: 3px #99ca3d solid;
+  margin: 0;
+  padding: 15px 10px 10px;
+  border: thin #ccc solid;
+  border-radius: 4px 4px 0 0;
+  border-top: 3px #99ca3d solid;
+  height: calc(100vh - 130px);
+
+  .pa_card-header {
+    border-bottom: thin #ccc solid;
+    margin:0;
+
+  }
+
+}
+
+.pa_header {
   margin: 0;
   padding: 15px 10px 10px;
   border: thin #ccc solid;
@@ -83,7 +100,7 @@ a:focus {
     margin-bottom: 0;
   }
 
-  .pa_card-header-title {
+  .pa_header-title {
     padding: 4px 5px;
   }
 }

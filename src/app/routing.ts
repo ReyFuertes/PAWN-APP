@@ -6,6 +6,7 @@ import { RenewalsComponent } from './components/renewals/renewals.component';
 import { ItemsComponent } from './components/items/items.component';
 import { LoansComponent } from './components/loans/loans.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AccountDetailComponent } from './components/account-detail/account-detail.component';
 
 export const appRoutes: Routes = [
 	{
@@ -18,6 +19,10 @@ export const appRoutes: Routes = [
 			{
 				path: 'accounts',
 				component: AccountsComponent
+      },
+			{
+				path: 'account/detail/new',
+				component: AccountDetailComponent
       },
       {
 				path: 'loans',

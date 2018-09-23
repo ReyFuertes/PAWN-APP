@@ -1,0 +1,50 @@
+<div class="pa_card">
+  <div class="row pa_card-header">
+    <div class="col-6">
+      <h4 class="pa_card-header-title pa_font-w-300">New Account</h4>
+    </div>
+    <div class="col-6 pull-right"><a href="#" class="float-right">Back to Accounts</a></div>
+  </div>
+  <div class="row pa_card-content">
+    <div class="col-2">
+      <div class="pa_image-container"></div>
+    </div>
+    <div class="col-8">
+      <div class="row">
+        <div class="col-6">
+          <core-input [name]="'id-number'" [label]="'ID Number'" [inputStyle]="{ 'width': '250px' }"></core-input>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <core-input [name]="'first'" [label]="'Firstname'" [inputStyle]="{ 'width': '100%' }"></core-input>
+        </div>
+        <div class="col-6">
+          <core-input [name]="'last'" [label]="'Lastname'" [inputStyle]="{ 'width': '100%' }"></core-input>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <core-input [name]="'phone-num'" [label]="'Phone Number'" [inputStyle]="{ 'width': '100%' }"></core-input>
+        </div>
+        <div class="col-6">
+          <core-input [name]="'email-address'" [label]="'Email Address'" [inputStyle]="{ 'width': '100%' }"></core-input>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <core-input [name]="'identification-num'" [label]="'Identification Number'" [inputStyle]="{ 'width': '100%' }"></core-input>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <core-textarea [name]="'Address'" [label]="'Address'" [textareaStyle]="{ 'width': '100%' }"></core-textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

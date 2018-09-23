@@ -16,6 +16,8 @@ import { FilterTableComponent } from './shared/filter-table/filter-table.compone
 
 import {TableModule} from 'primeng/table';
 import {PaginatorModule} from 'primeng/paginator';
+import { AccountDetailComponent } from './components/account-detail/account-detail.component';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -29,13 +31,15 @@ import {PaginatorModule} from 'primeng/paginator';
     TopnavComponent,
     DashboardComponent,
     SearchTableComponent,
-    FilterTableComponent
+    FilterTableComponent,
+    AccountDetailComponent
   ],
   imports: [
     BrowserModule,
     RoutingModule,
     TableModule,
-    PaginatorModule
+    PaginatorModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
