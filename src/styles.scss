@@ -83,9 +83,7 @@ a:focus {
   .pa_card-header {
     border-bottom: thin #ccc solid;
     margin:0;
-
   }
-
 }
 
 .pa_header {
@@ -186,8 +184,9 @@ ul ul a {
 }
 
 .pa_button {
-  min-width: 120px;
+  min-width: 110px;
   margin-right: 5px;
+  height: 35px;
 }
 
 .pa_button-upload-container {

@@ -11,16 +11,13 @@ import { RoutingModule } from './routing';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TopnavComponent } from './components/topnav/topnav.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { GenericTablePageComponent } from './shared/search-table/search-table.component';
 import { FilterTableComponent } from './shared/filter-table/filter-table.component';
-
-import {TableModule} from 'primeng/table';
-import {PaginatorModule} from 'primeng/paginator';
 import { AccountDetailComponent } from './components/account-detail/account-detail.component';
 import { CoreModule } from './core/core.module';
 import {FileUploadModule} from 'primeng/fileupload';
 import { NewAccountComponent } from './components/account-new/account-new.component';
 import { EditAccountComponent } from './components/account-edit/account-edit.component';
+import { AccountSearchTableComponent } from './components/account-search-table/account-search-table.component';
 
 @NgModule({
   declarations: [
@@ -33,17 +30,15 @@ import { EditAccountComponent } from './components/account-edit/account-edit.com
     RenewalsComponent,
     TopnavComponent,
     DashboardComponent,
-    GenericTablePageComponent,
     FilterTableComponent,
     AccountDetailComponent,
     NewAccountComponent,
-    EditAccountComponent
+    EditAccountComponent,
+    AccountSearchTableComponent
   ],
   imports: [
     BrowserModule,
     RoutingModule,
-    TableModule,
-    PaginatorModule,
     CoreModule,
     FileUploadModule
   ],

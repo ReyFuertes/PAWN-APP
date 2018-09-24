@@ -2,16 +2,16 @@
     [columns]="cols" 
     [value]="rows" 
     selectionMode="multiple" 
-    [(selection)]="selectedAccount"
+    [(selection)]="selectedRow"
     (onRowSelect)="onRowSelect($event)"
-    dataKey="account_id"
+    [dataKey]="rowIndex"
   >
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th style="width: 3em">
         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
       </th>
-      <th *ngFor="let col of columns">
+      <th *ngFor="let col of columns" [ngStyle]="{'width': col.width}">
         {{col.header}}
       </th>
     </tr>

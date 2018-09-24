@@ -9,6 +9,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class AccountDetailComponent implements OnInit {
   @Input()
   public pageTitle: string = '';
+  @Input()
+  public btnText: string = 'Save';
 
   constructor() { }
 
