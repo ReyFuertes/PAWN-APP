@@ -1,0 +1,23 @@
+<div *ngIf="parentForm" [formGroup]="parentForm">
+    <p-calendar 
+      #calendar
+      (onSelect)="onChange($event)"
+      [tabindex]="tabIndex" 
+      [formControlName]="controlName" 
+      [readonlyInput]="true" 
+      [monthNavigator]="true"
+      [yearNavigator]="true" 
+      yearRange="1950:2030"
+      [dateFormat]="customFormat" 
+      [minDate]="minDateValue" 
+      [maxDate]="maxDateValue"
+      [readonlyInput]="true"
+      [placeholder]="placeholder"
+      [style]="{'position': 'fixed', 'overflow': 'visible', 'z-index': '999'}"
+    >
+    </p-calendar>
+  
+    <i (click)="openCalendar($event)" class="far fa-calendar-alt"></i>
+    <span class="highlight"></span>
+    <span class="bar"></span>
+  </div>

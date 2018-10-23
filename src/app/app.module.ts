@@ -1,48 +1,55 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule } from "@angular/core";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AppComponent } from "./app.component";
+import { CoreModule } from "./core/core.module";
+import { FileUploadModule } from "primeng/fileupload";
+import { HttpClientModule } from "@angular/common/http";
+import { Routes, RouterModule } from "@angular/router";
+import { DefaultLayoutComponent } from "./pages/default-layout/default-layout.component";
+import { CommonModule } from "@angular/common";
+import { NoRouteComponent } from "./pages/noroute/noroute.component";
+import { SharedModule } from "primeng/components/common/shared";
+import { SidebarComponent } from "./shared/sidebar/sidebar.component";
+import { TopnavComponent } from "./modules/topnav/topnav.component";
 
-import { AppComponent } from './app.component';
-import { AccountsComponent } from './components/accounts/accounts.component';
-import { ItemsComponent } from './components/items/items.component';
-import { LoansComponent } from './components/loans/loans.component';
-import { RedemptionsComponent } from './components/redemptions/redemptions.component';
-import { RenewalsComponent } from './components/renewals/renewals.component';
-import { RoutingModule } from './routing';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { TopnavComponent } from './components/topnav/topnav.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { FilterTableComponent } from './shared/filter-table/filter-table.component';
-import { AccountDetailComponent } from './components/account-detail/account-detail.component';
-import { CoreModule } from './core/core.module';
-import {FileUploadModule} from 'primeng/fileupload';
-import { NewAccountComponent } from './components/account-new/account-new.component';
-import { EditAccountComponent } from './components/account-edit/account-edit.component';
-import { AccountSearchTableComponent } from './components/account-search-table/account-search-table.component';
+const appRoutes: Routes = [
+  {
+    path: "",
+    component: DefaultLayoutComponent
+  },
+  {
+    path: "dashboard",
+    component: DefaultLayoutComponent,
+    children: [
+      {
+        path: "",
+        loadChildren: "./modules/accounts/accounts.module#AccountModule"
+      }
+    ]
+  },
+  {
+    path: "**",
+    component: NoRouteComponent
+  }
+];
 
 @NgModule({
   declarations: [
-    SidebarComponent,
     AppComponent,
-    AccountsComponent,
-    ItemsComponent,
-    LoansComponent,
-    RedemptionsComponent,
-    RenewalsComponent,
-    TopnavComponent,
-    DashboardComponent,
-    FilterTableComponent,
-    AccountDetailComponent,
-    NewAccountComponent,
-    EditAccountComponent,
-    AccountSearchTableComponent
+    DefaultLayoutComponent,
+    NoRouteComponent,
+    SidebarComponent,
+    TopnavComponent
   ],
   imports: [
-    BrowserModule,
-    RoutingModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule,
     CoreModule,
     FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

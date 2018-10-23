@@ -1,0 +1,20 @@
+:host ::ng-deep .ui-dialog-titlebar-close {
+  display: none;
+}
+
+:host ::ng-deep .ui-dialog-title {
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  :host ::ng-deep .ui-dialog {
+    width: 700px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  :host ::ng-deep .ui-dialog {
+    width: auto !important;
+    left: 0 !important;
+  }
+}

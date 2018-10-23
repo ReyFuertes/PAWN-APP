@@ -1,12 +1,28 @@
+
 body {
   font-family: "Roboto", sans-serif;
   background: #fff;
   color: #444;
+  overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5 {
+.form-control:focus {
+  border-color: #007ad9;
+  outline: 0;
+  box-shadow: none;
+}
+
+.input-group .has-float-label .form-control {
+  border-radius: 0.1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-family: "Roboto", sans-serif;
-  color:#444;
+  color: #444;
 }
 
 p {
@@ -22,7 +38,7 @@ input {
 }
 
 button {
-  color:#555;
+  color: #555;
 }
 
 a,
@@ -61,7 +77,7 @@ a:focus {
 .btn-w-90 {
   width: 90px;
   margin-right: 5px;
-  
+
   i {
     text-align: left;
   }
@@ -82,7 +98,7 @@ a:focus {
 
   .pa_card-header {
     border-bottom: thin #ccc solid;
-    margin:0;
+    margin: 0;
   }
 }
 
@@ -92,7 +108,7 @@ a:focus {
   border: thin #ccc solid;
   border-radius: 4px 4px 0 0;
   border-bottom: none;
-  border-top:3px #99ca3d solid;
+  border-top: 3px #99ca3d solid;
 
   h3 {
     margin-bottom: 0;
@@ -104,21 +120,36 @@ a:focus {
 }
 
 /* ---------------------------------------------------
+    BOOSTRAP CUSTOM
+----------------------------------------------------- */
+
+.btn.disabled,
+.btn:disabled {
+  cursor: not-allowed;
+}
+
+label {
+  margin-bottom: 0 !important;
+}
+
+button:focus {
+  outline: 0;
+}
+
+/* ---------------------------------------------------
+    PRIMENG CUSTOM
+----------------------------------------------------- */
+
+/* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
 
-.wrapper {
-  display: flex;
-  width: calc(100% - 250px);
-  align-items: stretch;
-  background: #444;
-}
-
 #sidebar {
-  min-width: 250px;
+  background: #444;
   max-width: 250px;
   color: #fff;
   transition: all 0.3s;
+  height: 100vh;
 }
 
 #sidebar.active {
@@ -196,34 +227,7 @@ ul ul a {
   }
 }
 
-.btn-success, .btn-danger {
-  color:#eee;
-}
-
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-
-#content {
-  width: 100%;
-  padding: 20px;
-  min-height: 100vh;
-  transition: all 0.3s;
-  background: #fff;
-}
-
-/* ---------------------------------------------------
-    MEDIAQUERIES
------------------------------------------------------ */
-
-@media (max-width: 768px) {
-  #sidebar {
-    margin-left: -250px;
-  }
-  #sidebar.active {
-    margin-left: 0;
-  }
-  #sidebarCollapse span {
-    display: none;
-  }
+.btn-success,
+.btn-danger {
+  color: #eee;
 }

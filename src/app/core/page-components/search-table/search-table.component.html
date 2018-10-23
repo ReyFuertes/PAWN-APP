@@ -1,17 +1,19 @@
 <p-table 
+    #searchTable
     [columns]="cols" 
     [value]="rows" 
     selectionMode="multiple" 
-    [(selection)]="selectedRow"
     (onRowSelect)="onRowSelect($event)"
+    (onRowUnselect)="onRowUnselect($event)"
     [dataKey]="rowIndex"
+
   >
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th style="width: 3em">
         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
       </th>
-      <th *ngFor="let col of columns" [ngStyle]="{'width': col.width}">
+      <th *ngFor="let col of columns" class="table-header">
         {{col.header}}
       </th>
     </tr>
@@ -27,4 +29,4 @@
     </tr>
   </ng-template>
 </p-table>
-<p-paginator [rows]="10" [totalRecords]="100"></p-paginator>
+<p-paginator [rows]="10" [totalRecords]="totalRecords" (onPageChange)="pageVar.emit($event)"></p-paginator>

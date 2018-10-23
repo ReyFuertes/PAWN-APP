@@ -1,0 +1,11 @@
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <h3><i class="fas fa-gem"></i> <span class="pa-color-green"> Pawn</span>App</h3>
+  </div>
+
+  <ul class="list-unstyled components sidebar-links">
+    <li *ngFor="let link of sidebarLinks" class="router-link-item">
+      <a [routerLink]="[link.route]" (click)="onClick($event)"><i class="fas {{link.icon}}"></i> {{link.text}}</a>
+    </li>
+  </ul>
+</nav>

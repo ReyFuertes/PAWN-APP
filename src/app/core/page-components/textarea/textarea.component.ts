@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'core-textarea',
@@ -7,6 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 
 export class TextareaComponent implements OnInit {
+  @Input()
+  public parentForm: FormGroup;
+  @Input()
+  public controlName: any;
   @Input()
   public rows: number = 5;
   @Input()

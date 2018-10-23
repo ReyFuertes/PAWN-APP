@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup } from "@angular/forms";
 
 @Component({
   selector: 'core-input',
@@ -7,6 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 
 export class InputComponent implements OnInit {
+  @Input()
+  public parentForm: FormGroup;
+  @Input()
+  public controlName: any;
+  @Input()
+  public autofocus: boolean = false;
   @Input()
   public inputStyle: string = '';
   @Input()

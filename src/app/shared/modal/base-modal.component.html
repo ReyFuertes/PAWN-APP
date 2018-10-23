@@ -1,0 +1,21 @@
+<p-dialog 
+  #modal
+  [header]="headerText" 
+  [width]="width" 
+  [height]="height" 
+  [(visible)]="showModal" 
+  [modal]="true" 
+  [responsive]="true"
+  [maximizable]="true" 
+  [baseZIndex]="10000"
+  [positionTop]="positionTop"
+  [contentStyle]="contentStyle"
+  class="lpa-modal"
+  [closeOnEscape]="true"
+  [closable]="true"
+ >
+  <ng-content select=".body"></ng-content>
+  <!-- <p-footer>
+    <ng-content select=".footer"></ng-content>
+  </p-footer> -->
+</p-dialog>

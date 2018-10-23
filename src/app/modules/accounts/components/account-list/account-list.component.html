@@ -1,0 +1,31 @@
+<div class="pa_search-table">
+  <h3 class="pa_header-title pa_font-w-300">Accounts</h3>
+  <div class="pa_header">
+    <div class="row">
+      <div class="col-8" [ngStyle]="{'padding': '3px 20px'}">
+        <button type="button" (click)="onAdd()" class="btn btn-sm pa_button btn-success"><i class="fas fa-plus"></i> Add</button>
+        <button type="button" (click)="onEdit()" [disabled]="editMode !== 1" class="btn btn-sm pa_button btn-default"><i class="fas fa-pen"></i> Edit</button>
+        <button type="button" class="btn btn-sm pa_button btn-default"><i class="fas fa-sync"></i> Refresh</button>
+        <button type="button" (click)="onDelete()" [disabled]="editMode !== 1" class="btn btn-sm pa_button btn-danger"><i class="far fa-trash-alt"></i> Delete</button>
+      </div>
+      <div class="col-4">
+        <pa-filter-table></pa-filter-table>
+      </div>
+    </div>
+  </div>
+  <pa-account-search-table *ngIf="totalRecords" (editMode)="editMode = $event" [totalRecords]="totalRecords" (pageVar)="paginate($event)" (selections)="selections = $event" [rows]="accounts"></pa-account-search-table>
+</div>
+
+<app-base-modal 
+  [showModal]="showModal" 
+  [headerText]="'New Account'" 
+  (closeModal)="onClose($event)"
+  [height]="350" 
+  [contentStyle]="{'max-height':'calc(100vh - 200px)', 'overflow-x': 'hidden'}"
+>
+  <ng-container class="body">
+    <pa-account-new *ngIf="aeMode === 0" [form]="form" ></pa-account-new>
+    <pa-account-edit *ngIf="aeMode === 1" [form]="form"></pa-account-edit>
+  </ng-container>
+</app-base-modal>
+

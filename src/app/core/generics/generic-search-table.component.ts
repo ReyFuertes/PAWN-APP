@@ -8,11 +8,13 @@ export abstract class GenericSearchTableComponent {
   protected rows: any[];
 
   protected rowIndex: any;
-  
-  protected selectedRow: any;
+  protected selectedRows: any = [];
 
   protected onRowSelect(event: any): void {
-    console.log('onRowSelect', event);
+    this.selectedRows = event.data;
   }
+
+  protected onRowUnselect(event: any): void {}
+  
 
 }
