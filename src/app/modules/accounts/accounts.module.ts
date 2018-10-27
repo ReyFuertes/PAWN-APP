@@ -13,6 +13,8 @@ import { AccountTableComponent } from "./components/account-table/account-table.
 import { AccountService } from "./account.service";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { ModalService } from "../../services/modal.service";
+import {ToastModule} from 'primeng/toast';
+import { MessageService } from "primeng/api";
 
 export const routes: Routes = [
   {
@@ -20,6 +22,8 @@ export const routes: Routes = [
     component: AccountListComponent
   }
 ];
+
+const primengModules = [FileUploadModule, ToastModule];
 
 @NgModule({
   declarations: [
@@ -36,11 +40,11 @@ export const routes: Routes = [
     HttpClientModule,
     CoreModule,
     SharedModule,
-    FileUploadModule,
+    ...primengModules,
 
     RouterModule.forChild(routes)
   ],
   exports: [],
-  providers: [AccountService, ModalService]
+  providers: [AccountService, ModalService, MessageService]
 })
 export class AccountModule {}

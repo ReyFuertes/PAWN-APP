@@ -59,5 +59,10 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     let link = document.querySelectorAll(".router-link-item");
     link[0].classList.add('active');
+    console.log(link[0]);
+  }
+
+  public getCurrentRoute(): void {
+
   }
 }

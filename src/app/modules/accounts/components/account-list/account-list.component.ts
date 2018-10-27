@@ -3,6 +3,8 @@ import { AccountService } from "../../account.service";
 import { PageVar } from "../../../../models/pages.model";
 import { Account, AEMode } from "../../../../models/account.model";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
+import {MessageService} from 'primeng/api';
+import { Subject } from "rxjs";
 
 @Component({
   selector: "pa-account-list",
@@ -17,10 +19,12 @@ export class AccountListComponent implements OnInit {
   public totalRecords: number;
   public aeMode: AEMode;
   public form: FormGroup;
+  public searchTerm$ = new Subject<string>();
 
   constructor(
     private formBuilder: FormBuilder,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private messageService: MessageService
   ) {
     this.form = this.formBuilder.group({
       idNumber: ["", Validators.compose([Validators.required])],
@@ -32,6 +36,8 @@ export class AccountListComponent implements OnInit {
       validIdNumber: ["", Validators.compose([Validators.required])],
       address: ["", Validators.compose([Validators.required])]
     });
+
+    this.accountService.searchAccount(this.searchTerm$).subscribe(results => this.accounts = results.accounts);
   }
 
   public load(pageVar: PageVar): void {
@@ -44,6 +50,10 @@ export class AccountListComponent implements OnInit {
 
   ngOnInit() {
     this.load({ limit: 10, offset: 0 });
+  }
+
+  public onSearch(event: any): void {
+    this.searchTerm$.next(event.target.value)
   }
 
   public onClose(event: boolean): void {
@@ -72,14 +82,27 @@ export class AccountListComponent implements OnInit {
   }
 
   public onDelete(): void {
-    this.accountService
-        .deleteAccount(this.selections[0].id)
-        .subscribe(response =>
-          this.accounts = response.accounts
-        );
+    this.showConfirm();
   }
 
   public paginate(event: any): void {
     this.load({ limit: event.rows, offset: event.first });
+  }
+
+  public showConfirm(): void {
+    this.messageService.clear();
+    this.messageService.add({key: 'c', sticky: true, severity:'warn', summary:'Are you sure?', detail:'Confirm to Delete'});
+  }
+
+  public onConfirm(): void {
+    this.accountService.deleteAccount(this.selections[0].id).subscribe(response => {
+        this.accounts = response.accounts
+        this.messageService.clear('c');
+      }
+    );
+  }
+
+  public onReject(): void {
+    this.messageService.clear('c');
   }
 }

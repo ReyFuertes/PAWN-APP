@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'pa-filter-table',
@@ -7,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class FilterTableComponent implements OnInit {
+
+  @Output()
+  public onSearch = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit() { }
