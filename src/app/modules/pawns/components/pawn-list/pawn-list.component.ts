@@ -1,21 +1,21 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { AccountService } from "../../account.service";
+import { Component, OnInit } from "@angular/core";
 import { PageVar } from "../../../../models/pages.model";
-import { Account } from "../../../../models/account.model";
+import { Pawn } from "../../../../models/pawn.model";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import {MessageService} from 'primeng/api';
 import { Subject } from "rxjs";
+import { PawnService } from "../../pawn.service";
 import { AEMode } from "../../../../models/crud.enum";
 
 @Component({
-  selector: "pa-account-list",
-  templateUrl: "./account-list.component.html",
-  styleUrls: ["./account-list.component.scss"]
+  selector: "pa-pawn-list",
+  templateUrl: "./pawn-list.component.html",
+  styleUrls: ["./pawn-list.component.scss"]
 })
-export class AccountListComponent implements OnInit {
+export class PawnListComponent implements OnInit {
   public showModal: boolean = false;
-  public accounts: Account[];
-  public selections: Account[];
+  public pawns: Pawn[];
+  public selections: Pawn[];
   public editMode: AEMode;
   public totalRecords: number;
   public aeMode: AEMode;
@@ -24,28 +24,30 @@ export class AccountListComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private accountService: AccountService,
+    private pawnService: PawnService,
     private messageService: MessageService
   ) {
     this.form = this.formBuilder.group({
-      idNumber: ["", Validators.compose([Validators.required])],
-      firstName: ["", Validators.compose([Validators.required])],
-      lastName: ["", Validators.compose([Validators.required])],
-      phoneNumber: ["", Validators.compose([Validators.required])],
+      pawnTicketNumber: ["", Validators.compose([Validators.required])],
+      datePawnGranted: ["", Validators.compose([Validators.required])],
+      maturityDate: ["", Validators.compose([Validators.required])],
+      expiryDate: ["", Validators.compose([Validators.required])],
       birthDate: ["", Validators.compose([Validators.required])],
-      validId: ["", Validators.compose([Validators.required])],
-      validIdNumber: ["", Validators.compose([Validators.required])],
-      address: ["", Validators.compose([Validators.required])]
+      interest: ["", Validators.compose([Validators.required])],
+      pawnAmount: ["", Validators.compose([Validators.required])],
+      pawnTotalAmount: ["", Validators.compose([Validators.required])],
+      accountId: ["", Validators.compose([Validators.required])],
+      itemId: ["", Validators.compose([Validators.required])],
+      created: ["", Validators.compose([Validators.required])]
     });
-
-    this.accountService.searchAccount(this.searchTerm$).subscribe(results => this.accounts = results.accounts);
+    this.pawnService.searchPawn(this.searchTerm$).subscribe(results => this.pawns = results.pawns);
   }
 
   public load(pageVar: PageVar): void {
-    this.accountService.getAccounts(pageVar).subscribe(response => {
-      this.accounts = response.accounts;
+    this.pawnService.getPawns(pageVar).subscribe(response => {
+      this.pawns = response.pawns;
       this.totalRecords = response.totalCount;
-      console.log("%caccounts loaded..", "background:green;color:#fff");
+      console.log("%cPawns loaded..", "background:green;color:#fff");
     });
   }
 
@@ -74,10 +76,10 @@ export class AccountListComponent implements OnInit {
     if (this.selections[0].id) {
       this.showModal = !this.showModal;
       this.aeMode = AEMode.edit;
-      this.accountService
-        .editAccount(this.selections[0].id)
+      this.pawnService
+        .editPawn(this.selections[0].id)
         .subscribe(response =>
-          this.form.patchValue(<FormGroup>response.accounts[0])
+          this.form.patchValue(<FormGroup>response.pawns[0])
         );
     }
   }
@@ -96,8 +98,8 @@ export class AccountListComponent implements OnInit {
   }
 
   public onConfirm(): void {
-    this.accountService.deleteAccount(this.selections[0].id).subscribe(response => {
-        this.accounts = response.accounts
+    this.pawnService.deletePawn(this.selections[0].id).subscribe(response => {
+        this.pawns = response.pawns
         this.messageService.clear('c');
       }
     );

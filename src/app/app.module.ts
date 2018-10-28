@@ -23,7 +23,16 @@ const appRoutes: Routes = [
     children: [
       {
         path: "",
-        loadChildren: "./modules/accounts/accounts.module#AccountModule"
+        loadChildren: "./modules/accounts/account.module#AccountModule"
+      }
+    ]
+  },{
+    path: "dashboard",
+    component: DefaultLayoutComponent,
+    children: [
+      {
+        path: "",
+        loadChildren: "./modules/pawns/pawn.module#PawnModule"
       }
     ]
   },

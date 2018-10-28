@@ -12,8 +12,3 @@ export interface Account {
   address?: string;
   created?: string;
 }
-
-export enum AEMode {
-  add,
-  edit,
-}

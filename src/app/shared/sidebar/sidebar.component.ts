@@ -20,9 +20,9 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       route: "/dashboard/accounts"
     },
     {
-      text: "Loans",
+      text: "Pawns",
       icon: "fa-gem",
-      route: "/dashboard/loans"
+      route: "/dashboard/pawns"
     },
     {
       text: "Items",

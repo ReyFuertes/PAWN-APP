@@ -1,19 +1,19 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild} from "@angular/core";
 import { GenericSearchTableComponent } from "../../../../core/generics/generic-search-table.component";
-import { Account } from "../../../../models/account.model";
+import { Pawn } from "../../../../models/pawn.model";
 import { AEMode } from "../../../../models/crud.enum";
 
 @Component({
-  selector: "pa-account-search-table",
+  selector: "pa-pawn-search-table",
   templateUrl:"../../../../core/page-components/search-table/search-table.component.html",
   styleUrls: ["../../../../core/page-components/search-table/search-table.component.scss"
   ]
 })
-export class AccountTableComponent extends GenericSearchTableComponent implements OnInit {
+export class PawnTableComponent extends GenericSearchTableComponent implements OnInit {
   @Input()
-  public rows: Account[];
+  public rows: Pawn[];
   @Output()
-  public selections = new EventEmitter<Account>();
+  public selections = new EventEmitter<Pawn>();
   @Output()
   public editMode = new EventEmitter<AEMode>();
   @Output()
@@ -29,13 +29,12 @@ export class AccountTableComponent extends GenericSearchTableComponent implement
   }
 
   ngOnInit() {
-    this.rowIndex = "idNumber";
+    this.rowIndex = "pawn_ticket_number";
 
     this.cols = [
-      { field: "idNumber", header: "ID Number" },
-      { field: "fullname", header: "Full Name" },
-      { field: "phoneNumber", header: "Phone Number" },
-      { field: "address", header: "Address" }
+      { field: "pawnTicketNumber", header: "Pawn Number" },
+      { field: "datePawnGranted", header: "Date Pawn Number" },
+      { field: "created", header: "Created" }
     ];
   }
 
