@@ -21,10 +21,20 @@
 </div>
 
 <app-base-modal [showModal]="showModal" [headerText]="'New Pawn'" (closeModal)="onClose($event)" [height]="350"
-  [contentStyle]="{'max-height':'calc(100vh - 200px)', 'overflow-x': 'hidden'}">
+  [contentStyle]="{'max-height':'calc(100vh - 100px)', 'overflow-x': 'hidden'}">
   <ng-container class="body">
     <pa-pawn-new *ngIf="aeMode === 0" [form]="form"></pa-pawn-new>
     <pa-pawn-edit *ngIf="aeMode === 1" [form]="form"></pa-pawn-edit>
+  </ng-container>
+  <ng-container class="footer" >
+      <div class="row">
+        <div class="col-12">
+          <a href="javascript:void(0)" (click)="onClose()" class="btn btn-sm btn-secondary pa_button pa_button-black float-right"><i
+              class="fas fa-ban"></i> Cancel</a>
+          <button type="submit" [disabled]="!form.valid" class="btn btn-sm btn-success pa_button pa_button-green float-right"><i
+              class="fas fa-plus"></i> Save</button>
+        </div>
+      </div>
   </ng-container>
 </app-base-modal>
 
@@ -45,3 +55,4 @@
     </div>
   </ng-template>
 </p-toast>
+

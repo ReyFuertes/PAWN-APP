@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { AccountService } from "../../account.service";
 import { PageVar } from "../../../../models/pages.model";
 import { Account } from "../../../../models/account.model";
-import { FormGroup, Validators, FormBuilder } from "@angular/forms";
+import { FormGroup, Validators, FormBuilder, NgForm } from "@angular/forms";
 import {MessageService} from 'primeng/api';
 import { Subject } from "rxjs";
 import { AEMode } from "../../../../models/crud.enum";
@@ -21,6 +21,12 @@ export class AccountListComponent implements OnInit {
   public aeMode: AEMode;
   public form: FormGroup;
   public searchTerm$ = new Subject<string>();
+
+  @ViewChild('f') myform: any;
+  
+  public onSubmit(): void {
+    console.log(this.myform);
+  }
 
   constructor(
     private formBuilder: FormBuilder,

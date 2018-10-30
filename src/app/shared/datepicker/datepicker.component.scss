@@ -16,6 +16,10 @@
   padding: 12px;
 }
 
+:host ::ng-deep .ui-datepicker {
+  left: -57px !important;
+}
+
 :host ::ng-deep .ui-inputtext:enabled:hover:not(.ui-state-error) {
   border:thin #ced4da solid;
 }
@@ -44,6 +48,13 @@ i.fa-calendar-alt {
   left: 175px;
   color: #888;
   cursor: pointer;
-  z-index: 999;
+  z-index: 99;
 }
 
+:host ::ng-deep .ui-datepicker table td {
+  padding: 0;
+}
+
+:host ::ng-deep .ui-datepicker {
+  padding: 5px;
+}

@@ -36,10 +36,18 @@ export class PawnListComponent implements OnInit {
       interest: ["", Validators.compose([Validators.required])],
       pawnAmount: ["", Validators.compose([Validators.required])],
       pawnTotalAmount: ["", Validators.compose([Validators.required])],
-      accountId: ["", Validators.compose([Validators.required])],
-      itemId: ["", Validators.compose([Validators.required])],
-      created: ["", Validators.compose([Validators.required])]
+      firstName: ["", Validators.compose([Validators.required])],
+      lastName: ["", Validators.compose([Validators.required])],
+      contactNumber: ["", Validators.compose([Validators.required])],
+      birthday: ["", Validators.compose([Validators.required])],
+      address: ["", Validators.compose([Validators.required])],
+      itemName: ["", Validators.compose([Validators.required])],
+      itemType: ["", Validators.compose([Validators.required])],
+      karat: ["", Validators.compose([Validators.required])],
+      grams: ["", Validators.compose([Validators.required])],
+      description: ["", Validators.compose([Validators.required])]
     });
+    
     this.pawnService.searchPawn(this.searchTerm$).subscribe(results => this.pawns = results.pawns);
   }
 
@@ -68,6 +76,7 @@ export class PawnListComponent implements OnInit {
   }
 
   public onAdd(): void {
+    console.log(this.form);
     this.showModal = !this.showModal;
     this.aeMode = AEMode.add;
   }

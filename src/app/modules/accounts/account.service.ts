@@ -31,7 +31,7 @@ export class AccountService extends GenericService {
   }
 
   public saveAccount(account: Account): Observable<any> {
-    return this.post('accounts/new', account);
+    return this.post('account/new', account);
   }
 
   public editAccount(id: number): Observable<any> {

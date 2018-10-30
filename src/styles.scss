@@ -119,9 +119,30 @@ a:focus {
   }
 }
 
+legend {
+  width: auto;
+  position: relative;
+  top: -4px;
+  padding-right: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: blue;
+  left: -10px;
+  font-weight: 100;
+  margin-bottom: 0;
+}
+
+fieldset {
+  border-top: thin #CCC solid;
+  margin-bottom: 10px;
+}
+
 /* ---------------------------------------------------
     BOOSTRAP CUSTOM
 ----------------------------------------------------- */
+.form-group {
+  margin-bottom:10px;
+}
 
 .btn.disabled,
 .btn:disabled {
