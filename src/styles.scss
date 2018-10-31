@@ -124,7 +124,7 @@ legend {
   position: relative;
   top: -4px;
   padding-right: 10px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   color: blue;
   left: -10px;
@@ -140,6 +140,11 @@ fieldset {
 /* ---------------------------------------------------
     BOOSTRAP CUSTOM
 ----------------------------------------------------- */
+.form-control:disabled, .form-control[readonly] {
+  cursor: not-allowed;
+  background-color: #f1f1f1;
+}
+
 .form-group {
   margin-bottom:10px;
 }

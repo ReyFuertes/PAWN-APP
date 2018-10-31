@@ -22,7 +22,7 @@ export abstract class BaseService {
   public get<T>(route: string, params: any) {
     let url = this.getAPIBaseUrl() + route;
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    
+
     return this.http.get<T>(url, {
       params: params,
       headers: headers

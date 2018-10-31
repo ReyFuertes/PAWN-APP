@@ -16,6 +16,10 @@ export class AccountService extends GenericService {
     super(http);
   }
 
+  public getOne(id: string): Observable<any> {
+    return this.get('account', {id});
+  }
+
   public searchAccount(terms: Observable<string>) {
     return terms.debounceTime(400)
       .distinctUntilChanged()

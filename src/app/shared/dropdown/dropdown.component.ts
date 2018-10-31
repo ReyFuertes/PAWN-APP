@@ -1,12 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
-  selector: 'app-dropdown',
-  templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.scss']
+  selector: "pa-dropdown",
+  templateUrl: "./dropdown.component.html",
+  styleUrls: ["./dropdown.component.scss"]
 })
-export class DropdownComponent implements OnInit {
-  constructor() { }
+export class DropdownSelectComponent implements OnInit {
+  @Input()
+  public style: any = { width: "100%" };
+  @Input()
+  public isFilter: boolean = true;
+  @Input()
+  public label: string = "";
+  @Input()
+  public items: any[];
+  @Input()
+  public selectedItem: any;
+  @Output()
+  public onItemChange = new EventEmitter<any>();
 
-  ngOnInit(): void { }
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  public onChange(event: any): void {
+    this.onItemChange.emit(event);
+  }
 }

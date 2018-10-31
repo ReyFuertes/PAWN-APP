@@ -15,6 +15,8 @@ import { SharedModule } from '../../shared/shared.module';
 import { PawnNewComponent } from './components/pawn-new/pawn-new.component';
 import { PawnEditComponent } from './components/pawn-edit/pawn-edit.component';
 import { PawnDetailComponent } from './components/pawn-detail/pawn-detail.component';
+import { AccountService } from '../accounts/account.service';
+import { ItemService } from '../items/item.service';
 
 export const routes: Routes = [
   {
@@ -45,7 +47,7 @@ const primengModules = [FileUploadModule, ToastModule];
     RouterModule.forChild(routes)
    ],
   exports: [],
-  providers: [PawnService, ModalService, MessageService],
+  providers: [PawnService, AccountService, ItemService, ModalService, MessageService],
 })
 export class PawnModule {}
 

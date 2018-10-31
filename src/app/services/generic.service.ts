@@ -10,6 +10,12 @@ export class GenericService extends BaseService {
     super(http);
   }
 
+  public getOne(endpoint: string, id: string): Observable<any> {
+    let params = new HttpParams();
+    params = params.set('id', id);
+    return this.get(endpoint, { params: params });
+  }
+
   public paginate<T>(endpoint: string, urlOrFilter?: string | object): Observable<T> {
     return this.get(endpoint, { params: this.getParams(endpoint, urlOrFilter) });
   }
@@ -24,7 +30,7 @@ export class GenericService extends BaseService {
     return this.get(endpoint, { params: params });
   }
 
-  public remove(endpoint: string, id: number): Observable<any> {
+  public remove(endpoint: string): Observable<any> {
     return this.delete(endpoint).pipe(map((response) => response ));
   }
 

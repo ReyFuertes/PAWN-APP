@@ -7,20 +7,24 @@ import { DatepickerComponent } from "./datepicker/datepicker.component";
 import { CalendarModule } from "primeng/calendar";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { InputNumberDirective } from "./directive/input-number.directive";
+import { DropdownSelectComponent } from "./dropdown/dropdown.component";
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
     FilterTableComponent, 
     BaseModalComponent,
     DatepickerComponent,
-    InputNumberDirective
+    InputNumberDirective,
+    DropdownSelectComponent
   ],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, CalendarModule, DialogModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, CalendarModule, DialogModule, DropdownModule],
   exports: [
     FilterTableComponent,
     BaseModalComponent,
     DatepickerComponent,
-    InputNumberDirective
+    InputNumberDirective,
+    DropdownSelectComponent
   ],
   providers: []
 })

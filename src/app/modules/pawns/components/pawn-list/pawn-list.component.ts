@@ -6,6 +6,9 @@ import {MessageService} from 'primeng/api';
 import { Subject } from "rxjs";
 import { PawnService } from "../../pawn.service";
 import { AEMode } from "../../../../models/crud.enum";
+import { AccountService } from "../../../accounts/account.service";
+import { Option } from "../../../../models/option.model";
+import { ItemService } from "../../../items/item.service";
 
 @Component({
   selector: "pa-pawn-list",
@@ -21,34 +24,49 @@ export class PawnListComponent implements OnInit {
   public aeMode: AEMode;
   public form: FormGroup;
   public searchTerm$ = new Subject<string>();
+  public accounts: Option[] = [];
+  public items: Option[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private pawnService: PawnService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private accountService: AccountService,
+    private itemService: ItemService
   ) {
+    this.accounts = [{value: null, label: 'Select an Account'}];
+    this.items = [{value: null, label: 'Select an Item'}];
+
     this.form = this.formBuilder.group({
-      pawnTicketNumber: ["", Validators.compose([Validators.required])],
-      datePawnGranted: ["", Validators.compose([Validators.required])],
-      maturityDate: ["", Validators.compose([Validators.required])],
-      expiryDate: ["", Validators.compose([Validators.required])],
-      birthDate: ["", Validators.compose([Validators.required])],
-      interest: ["", Validators.compose([Validators.required])],
-      pawnAmount: ["", Validators.compose([Validators.required])],
-      pawnTotalAmount: ["", Validators.compose([Validators.required])],
-      firstName: ["", Validators.compose([Validators.required])],
-      lastName: ["", Validators.compose([Validators.required])],
-      contactNumber: ["", Validators.compose([Validators.required])],
-      birthday: ["", Validators.compose([Validators.required])],
-      address: ["", Validators.compose([Validators.required])],
-      itemName: ["", Validators.compose([Validators.required])],
-      itemType: ["", Validators.compose([Validators.required])],
-      karat: ["", Validators.compose([Validators.required])],
-      grams: ["", Validators.compose([Validators.required])],
-      description: ["", Validators.compose([Validators.required])]
+      pawnTicketNumber: ["123", Validators.compose([Validators.required])],
+      pawnDateGranted: ["10/05/2018", Validators.compose([Validators.required])],
+      pawnMaturityDate: ["10/05/2018", Validators.compose([Validators.required])],
+      pawnExpiryDate: ["10/05/2018", Validators.compose([Validators.required])],
+      pawnInterest: ["123", Validators.compose([Validators.required])],
+      pawnAmount: ["123", Validators.compose([Validators.required])],
+      pawnTotalAmount: ["123", Validators.compose([Validators.required])],
+      account: this.formBuilder.group({
+        accountId: ["", Validators.compose([Validators.required])],
+        birthDate: [""],
+        firstName: [""],
+        lastName: [""],
+        contactNumber: [""],
+        address: [""]
+      }),
+      item: this.formBuilder.group({
+        itemId: ["", Validators.compose([Validators.required])],
+        itemName: [""],
+        itemType: [""],
+        karat: [""],
+        grams: [""],
+        description: [""]
+      }),
     });
-    
     this.pawnService.searchPawn(this.searchTerm$).subscribe(results => this.pawns = results.pawns);
+  }
+
+  initAddress() {
+    return 
   }
 
   public load(pageVar: PageVar): void {
@@ -61,6 +79,39 @@ export class PawnListComponent implements OnInit {
 
   ngOnInit() {
     this.load({ limit: 10, offset: 0 });
+    this.loadAccounts();
+    this.loadItems();
+  }
+
+  public loadAccounts(): void {
+    this.accountService.getAccounts({ limit: this.maxNum(), offset: 0 }).subscribe(response => {
+      response.accounts.forEach(account => {
+        const option = {
+          value: account.id,
+          label: account.fullname
+        }
+        this.accounts.push(option);
+      });
+    })
+  }
+
+  public loadItems(): void {
+    this.itemService.getItems({ limit: this.maxNum(), offset: 0 }).subscribe(response => {
+      response.items.forEach(item => {
+        const option = {
+          value: item.id,
+          label: item.itemName
+        }
+        this.items.push(option);
+      });
+    })
+  }
+
+  /**
+   * Temporary number limit
+   */
+  private maxNum(): number {
+    return 100000000000;
   }
 
   public onSearch(event: any): void {
@@ -76,7 +127,6 @@ export class PawnListComponent implements OnInit {
   }
 
   public onAdd(): void {
-    console.log(this.form);
     this.showModal = !this.showModal;
     this.aeMode = AEMode.add;
   }

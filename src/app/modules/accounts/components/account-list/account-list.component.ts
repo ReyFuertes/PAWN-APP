@@ -22,12 +22,6 @@ export class AccountListComponent implements OnInit {
   public form: FormGroup;
   public searchTerm$ = new Subject<string>();
 
-  @ViewChild('f') myform: any;
-  
-  public onSubmit(): void {
-    console.log(this.myform);
-  }
-
   constructor(
     private formBuilder: FormBuilder,
     private accountService: AccountService,

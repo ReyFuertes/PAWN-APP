@@ -15,118 +15,114 @@
         <legend>Pawn Information:</legend>
         <div class="row">
           <div class="col-4 form-group">
-            <label for="pawnTicketNumber">Pawn Ticket Number</label>
-            <input class="form-control" tabindex="2" formControlName="pawnTicketNumber" id="pawnTicketNumber" type="text"
+            <label for="pawnTicketNumber">Ticket Number</label>
+            <input class="form-control" tabindex="1" formControlName="pawnTicketNumber" id="pawnTicketNumber" type="text"
               autocomplete="off" />
           </div>
 
           <div class="col-4 form-group">
-            <label for="datePawnGranted">Date Pawn Granted</label>
+            <label for="pawnDateGranted">Date Granted</label>
             <div [ngStyle]="{'height': '40px'}">
-              <app-datepicker [parentForm]="form" tabindex="5" [controlName]="'datePawnGranted'" [tabIndex]="3"></app-datepicker>
+              <app-datepicker [parentForm]="form" tabindex="2" [controlName]="'pawnDateGranted'" [tabIndex]="3"></app-datepicker>
             </div>
           </div>
 
           <div class="col-4 form-group">
-            <label for="maturityDate">Maturity Date</label>
+            <label for="pawnMaturityDate">Maturity Date</label>
             <div [ngStyle]="{'height': '40px'}">
-              <app-datepicker [parentForm]="form" tabindex="5" [controlName]="'maturityDate'" [tabIndex]="3"></app-datepicker>
+              <app-datepicker [parentForm]="form" tabindex="3" [controlName]="'pawnMaturityDate'" [tabIndex]="3"></app-datepicker>
             </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col-4 form-group">
-            <label for="expiryDate">Expiry Date</label>
+            <label for="pawnExpiryDate">Expiry Date</label>
             <div [ngStyle]="{'height': '40px'}">
-              <app-datepicker [parentForm]="form" tabindex="5" [controlName]="'expiryDate'" [tabIndex]="3"></app-datepicker>
+              <app-datepicker [parentForm]="form" tabindex="4" [controlName]="'pawnExpiryDate'" [tabIndex]="3"></app-datepicker>
             </div>
           </div>
 
           <div class="col-2 form-group">
-            <label for="interest">Interest</label>
-            <input class="form-control" inputNumber maxlength="4" tabindex="3" formControlName="interest" id="interest" type="text" autocomplete="off" />
+            <label for="pawnInterest">Interest</label>
+            <input class="form-control" inputNumber maxlength="4" tabindex="5" formControlName="pawnInterest" id="pawnInterest"
+              type="text" autocomplete="off" />
           </div>
 
           <div class="col-3 form-group">
-            <label for="pawnAmount">Pawn Amount</label>
-            <input class="form-control" inputNumber tabindex="2" formControlName="pawnAmount" id="pawnAmount" type="text"
+            <label for="pawnAmount">Amount</label>
+            <input class="form-control" inputNumber tabindex="6" formControlName="pawnAmount" id="pawnAmount" type="text"
               autocomplete="off" />
           </div>
 
           <div class="col-3 form-group">
-              <label for="pawnTotalAmount">Pawn Total Amount</label>
-              <input class="form-control" inputNumber tabindex="3" formControlName="pawnTotalAmount" id="pawnTotalAmount" type="text"
-                autocomplete="off" />
-            </div>
+            <label for="pawnTotalAmount">Total Amount</label>
+            <input class="form-control" inputNumber tabindex="7" formControlName="pawnTotalAmount" id="pawnTotalAmount"
+              type="text" autocomplete="off" />
+          </div>
         </div>
       </fieldset>
 
-      <fieldset>
+      <fieldset formGroupName="account">
         <legend>Personal Information:</legend>
         <div class="row">
-          <div class="col-4 form-group">
-            <label for="firstName">First Name</label>
-            <input class="form-control" tabindex="2" formControlName="firstName" id="firstName" type="text"
-              autocomplete="off" />
+          <div class="col-7 form-group">
+            <pa-dropdown [label]="'Account Name'" [items]="accounts" (onItemChange)="onAccountChange($event)">
+            </pa-dropdown>
           </div>
 
-          <div class="col-4 form-group">
-            <label for="lastName">Last Name</label>
-            <input class="form-control" tabindex="3" formControlName="lastName" id="lastName" type="text" autocomplete="off" />
-          </div>
-
-          <div class="col-4 form-group">
+          <div class="col-5 form-group">
             <label for="contactNumber">Contact Number</label>
-            <input class="form-control" inputNumber tabindex="3" formControlName="contactNumber" id="contactNumber" type="text"
-              autocomplete="off" />
+            <input class="form-control" readonly inputNumber tabindex="8" formControlName="contactNumber" id="contactNumber"
+              type="text" autocomplete="off" />
           </div>
         </div>
 
         <div class="row">
           <div class="col-4 form-group">
-            <label for="birthday">Birthday</label>
-            <div [ngStyle]="{'height': '40px'}">
-              <app-datepicker [parentForm]="form" tabindex="5" [controlName]="'birthday'" [tabIndex]="3"></app-datepicker>
-            </div>
+            <label for="birthDate">Birthday</label>
+            <input class="form-control" readonly tabindex="9" formControlName="birthDate" id="birthDate" type="text"
+              autocomplete="off" />
           </div>
 
           <div class="col-8 form-group">
             <label for="address">Address</label>
-            <textarea class="form-control" tabindex="2" formControlName="address" id="address"></textarea>
+            <textarea class="form-control" readonly tabindex="10" formControlName="address" id="address"></textarea>
           </div>
         </div>
       </fieldset>
 
-      <fieldset>
+      <fieldset formGroupName="item">
         <legend>Item Information:</legend>
 
         <div class="row">
-          <div class="col-4 form-group">
-            <label for="itemName">Item Name</label>
-            <input class="form-control" tabindex="2" formControlName="itemName" id="itemName" type="text" autocomplete="off" />
+          <div class="col-7 form-group">
+            <pa-dropdown [label]="'Item Name'" [items]="items" (onItemChange)="onItemChange($event)">
+            </pa-dropdown>
           </div>
 
-          <div class="col-4 form-group">
+          <div class="col-5 form-group">
             <label for="itemType">Item Type</label>
-            <input class="form-control" tabindex="3" formControlName="itemType" id="itemType" type="text" autocomplete="off" />
-          </div>
-
-          <div class="col-4 form-group">
-            <label for="karat">Karat</label>
-            <input class="form-control" inputNumber tabindex="3" formControlName="karat" id="karat" type="text" autocomplete="off" />
+            <input class="form-control" readonly formControlName="itemType" id="itemType" type="text" autocomplete="off" />
           </div>
         </div>
 
         <div class="row">
-          <div class="col-4 form-group">
-            <label for="grams">Grams</label>
-            <input class="form-control" inputNumber tabindex="3" formControlName="grams" id="grams" type="text" autocomplete="off" />
+          <div class="col-3 form-group">
+            <label for="karat">Karat</label>
+            <input class="form-control" readonly formControlName="karat" id="karat" type="text"
+              autocomplete="off" />
           </div>
 
-          <div class="col-8 form-group">
+          <div class="col-3 form-group">
+            <label for="grams">Grams</label>
+            <input class="form-control" readonly formControlName="grams" id="grams" type="text"
+              autocomplete="off" />
+          </div>
+
+          <div class="col-6 form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" tabindex="2" formControlName="description" id="description"></textarea>
+            <textarea class="form-control" readonly formControlName="description" id="description"></textarea>
           </div>
         </div>
 

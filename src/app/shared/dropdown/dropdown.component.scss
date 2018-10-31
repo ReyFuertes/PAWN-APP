@@ -1,0 +1,47 @@
+:host ::ng-deep {
+  .ui-inputtext {
+    background: #fff;
+    background-color: #fff;
+    height: 40px;
+    margin-bottom: 0;
+    border-color: #ccc;
+
+    &:enabled:hover:not(.ui-state-error) {
+      border-color: #ccc;
+    }
+  }
+
+  .form-group input,
+  .form-group input:active,
+  .form-group input:hover,
+  .form-group input:focus,
+  .form-group select,
+  .form-group select:active,
+  .form-group select:hover,
+  .form-group select:focus,
+  .form-group textarea,
+  .form-group textarea:active,
+  .form-group textarea:hover,
+  .form-group textarea:focus {
+    background: #fff;
+    border-color: #ccc !important;
+  }
+}
+
+:host ::ng-deep .ui-dropdown {
+  border: 1px solid #CCC;
+}
+
+:host ::ng-deep .ui-dropdown:not(.ui-state-disabled):hover {
+  border: 1px solid #CCC;
+}
+
+:host ::ng-deep label {
+  font-size: 13px;
+  font-weight: bold;
+  color: #666;
+}
+
+:host ::ng-deep .ui-dropdown-label {
+  font-size: 15px;
+}

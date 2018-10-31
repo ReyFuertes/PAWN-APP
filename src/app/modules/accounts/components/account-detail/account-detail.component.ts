@@ -17,8 +17,6 @@ export class AccountDetailComponent implements OnInit {
   @Input()
   public form: FormGroup;
 
-  @ViewChild('idNumber') idNumber: any;
-
   constructor(private renderer: Renderer, private accountService: AccountService, public modalService: ModalService) { 
   }
 
@@ -31,9 +29,6 @@ export class AccountDetailComponent implements OnInit {
   }
 
   ngOnInit() { 
-    setTimeout(() => {
-      //this.renderer.invokeElementMethod(this.idNumber.nativeElement, 'focus');
-    }, 100);
   }
 
   public onClose(): void {
