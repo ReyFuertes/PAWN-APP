@@ -6,6 +6,7 @@ import { Pawn } from '../../../../models/pawn.model';
 import { Option } from '../../../../models/option.model';
 import { AccountService } from '../../../accounts/account.service';
 import { ItemService } from '../../../items/item.service';
+import { AEMode } from '../../../../models/crud.enum';
 
 @Component({
   selector: 'pa-pawn-detail',
@@ -22,16 +23,26 @@ export class PawnDetailComponent implements OnInit {
   public accounts: Option[];
   @Input()
   public items: Option[];
+  @Input()
+  public aeMode: AEMode;
 
   constructor(private itemService: ItemService, private accountService: AccountService, private pawnService: PawnService, public modalService: ModalService) { 
   }
 
   public onSubmit(): void {
     const data: Pawn = <Pawn>this.form.value;
-    this.pawnService.savePawn(data).subscribe(() => {
-      this.form.reset();
-      this.modalService.propagate();
-    })
+    
+    if(this.aeMode === AEMode.add) {
+      this.pawnService.savePawn(data).subscribe(() => {
+        this.form.reset();
+        this.modalService.propagate();
+      })
+    } else {
+      this.pawnService.updatePawn(data.id.toString(), data).subscribe(() => {
+        this.form.reset();
+        this.modalService.propagate();
+      })
+    }
   }
 
   ngOnInit() { 
@@ -47,7 +58,7 @@ export class PawnDetailComponent implements OnInit {
       this.accountService.getOne(event.value).subscribe(response => {
         let control = this.form.controls['account'];
         control.get('id').setValue(response.account[0].id);
-        control.get('birthDate').setValue(response.account[0].birthday);
+        control.get('birthDate').setValue(response.account[0].birthDate);
         control.get('contactNumber').setValue(response.account[0].phoneNumber);
         control.get('address').setValue(response.account[0].address);
       })

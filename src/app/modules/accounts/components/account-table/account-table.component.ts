@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild} from "@angular/core";
-import { GenericSearchTableComponent } from "../../../../core/generics/generic-search-table.component";
 import { Account } from "../../../../models/account.model";
 import { AEMode } from "../../../../models/crud.enum";
 
@@ -9,7 +8,7 @@ import { AEMode } from "../../../../models/crud.enum";
   styleUrls: ["../../../../core/page-components/search-table/search-table.component.scss"
   ]
 })
-export class AccountTableComponent extends GenericSearchTableComponent implements OnInit {
+export class AccountTableComponent implements OnInit {
   @Input()
   public rows: Account[];
   @Output()
@@ -20,12 +19,16 @@ export class AccountTableComponent extends GenericSearchTableComponent implement
   public pageVar = new EventEmitter<any>();
   @Input()
   public totalRecords: number;
+  @Input()
+  public cols: any[];
+
+  public rowIndex: any;
+  public selectedRows: any = [];
 
   @ViewChild("searchTable")
   searchTable: any;
 
   constructor() {
-    super();
   }
 
   ngOnInit() {
@@ -40,15 +43,11 @@ export class AccountTableComponent extends GenericSearchTableComponent implement
   }
 
   public onRowSelect(event: any): void {
-    super.onRowSelect(event);
-
     this.selections.emit(this.searchTable.selection);
     this.editMode.emit(this.actionMode());
   }
 
   public onRowUnselect(event: any): void {
-    super.onRowSelect(event);
-
     this.selections.emit(this.searchTable.selection);
     this.editMode.emit(this.actionMode());
   }

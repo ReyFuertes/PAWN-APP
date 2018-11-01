@@ -35,6 +35,12 @@ export abstract class BaseService {
     });
   }
 
+  public update(route: string, object: any): Observable < any > {
+    return this.http.patch(this.getAPIBaseUrl(route), object, {
+      headers: this.commonHeaders()
+    });
+  }
+
   public delete(route: string): Observable < any > {
     return this.http.delete(this.getAPIBaseUrl(route), {
       headers: this.commonHeaders()

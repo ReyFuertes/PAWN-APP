@@ -1,14 +1,15 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { PageVar } from "../../../../models/pages.model";
 import { Pawn } from "../../../../models/pawn.model";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
-import {MessageService} from 'primeng/api';
+import { MessageService } from "primeng/api";
 import { Subject } from "rxjs";
 import { PawnService } from "../../pawn.service";
 import { AEMode } from "../../../../models/crud.enum";
 import { AccountService } from "../../../accounts/account.service";
 import { Option } from "../../../../models/option.model";
 import { ItemService } from "../../../items/item.service";
+import { PawnTableComponent } from "../pawn-table/pawn-table.component";
 
 @Component({
   selector: "pa-pawn-list",
@@ -27,6 +28,8 @@ export class PawnListComponent implements OnInit {
   public accounts: Option[] = [];
   public items: Option[] = [];
 
+  @ViewChild("pawnTable") pawnTable: PawnTableComponent;
+
   constructor(
     private formBuilder: FormBuilder,
     private pawnService: PawnService,
@@ -34,17 +37,18 @@ export class PawnListComponent implements OnInit {
     private accountService: AccountService,
     private itemService: ItemService
   ) {
-    this.accounts = [{value: null, label: 'Select an Account'}];
-    this.items = [{value: null, label: 'Select an Item'}];
+    this.accounts = [{ value: null, label: "Select an Account" }];
+    this.items = [{ value: null, label: "Select an Item" }];
 
     this.form = this.formBuilder.group({
-      pawnTicketNumber: ["test2", Validators.compose([Validators.required])],
-      pawnDateGranted: ["10/05/2018", Validators.compose([Validators.required])],
-      pawnMaturityDate: ["10/05/2018", Validators.compose([Validators.required])],
-      pawnExpiryDate: ["10/05/2018", Validators.compose([Validators.required])],
-      pawnInterest: ["123", Validators.compose([Validators.required])],
-      pawnAmount: ["123", Validators.compose([Validators.required])],
-      pawnTotalAmount: ["123", Validators.compose([Validators.required])],
+      id: [""],
+      pawnTicketNumber: ["", Validators.compose([Validators.required])],
+      pawnDateGranted: ["", Validators.compose([Validators.required])],
+      pawnMaturityDate: ["", Validators.compose([Validators.required])],
+      pawnExpiryDate: ["", Validators.compose([Validators.required])],
+      pawnInterest: ["", Validators.compose([Validators.required])],
+      pawnAmount: ["", Validators.compose([Validators.required])],
+      pawnTotalAmount: ["", Validators.compose([Validators.required])],
       account: this.formBuilder.group({
         id: ["", Validators.compose([Validators.required])],
         birthDate: [""],
@@ -60,10 +64,10 @@ export class PawnListComponent implements OnInit {
         karat: [""],
         grams: [""],
         description: [""]
-      }),
+      })
     });
-    
-    this.pawnService.searchPawn(this.searchTerm$).subscribe(results => this.pawns = results.pawns);
+
+    this.pawnService.searchPawn(this.searchTerm$).subscribe(results => (this.pawns = results.pawns));
   }
 
   public load(pageVar: PageVar): void {
@@ -82,14 +86,14 @@ export class PawnListComponent implements OnInit {
 
   public loadAccounts(): void {
     this.accountService.getAccounts({ limit: this.maxNum(), offset: 0 }).subscribe(response => {
-      response.accounts.forEach(account => {
-        const option = {
-          value: account.id,
-          label: account.fullname
-        }
-        this.accounts.push(option);
+        response.accounts.forEach(account => {
+          const option = {
+            value: account.id,
+            label: account.fullname
+          };
+          this.accounts.push(option);
+        });
       });
-    })
   }
 
   public loadItems(): void {
@@ -98,10 +102,10 @@ export class PawnListComponent implements OnInit {
         const option = {
           value: item.id,
           label: item.itemName
-        }
+        };
         this.items.push(option);
       });
-    })
+    });
   }
 
   /**
@@ -112,7 +116,11 @@ export class PawnListComponent implements OnInit {
   }
 
   public onSearch(event: any): void {
-    this.searchTerm$.next(event.target.value)
+    this.searchTerm$.next(event.target.value);
+  }
+
+  public onRefresh(): void {
+    this.load({ limit: 10, offset: 0 });
   }
 
   public onClose(event: boolean): void {
@@ -121,6 +129,9 @@ export class PawnListComponent implements OnInit {
     if (!this.showModal) {
       this.load({ limit: 10, offset: 0 });
     }
+
+    this.pawnTable.onRowUnselect();
+    console.log('onclose', this.pawnTable);
   }
 
   public onAdd(): void {
@@ -132,11 +143,9 @@ export class PawnListComponent implements OnInit {
     if (this.selections[0].id) {
       this.showModal = !this.showModal;
       this.aeMode = AEMode.edit;
-      this.pawnService
-        .editPawn(this.selections[0].id)
-        .subscribe(response =>
-          this.form.patchValue(<FormGroup>response.pawns[0])
-        );
+      this.pawnService.editPawn(this.selections[0].id).subscribe(response => {
+        this.form.patchValue(<FormGroup>response.pawn);
+      });
     }
   }
 
@@ -150,18 +159,23 @@ export class PawnListComponent implements OnInit {
 
   public showConfirm(): void {
     this.messageService.clear();
-    this.messageService.add({key: 'c', sticky: true, severity:'warn', summary:'Are you sure?', detail:'Confirm to Delete'});
+    this.messageService.add({
+      key: "c",
+      sticky: true,
+      severity: "warn",
+      summary: "Are you sure?",
+      detail: "Confirm to Delete"
+    });
   }
 
   public onConfirm(): void {
     this.pawnService.deletePawn(this.selections[0].id).subscribe(response => {
-        this.pawns = response.pawns
-        this.messageService.clear('c');
-      }
-    );
+      this.pawns = response.pawns;
+      this.messageService.clear("c");
+    });
   }
 
   public onReject(): void {
-    this.messageService.clear('c');
+    this.messageService.clear("c");
   }
 }

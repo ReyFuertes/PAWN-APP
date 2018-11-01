@@ -8,7 +8,7 @@ export interface Account {
   emailAddress?: string;
   validIdNumber?: string;
   validId?: string;
-  birthday?: string;
+  birthDate?: string;
   address?: string;
   created?: string;
 }

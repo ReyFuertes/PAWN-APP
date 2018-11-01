@@ -30,8 +30,12 @@ export class PawnService extends GenericService {
     return this.paginate('pawn/list', pageVar);
   }
 
-  public savePawn(Pawn: Pawn): Observable<any> {
-    return this.post('pawn/new', Pawn);
+  public savePawn(pawn: Pawn): Observable<any> {
+    return this.post('pawn/new', pawn);
+  }
+
+  public updatePawn(id: string, pawn: Pawn): Observable<any> {
+    return this.update(`pawn/update/${id}`, pawn);
   }
 
   public editPawn(id: number): Observable<any> {

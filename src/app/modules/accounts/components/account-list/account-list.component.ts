@@ -57,6 +57,10 @@ export class AccountListComponent implements OnInit {
     this.searchTerm$.next(event.target.value)
   }
 
+  public onRefresh(): void {
+    this.load({ limit: 10, offset: 0 });
+  }
+
   public onClose(event: boolean): void {
     this.showModal = event;
 

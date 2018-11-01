@@ -67,7 +67,7 @@
         <legend>Personal Information:</legend>
         <div class="row">
           <div class="col-7 form-group">
-            <pa-dropdown [label]="'Account Name'" [items]="accounts" (onItemChange)="onAccountChange($event)">
+            <pa-dropdown [label]="'Account Name'" [items]="accounts" [childFormGroup]="'account'" [parentForm]="form" (onItemChange)="onAccountChange($event)">
             </pa-dropdown>
           </div>
 
@@ -94,10 +94,9 @@
 
       <fieldset formGroupName="item">
         <legend>Item Information:</legend>
-
         <div class="row">
           <div class="col-7 form-group">
-            <pa-dropdown [label]="'Item Name'" [items]="items" (onItemChange)="onItemChange($event)">
+            <pa-dropdown [label]="'Item Name'" [items]="items" [childFormGroup]="'item'" [parentForm]="form" (onItemChange)="onItemChange($event)">
             </pa-dropdown>
           </div>
 

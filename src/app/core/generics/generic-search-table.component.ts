@@ -14,7 +14,9 @@ export abstract class GenericSearchTableComponent {
     this.selectedRows = event.data;
   }
 
-  protected onRowUnselect(event: any): void {}
+  protected onRowUnselect(event: any): void {
+    this.selectedRows = [];
+  }
   
 
 }

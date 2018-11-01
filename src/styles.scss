@@ -165,7 +165,18 @@ button:focus {
 /* ---------------------------------------------------
     PRIMENG CUSTOM
 ----------------------------------------------------- */
+.ui-toast .ui-toast-message.ui-toast-message-warn {
+  background: #f1f1f1 !important;
+}
 
+.ui-toast-center {
+  top: 35% !important;
+}
+
+.pi-exclamation-triangle {
+  color: red;
+  border-color: red;
+}
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */

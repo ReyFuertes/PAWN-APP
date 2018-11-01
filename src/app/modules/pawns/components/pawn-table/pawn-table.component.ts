@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild} from "@angular/core";
-import { GenericSearchTableComponent } from "../../../../core/generics/generic-search-table.component";
 import { Pawn } from "../../../../models/pawn.model";
 import { AEMode } from "../../../../models/crud.enum";
+import { Subject } from "rxjs";
 
 @Component({
   selector: "pa-pawn-search-table",
@@ -9,7 +9,7 @@ import { AEMode } from "../../../../models/crud.enum";
   styleUrls: ["../../../../core/page-components/search-table/search-table.component.scss"
   ]
 })
-export class PawnTableComponent extends GenericSearchTableComponent implements OnInit {
+export class PawnTableComponent implements OnInit {
   @Input()
   public rows: Pawn[];
   @Output()
@@ -17,41 +17,43 @@ export class PawnTableComponent extends GenericSearchTableComponent implements O
   @Output()
   public editMode = new EventEmitter<AEMode>();
   @Output()
+  public onClear = new EventEmitter<AEMode>();
+  @Output()
   public pageVar = new EventEmitter<any>();
   @Input()
   public totalRecords: number;
+  @Input()
+  public cols: any[];
 
-  @ViewChild("searchTable")
-  searchTable: any;
+  public rowIndex: any;
+  public selectedRows: any = [];
+
+  @ViewChild("searchTable") searchTable: any;
 
   constructor() {
-    super();
   }
 
   ngOnInit() {
-    this.rowIndex = "pawn_ticket_number";
+    this.rowIndex = "pawnTicketNumber";
 
     this.cols = [
       { field: "pawnTicketNumber", header: "Pawn Number" },
-      { field: "pawnDateGranted", header: "Pawn Date" },
-      { field: "itemName", header: "Item Name" },
       { field: "fullname", header: "Fullname" },
+      { field: "itemName", header: "Item Name" },
+      { field: "pawnDateGranted", header: "Pawn Date" },
       { field: "created", header: "Created" }
     ];
   }
 
   public onRowSelect(event: any): void {
-    super.onRowSelect(event);
-
     this.selections.emit(this.searchTable.selection);
     this.editMode.emit(this.actionMode());
   }
 
-  public onRowUnselect(event: any): void {
-    super.onRowSelect(event);
-
+  public onRowUnselect(): void {
     this.selections.emit(this.searchTable.selection);
     this.editMode.emit(this.actionMode());
+    this.selectedRows = [];
   }
 
   private actionMode(): AEMode {

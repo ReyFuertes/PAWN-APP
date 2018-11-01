@@ -4,9 +4,9 @@
     [value]="rows" 
     selectionMode="multiple" 
     (onRowSelect)="onRowSelect($event)"
-    (onRowUnselect)="onRowUnselect($event)"
+    (onRowUnselect)="onRowUnselect()"
     [dataKey]="rowIndex"
-
+    [(selection)]="selectedRows"
   >
   <ng-template pTemplate="header" let-columns>
     <tr>
