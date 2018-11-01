@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, ViewChild, Renderer, ElementRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ModalService } from '../../../../services/modal.service';
 import { AccountService } from '../../account.service';
 import { Account } from '../../../../models/account.model';
-import { BaseModalComponent } from '../../../../shared/modal/base-modal.component';
 
 @Component({
   selector: 'pa-account-detail',

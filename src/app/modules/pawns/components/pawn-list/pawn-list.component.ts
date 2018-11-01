@@ -121,6 +121,7 @@ export class PawnListComponent implements OnInit {
 
   public onRefresh(): void {
     this.load({ limit: 10, offset: 0 });
+    this.pawnTable.onRowUnselect();
   }
 
   public onClose(event: boolean): void {
@@ -131,7 +132,6 @@ export class PawnListComponent implements OnInit {
     }
 
     this.pawnTable.onRowUnselect();
-    console.log('onclose', this.pawnTable);
   }
 
   public onAdd(): void {

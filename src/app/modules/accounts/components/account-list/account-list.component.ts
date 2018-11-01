@@ -6,6 +6,7 @@ import { FormGroup, Validators, FormBuilder, NgForm } from "@angular/forms";
 import {MessageService} from 'primeng/api';
 import { Subject } from "rxjs";
 import { AEMode } from "../../../../models/crud.enum";
+import { AccountTableComponent } from "../account-table/account-table.component";
 
 @Component({
   selector: "pa-account-list",
@@ -21,6 +22,8 @@ export class AccountListComponent implements OnInit {
   public aeMode: AEMode;
   public form: FormGroup;
   public searchTerm$ = new Subject<string>();
+
+  @ViewChild("accountTable") accountTable: AccountTableComponent;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -59,6 +62,7 @@ export class AccountListComponent implements OnInit {
 
   public onRefresh(): void {
     this.load({ limit: 10, offset: 0 });
+    this.accountTable.onRowUnselect();
   }
 
   public onClose(event: boolean): void {
@@ -67,6 +71,7 @@ export class AccountListComponent implements OnInit {
     if (!this.showModal) {
       this.load({ limit: 10, offset: 0 });
     }
+    this.accountTable.onRowUnselect();
   }
 
   public onAdd(): void {

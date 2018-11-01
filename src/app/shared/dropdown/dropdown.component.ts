@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { FormGroup, FormGroupName } from "@angular/forms";
+import { FormGroup, FormGroupName, FormControlName } from "@angular/forms";
 
 @Component({
   selector: "pa-dropdown",
@@ -8,9 +8,13 @@ import { FormGroup, FormGroupName } from "@angular/forms";
 })
 export class DropdownSelectComponent implements OnInit {
   @Input()
+  public isGroup: boolean = false;
+  @Input()
   public parentForm: FormGroup;
   @Input()
   public childFormGroup: FormGroupName;
+  @Input()
+  public controlName: FormControlName;
   @Input()
   public style: any = { width: "100%" };
   @Input()

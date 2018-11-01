@@ -35,6 +35,15 @@ const appRoutes: Routes = [
         loadChildren: "./modules/pawns/pawn.module#PawnModule"
       }
     ]
+  },{
+    path: "dashboard",
+    component: DefaultLayoutComponent,
+    children: [
+      {
+        path: "",
+        loadChildren: "./modules/items/item.module#ItemModule"
+      }
+    ]
   },
   {
     path: "**",

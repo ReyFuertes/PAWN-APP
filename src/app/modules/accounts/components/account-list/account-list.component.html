@@ -16,7 +16,7 @@
       </div>
     </div>
   </div>
-  <pa-account-search-table *ngIf="totalRecords" (editMode)="editMode = $event" [totalRecords]="totalRecords" (pageVar)="paginate($event)"
+  <pa-account-search-table #accountTable (editMode)="editMode = $event" [totalRecords]="totalRecords" (pageVar)="paginate($event)"
     (selections)="selections = $event" [rows]="accounts"></pa-account-search-table>
 </div>
 

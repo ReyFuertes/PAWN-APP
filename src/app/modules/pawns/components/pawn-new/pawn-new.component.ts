@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Option } from '../../../../models/option.model';
+import { AEMode } from '../../../../models/crud.enum';
 
 @Component({
   selector: 'pa-pawn-new',
@@ -14,6 +15,8 @@ export class PawnNewComponent implements OnInit {
   public items: Option[];
   @Input()
   public form: FormGroup;
+
+  public mode: AEMode.add;
 
   constructor() { }
 

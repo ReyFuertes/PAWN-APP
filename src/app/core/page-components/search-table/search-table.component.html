@@ -1,13 +1,5 @@
-<p-table 
-    #searchTable
-    [columns]="cols" 
-    [value]="rows" 
-    selectionMode="multiple" 
-    (onRowSelect)="onRowSelect($event)"
-    (onRowUnselect)="onRowUnselect()"
-    [dataKey]="rowIndex"
-    [(selection)]="selectedRows"
-  >
+<p-table #searchTable [columns]="cols" [value]="rows" selectionMode="multiple" (onRowSelect)="onRowSelect($event)"
+  (onRowUnselect)="onRowUnselect()" [dataKey]="rowIndex" [(selection)]="selectedRows">
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th style="width: 3em">
@@ -28,5 +20,10 @@
       </td>
     </tr>
   </ng-template>
+
 </p-table>
 <p-paginator [rows]="10" [totalRecords]="totalRecords" (onPageChange)="pageVar.emit($event)"></p-paginator>
+
+<div *ngIf="rows.length === 0">
+        No records found
+</div>
