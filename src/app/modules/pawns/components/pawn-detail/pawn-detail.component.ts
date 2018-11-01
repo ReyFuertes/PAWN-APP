@@ -45,11 +45,11 @@ export class PawnDetailComponent implements OnInit {
   public onAccountChange(event: any): void {
     if(event.value) {
       this.accountService.getOne(event.value).subscribe(response => {
-        console.log(response.account);
-        // this.form.get('id').setValue(response.account[0].id)
-        // this.form.get('birthDate').setValue(response.account[0].birthday)
-        // this.form.get('contactNumber').setValue(response.account[0].phoneNumber)
-        // this.form.get('address').setValue(response.account[0].address)
+        let control = this.form.controls['account'];
+        control.get('id').setValue(response.account[0].id);
+        control.get('birthDate').setValue(response.account[0].birthday);
+        control.get('contactNumber').setValue(response.account[0].phoneNumber);
+        control.get('address').setValue(response.account[0].address);
       })
     }
   }
@@ -57,12 +57,13 @@ export class PawnDetailComponent implements OnInit {
   public onItemChange(event: any): void {
     if(event.value) {
       this.itemService.getOne(event.value).subscribe(response => {
-        this.form.get('id').setValue(response.item[0].id);
-        this.form.get('itemName').setValue(response.item[0].itemName);
-        this.form.get('itemType').setValue(response.item[0].itemType);
-        this.form.get('grams').setValue(response.item[0].grams);
-        this.form.get('karat').setValue(response.item[0].karat);
-        this.form.get('description').setValue(response.item[0].description);
+        let control = this.form.controls['item'];
+        control.get('id').setValue(response.item[0].id);
+        control.get('itemName').setValue(response.item[0].itemName);
+        control.get('itemType').setValue(response.item[0].itemType);
+        control.get('grams').setValue(response.item[0].grams);
+        control.get('karat').setValue(response.item[0].karat);
+        control.get('description').setValue(response.item[0].description);
       })
     }
   }

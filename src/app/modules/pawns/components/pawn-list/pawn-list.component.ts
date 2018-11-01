@@ -38,7 +38,7 @@ export class PawnListComponent implements OnInit {
     this.items = [{value: null, label: 'Select an Item'}];
 
     this.form = this.formBuilder.group({
-      pawnTicketNumber: ["123", Validators.compose([Validators.required])],
+      pawnTicketNumber: ["test2", Validators.compose([Validators.required])],
       pawnDateGranted: ["10/05/2018", Validators.compose([Validators.required])],
       pawnMaturityDate: ["10/05/2018", Validators.compose([Validators.required])],
       pawnExpiryDate: ["10/05/2018", Validators.compose([Validators.required])],
@@ -46,7 +46,7 @@ export class PawnListComponent implements OnInit {
       pawnAmount: ["123", Validators.compose([Validators.required])],
       pawnTotalAmount: ["123", Validators.compose([Validators.required])],
       account: this.formBuilder.group({
-        accountId: ["", Validators.compose([Validators.required])],
+        id: ["", Validators.compose([Validators.required])],
         birthDate: [""],
         firstName: [""],
         lastName: [""],
@@ -54,7 +54,7 @@ export class PawnListComponent implements OnInit {
         address: [""]
       }),
       item: this.formBuilder.group({
-        itemId: ["", Validators.compose([Validators.required])],
+        id: ["", Validators.compose([Validators.required])],
         itemName: [""],
         itemType: [""],
         karat: [""],
@@ -62,11 +62,8 @@ export class PawnListComponent implements OnInit {
         description: [""]
       }),
     });
+    
     this.pawnService.searchPawn(this.searchTerm$).subscribe(results => this.pawns = results.pawns);
-  }
-
-  initAddress() {
-    return 
   }
 
   public load(pageVar: PageVar): void {
@@ -111,7 +108,7 @@ export class PawnListComponent implements OnInit {
    * Temporary number limit
    */
   private maxNum(): number {
-    return 100000000000;
+    return Math.floor(Math.random() * 50);
   }
 
   public onSearch(event: any): void {

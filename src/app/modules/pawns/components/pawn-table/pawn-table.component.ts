@@ -33,7 +33,9 @@ export class PawnTableComponent extends GenericSearchTableComponent implements O
 
     this.cols = [
       { field: "pawnTicketNumber", header: "Pawn Number" },
-      { field: "datePawnGranted", header: "Date Pawn Number" },
+      { field: "pawnDateGranted", header: "Pawn Date" },
+      { field: "itemName", header: "Item Name" },
+      { field: "fullname", header: "Fullname" },
       { field: "created", header: "Created" }
     ];
   }
