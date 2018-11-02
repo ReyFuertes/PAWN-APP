@@ -44,6 +44,15 @@ const appRoutes: Routes = [
         loadChildren: "./modules/items/item.module#ItemModule"
       }
     ]
+  },{
+    path: "dashboard",
+    component: DefaultLayoutComponent,
+    children: [
+      {
+        path: "",
+        loadChildren: "./modules/renewals/renewal.module#RenewalModule"
+      }
+    ]
   },
   {
     path: "**",

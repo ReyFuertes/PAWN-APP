@@ -17,6 +17,7 @@
     </div>
   </div>
   <pa-item-search-table 
+    *ngIf="totalRecords"
     #itemTable 
     (editMode)="editMode = $event" 
     [totalRecords]="totalRecords" 

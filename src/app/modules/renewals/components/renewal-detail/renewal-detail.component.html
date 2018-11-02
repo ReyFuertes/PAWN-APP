@@ -1,0 +1,84 @@
+<form *ngIf="form" [formGroup]="form" name="form" role="form" (ngSubmit)="onSubmit()">
+  <div class="row pa_card-content">
+    <div class="col-4">
+      <div class="pa_image-container">
+        <i class="far fa-image fa-4x"></i>
+      </div>
+      <div class="pa_button-upload-container pa_button-upload">
+        <p-fileUpload [style]="{'width': '150px'}" mode="basic" name="demo[]" chooseLabel="Upload Image" url="./upload.php"
+          accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload>
+      </div>
+    </div>
+
+    <!-- renewals.renewal_date AS renewalDate, 
+    renewals.renewal_pawn_ticket AS renewalPawnTicket, 
+    renewals.renewal_amount AS renewalAmount, 
+    renewals.renewal_total_amount AS renewalTotalAmount, 
+    renewals.interest, 
+    renewals.difference, 
+    renewals.remarks,  -->
+
+    <div class="col-8">
+      <div class="row">
+        <div class="col-4 form-group">
+          <label for="renewalDate">Renewal Date</label>
+          <input #sku class="form-control" tabindex="1" formControlName="renewalDate" id="renewalDate" type="text"
+            autofocus autocomplete="off" />
+        </div>
+
+        <div class="col-4 form-group">
+          <label for="renewalPawnTicket">Renewal Pawn Ticket</label>
+          <input #sku class="form-control" tabindex="1" formControlName="renewalPawnTicket" id="renewalPawnTicket" type="text"
+            autofocus autocomplete="off" />
+        </div>
+
+        <div class="col-4 form-group">
+          <label for="renewalAmount">Renewal Amount</label>
+          <input #sku class="form-control" tabindex="1" formControlName="renewalAmount" id="renewalAmount" type="text"
+            autofocus autocomplete="off" />
+        </div>
+
+        <div class="col-4 form-group">
+          <label for="renewalTotalAmount">Renewal Total Amount</label>
+          <input #sku class="form-control" tabindex="1" formControlName="renewalTotalAmount" id="renewalTotalAmount"
+            type="text" autofocus autocomplete="off" />
+        </div>
+
+        <div class="col-4 form-group">
+          <label for="interest">Interest</label>
+          <input #sku class="form-control" tabindex="1" formControlName="interest" id="interest"
+            type="text" autofocus autocomplete="off" />
+        </div>
+
+        <div class="col-4 form-group">
+          <label for="difference">Difference</label>
+          <input #sku class="form-control" tabindex="1" formControlName="difference" id="difference"
+            type="text" autofocus autocomplete="off" />
+        </div>
+
+        <div class="col-4 form-group">
+          <label for="renewalTotalAmount">Renewal Total Amount</label>
+          <input #sku class="form-control" tabindex="1" formControlName="renewalTotalAmount" id="renewalTotalAmount"
+            type="text" autofocus autocomplete="off" />
+        </div>
+
+        <div class="col-4 form-group">
+          <label for="renewalTotalAmount">Renewal Total Amount</label>
+          <input #sku class="form-control" tabindex="1" formControlName="renewalTotalAmount" id="renewalTotalAmount"
+            type="text" autofocus autocomplete="off" />
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-12">
+      <a href="javascript:void(0)" (click)="onClose()" class="btn btn-sm btn-secondary pa_button pa_button-black float-right"><i
+          class="fas fa-ban"></i> Cancel</a>
+      <button type="submit" [disabled]="!form.valid" class="btn btn-sm btn-success pa_button pa_button-green float-right"><i
+          class="fas fa-plus"></i> Save</button>
+    </div>
+  </div>
+</form>

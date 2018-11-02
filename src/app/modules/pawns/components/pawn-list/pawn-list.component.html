@@ -16,8 +16,16 @@
       </div>
     </div>
   </div>
-  <pa-pawn-search-table #pawnTable (editMode)="editMode = $event" [totalRecords]="totalRecords" (pageVar)="paginate($event)"
-    (selections)="selections = $event" (onClear)="onClearSelectedRows($event)" [rows]="pawns"></pa-pawn-search-table>
+  <pa-pawn-search-table 
+    *ngIf="totalRecords"
+    #pawnTable 
+    (editMode)="editMode = $event" 
+    [totalRecords]="totalRecords" 
+    (pageVar)="paginate($event)"
+    (selections)="selections = $event" 
+    (onClear)="onClearSelectedRows($event)" 
+    [rows]="pawns"
+  ></pa-pawn-search-table>
 </div>
 
 <app-base-modal [showModal]="showModal" [headerText]="'New Pawn'" (closeModal)="onClose($event)" [height]="350"

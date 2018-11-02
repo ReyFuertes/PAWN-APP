@@ -1,0 +1,68 @@
+<div class="pa_search-table">
+  <h3 class="pa_header-title pa_font-w-300">Renewals</h3>
+  <div class="pa_header">
+    <div class="row">
+      <div class="col-8" [ngStyle]="{'padding': '3px 20px'}">
+        <button type="button" (click)="onAdd()" class="btn btn-sm pa_button btn-success"><i class="fas fa-plus"></i>
+          Add</button>
+        <button type="button" (click)="onEdit()" [disabled]="editMode !== 1" class="btn btn-sm pa_button btn-default"><i
+            class="fas fa-pen"></i> Edit</button>
+        <button type="button" (click)="onRefresh()" class="btn btn-sm pa_button btn-default"><i class="fas fa-sync"></i>
+          Refresh</button>
+        <button type="button" (click)="onDelete()" [disabled]="editMode !== 1" class="btn btn-sm pa_button btn-danger"><i
+            class="far fa-trash-alt"></i> Delete</button>
+      </div>
+      <div class="col-4">
+        <pa-filter-table (onSearch)="onSearch($event)"></pa-filter-table>
+      </div>
+    </div>
+  </div>
+  <pa-renewal-search-table 
+    *ngIf="totalRecords"
+    #renewalTable 
+    (editMode)="editMode = $event" 
+    [totalRecords]="totalRecords" 
+    (pageVar)="paginate($event)"
+    (selections)="selections = $event" 
+    (onClear)="onClearSelectedRows($event)" 
+    [rows]="renewals"
+  ></pa-renewal-search-table>
+</div>
+
+<app-base-modal [showModal]="showModal" [headerText]="aeMode === 1 ? 'Edit Renewal': 'New Renewal'" (closeModal)="onClose($event)"
+  [height]="350" [contentStyle]="{'max-height':'calc(100vh - 100px)', 'overflow-x': 'hidden'}">
+  <ng-container class="body">
+    <pa-renewal-new *ngIf="aeMode === 0" [form]="form"></pa-renewal-new>
+    <!-- <pa-renewal-edit *ngIf="aeMode === 1" [form]="form"></pa-renewal-edit> -->
+  </ng-container>
+  <ng-container class="footer">
+    <div class="row">
+      <div class="col-12">
+        <a href="javascript:void(0)" (click)="onClose()" class="btn btn-sm btn-secondary pa_button pa_button-black float-right"><i
+            class="fas fa-ban"></i> Cancel</a>
+        <button type="submit" [disabled]="!form.valid" class="btn btn-sm btn-success pa_button pa_button-green float-right"><i
+            class="fas fa-plus"></i> Save</button>
+      </div>
+    </div>
+  </ng-container>
+</app-base-modal>
+
+ <!--  
+  <p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+      <div style="text-align: center">
+        <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+        <h3>{{message.summary}}</h3>
+        <p>{{message.detail}}</p>
+      </div>
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-6">
+          <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+        </div>
+        <div class="ui-g-6">
+          <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+        </div>
+      </div>
+    </ng-template>
+  </p-toast>
+   -->
