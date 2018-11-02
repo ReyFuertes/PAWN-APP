@@ -32,7 +32,7 @@
 <app-base-modal [showModal]="showModal" [headerText]="aeMode === 1 ? 'Edit Renewal': 'New Renewal'" (closeModal)="onClose($event)"
   [height]="350" [contentStyle]="{'max-height':'calc(100vh - 100px)', 'overflow-x': 'hidden'}">
   <ng-container class="body">
-    <pa-renewal-new *ngIf="aeMode === 0" [form]="form"></pa-renewal-new>
+    <pa-renewal-new *ngIf="aeMode === 0" [accounts]="accounts" [items]="items" [pawns]="pawns" [form]="form"></pa-renewal-new>
     <!-- <pa-renewal-edit *ngIf="aeMode === 1" [form]="form"></pa-renewal-edit> -->
   </ng-container>
   <ng-container class="footer">

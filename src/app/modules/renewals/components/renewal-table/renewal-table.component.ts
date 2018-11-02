@@ -36,7 +36,7 @@ export class RenewalTableComponent {
       { field: "fullname", header: "Pawner" },
       { field: "renewalAmount", header: "Renewal Type" },
       { field: "renewalDate", header: "Renewal Date" },
-      { field: "remark", header: "remark" }
+      { field: "remarks", header: "remark" }
     ];
   }
 

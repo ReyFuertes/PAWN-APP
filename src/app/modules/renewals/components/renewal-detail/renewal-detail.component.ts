@@ -6,6 +6,8 @@ import { Option } from '../../../../models/option.model';
 import { AEMode } from '../../../../models/crud.enum';
 import { RenewalService } from '../../renewal.service';
 import { Renewal } from '../../../../models/renewal.model';
+import { AccountService } from '../../../accounts/account.service';
+import { ItemService } from '../../../items/item.service';
 
 @Component({
   selector: 'pa-renewal-detail',
@@ -19,10 +21,16 @@ export class RenewalDetailComponent implements OnInit {
   public form: FormGroup;
   @Input()
   public aeMode: AEMode;
-
+  @Input()
+  public accounts: Option[];
+  @Input()
+  public items: Option[];
+  @Input()
+  public pawns: Option[];
+  
   public renewalTypes: Option[] = [];
 
-  constructor( private renewalService: RenewalService, public modalService: ModalService) { 
+  constructor(private accountService: AccountService, private itemService: ItemService, private renewalService: RenewalService, public modalService: ModalService) { 
   }
 
   public onSubmit(): void {
@@ -33,20 +41,40 @@ export class RenewalDetailComponent implements OnInit {
     })
   }
 
-  public getTypes(): void {
-    this.renewalService.getTypes().subscribe(response => {
-      response.types.forEach(type => {
-        const _type = {
-          label: type.name,
-          value: type.name
-        }
-        this.renewalTypes.push(_type);
-      });
-    });
+  ngOnInit() { 
   }
 
-  ngOnInit() { 
-    this.getTypes();
+  public onAccountChange(event: any): void {
+    if(event.value) {
+      this.accountService.getOne(event.value).subscribe(response => {
+        let control = this.form.controls['account'];
+        control.get('id').setValue(response.account[0].id);
+        control.get('birthDate').setValue(response.account[0].birthDate);
+        control.get('contactNumber').setValue(response.account[0].phoneNumber);
+        control.get('address').setValue(response.account[0].address);
+      })
+    }
+  }
+
+  public onItemChange(event: any): void {
+    if(event.value) {
+      this.itemService.getOne(event.value).subscribe(response => {
+        let control = this.form.controls['item'];
+        control.get('id').setValue(response.item.id);
+        control.get('sku').setValue(response.item.sku);
+        control.get('itemName').setValue(response.item.itemName);
+        control.get('itemType').setValue(response.item.itemType);
+        control.get('grams').setValue(response.item.grams);
+        control.get('karat').setValue(response.item.karat);
+        control.get('description').setValue(response.item.description);
+      })
+    }
+  }
+
+  public onPawnChange(event: any): void {
+    if(event.value) {
+
+    }
   }
 
   public onClose(): void {

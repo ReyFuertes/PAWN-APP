@@ -7,6 +7,10 @@ import { Subject } from "rxjs";
 import { AEMode } from "../../../../models/crud.enum";
 import { RenewalService } from "../../../renewals/renewal.service";
 import { RenewalTableComponent } from "../renewal-table/renewal-table.component";
+import { AccountService } from "../../../accounts/account.service";
+import { Option } from "../../../../models/option.model";
+import { ItemService } from "../../../items/item.service";
+import { PawnService } from "../../../pawns/pawn.service";
 
 @Component({
   selector: 'pa-renewal-list',
@@ -22,30 +26,90 @@ export class RenewalListComponent implements OnInit {
   public aeMode: AEMode;
   public form: FormGroup;
   public searchTerm$ = new Subject<string>();
+  public accounts: Option[] = [];
+  public items: Option[] = [];
+  public pawns: Option[] = [];
 
   @ViewChild("renewalTable") renewalTable: RenewalTableComponent;
 
   constructor(
     private formBuilder: FormBuilder,
     private messageService: MessageService,
-    private renewalService: RenewalService
+    private renewalService: RenewalService,
+    private accountService: AccountService,
+    private itemService: ItemService,
+    private pawnService: PawnService
   ) {
+    this.accounts = [{ value: null, label: "Select an Account" }];
+    this.items = [{ value: null, label: "Select an Item" }];
+    this.pawns = [{ value: null, label: "Select Pawn Number" }];
 
     this.form = this.formBuilder.group({
       id: [""],
       renewalDate: ["", Validators.compose([Validators.required])],
-      renewalPawnTicket: ["", Validators.compose([Validators.required])],
       renewalAmount: ["", Validators.compose([Validators.required])],
       renewalTotalAmount: ["", Validators.compose([Validators.required])],
       interest: ["", Validators.compose([Validators.required])],
       difference: ["", Validators.compose([Validators.required])],
       remarks: ["", Validators.compose([Validators.required])],
-      created: ["", Validators.compose([Validators.required])],
-      modified: ["", Validators.compose([Validators.required])],
-      pawnId: ["", Validators.compose([Validators.required])]
+      pawnId: ["", Validators.compose([Validators.required])],
+      account: this.formBuilder.group({
+        id: ["", Validators.compose([Validators.required])],
+        birthDate: [""],
+        firstName: [""],
+        lastName: [""],
+        contactNumber: [""],
+        address: [""]
+      }),
+      item: this.formBuilder.group({
+        id: ["", Validators.compose([Validators.required])],
+        sku: [""],
+        itemName: [""],
+        itemType: [""],
+        karat: [""],
+        grams: [""],
+        description: [""]
+      })
     });
 
-    //this.renewalService.searchRenewal(this.searchTerm$).subscribe(results => (this.renewals = results.renewals));
+    this.renewalService.searchRenewal(this.searchTerm$).subscribe(results => (this.renewals = results.renewals));
+  }
+
+  public loadAccounts(): void {
+    this.accountService.getAccounts({ limit: this.maxNum(), offset: 0 }).subscribe(response => {
+        response.accounts.forEach(account => {
+          const option = {
+            value: account.id,
+            label: account.fullname
+          };
+          this.accounts.push(option);
+        });
+      });
+  }
+
+  public loadPawns(): void {
+    this.pawnService.getPawns({ limit: this.maxNum(), offset: 0 }).subscribe(response => {
+      response.pawns.forEach(item => {
+        const option = {
+          value: item.id,
+          label: item.pawnTicketNumber
+        };
+        this.pawns.push(option);
+      });
+    });
+  }
+
+  public loadItems(): void {
+    this.itemService.getItems({ limit: this.maxNum(), offset: 0 }).subscribe(response => {
+      response.items.forEach(item => {
+        const option = {
+          value: item.id,
+          label: item.itemName
+        };
+        this.items.push(option);
+      });
+    });
+    console.log(this.form);
   }
 
   public load(pageVar: PageVar): void {
@@ -58,6 +122,9 @@ export class RenewalListComponent implements OnInit {
 
   ngOnInit() {
     this.load({ limit: 10, offset: 0 });
+    this.loadAccounts();
+    this.loadItems();
+    this.loadPawns();
   }
 
   /**

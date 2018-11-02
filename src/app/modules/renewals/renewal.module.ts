@@ -15,6 +15,10 @@ import { RenewalEditComponent } from './components/renewal-edit/renewal-edit.com
 import { RenewalNewComponent } from './components/renewal-new/renewal-new.component';
 import { RenewalService } from './renewal.service';
 import { RenewalTableComponent } from './components/renewal-table/renewal-table.component';
+import { AccountService } from '../accounts/account.service';
+import { ItemService } from '../items/item.service';
+import {TabViewModule} from 'primeng/tabview';
+import { PawnService } from '../pawns/pawn.service';
 
 export const routes: Routes = [
   {
@@ -23,7 +27,7 @@ export const routes: Routes = [
   }
 ];
 
-const primengModules = [FileUploadModule, ToastModule];
+const primengModules = [FileUploadModule, ToastModule, TabViewModule];
 
 @NgModule({
   declarations: [ 
@@ -45,7 +49,7 @@ const primengModules = [FileUploadModule, ToastModule];
     RouterModule.forChild(routes)
    ],
   exports: [],
-  providers: [RenewalService, ModalService, MessageService],
+  providers: [PawnService, ItemService, AccountService, RenewalService, ModalService, MessageService],
 })
 export class RenewalModule {}
 

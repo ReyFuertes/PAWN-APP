@@ -185,6 +185,11 @@ button:focus {
   color: red;
   border-color: red;
 }
+
+.ui-tabview .ui-tabview-panels {
+  border:none !important;
+  border-top: 1px solid #eee !important;
+}
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */

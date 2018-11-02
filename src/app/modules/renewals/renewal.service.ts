@@ -25,7 +25,7 @@ export class RenewalService extends GenericService {
   }
 
   public getRenewals(pageVar: PageVar): Observable<any> {
-    return this.paginate('renewals/list', pageVar);
+    return this.paginate('renewal/list', pageVar);
   }
 
   public searchRenewal(terms: Observable<string>) {
