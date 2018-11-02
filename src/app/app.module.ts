@@ -8,9 +8,13 @@ import { Routes, RouterModule } from "@angular/router";
 import { DefaultLayoutComponent } from "./pages/default-layout/default-layout.component";
 import { CommonModule } from "@angular/common";
 import { NoRouteComponent } from "./pages/noroute/noroute.component";
-import { SharedModule } from "primeng/components/common/shared";
 import { SidebarComponent } from "./shared/sidebar/sidebar.component";
-import { TopnavComponent } from "./modules/topnav/topnav.component";
+import { LoginComponent } from "./pages/login/login.component";
+import { AuthGuard } from "./services/auth.guard";
+import { TopnavComponent } from "./shared/topnav/topnav.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { LoginService } from "./services/auth.service";
+import { DashboardComponent } from "./modules/dashboard/dashboard.component";
 
 const appRoutes: Routes = [
   {
@@ -23,10 +27,23 @@ const appRoutes: Routes = [
     children: [
       {
         path: "",
+        component: DashboardComponent
+      }
+    ],
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "dashboard",
+    component: DefaultLayoutComponent,
+    children: [
+      {
+        path: "",
         loadChildren: "./modules/accounts/account.module#AccountModule"
       }
-    ]
-  },{
+    ],
+    canActivate: [AuthGuard]
+  },
+  {
     path: "dashboard",
     component: DefaultLayoutComponent,
     children: [
@@ -34,8 +51,10 @@ const appRoutes: Routes = [
         path: "",
         loadChildren: "./modules/pawns/pawn.module#PawnModule"
       }
-    ]
-  },{
+    ],
+    canActivate: [AuthGuard]
+  },
+  {
     path: "dashboard",
     component: DefaultLayoutComponent,
     children: [
@@ -43,8 +62,10 @@ const appRoutes: Routes = [
         path: "",
         loadChildren: "./modules/items/item.module#ItemModule"
       }
-    ]
-  },{
+    ],
+    canActivate: [AuthGuard]
+  },
+  {
     path: "dashboard",
     component: DefaultLayoutComponent,
     children: [
@@ -52,7 +73,12 @@ const appRoutes: Routes = [
         path: "",
         loadChildren: "./modules/renewals/renewal.module#RenewalModule"
       }
-    ]
+    ],
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "auth/login",
+    component: LoginComponent
   },
   {
     path: "**",
@@ -66,17 +92,21 @@ const appRoutes: Routes = [
     DefaultLayoutComponent,
     NoRouteComponent,
     SidebarComponent,
-    TopnavComponent
+    TopnavComponent,
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     CoreModule,
     FileUploadModule
   ],
-  providers: [],
+  providers: [AuthGuard, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

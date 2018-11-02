@@ -58,10 +58,11 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     if (!localStorage.getItem("ss_menu")) {
       localStorage.setItem("ss_menu", "1");
+      this.router.navigateByUrl(this.sidebarLinks[0].route);
     }
     this.activeMenu = localStorage.getItem("ss_menu");
   }
-
+  
   public onClick(index: string, event: any): void {
     this.activeMenu = index;
     localStorage.setItem("ss_menu", index);
@@ -71,5 +72,8 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     this.cdRef.detectChanges();
   }
 
-  public getCurrentRoute(): void {}
+  public onLogout(): void {
+    localStorage.removeItem("u");
+    this.router.navigateByUrl('auth/login');
+  }
 }

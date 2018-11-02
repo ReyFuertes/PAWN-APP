@@ -4,8 +4,13 @@
   </div>
 
   <ul class="list-unstyled components sidebar-links">
-    <li *ngFor="let link of sidebarLinks; let i = index" class="router-link-item {{(link.index)}}" [ngClass]="link.index == activeMenu ? 'active': ''">
-      <a href="javascript:void(0)" (click)="onClick(link.index, $event)" [routerLink]="[link.route]"><i class="fas {{link.icon}}"></i> {{link.text}}</a>
+    <li *ngFor="let link of sidebarLinks; let i = index" class="router-link-item" [ngClass]="link.index == activeMenu ? 'active': ''">
+      <a href="javascript:void(0)" (click)="onClick(link.index, $event)" [routerLink]="[link.route]"><i class="fas {{link.icon}}"></i>
+        {{link.text}}</a>
+    </li>
+    <li class="router-link-item">
+      <a href="javascript:void(0)" (click)="onLogout()"><i class="fas fa-lock"></i>
+        Logout</a>
     </li>
   </ul>
 </nav>

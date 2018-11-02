@@ -50,9 +50,4 @@ export class GenericService extends BaseService {
 
     return params;
   }
-
-  private extractData(res:Response) {
-    let body = res.json();
-    return body || {'error': true};
-  }
 }
