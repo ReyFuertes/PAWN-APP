@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { AEMode } from '../../../../models/crud.enum';
 
 @Component({
   selector: 'pa-account-new',
@@ -10,6 +11,8 @@ import { FormGroup } from '@angular/forms';
 export class AccountNewComponent implements OnInit {
   @Input()
   public form: FormGroup;
+
+  public mode: AEMode.add;
 
   constructor() { }
 

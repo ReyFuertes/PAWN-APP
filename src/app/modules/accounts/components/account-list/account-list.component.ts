@@ -31,6 +31,7 @@ export class AccountListComponent implements OnInit {
     private messageService: MessageService
   ) {
     this.form = this.formBuilder.group({
+      id: [""],
       idNumber: ["", Validators.compose([Validators.required])],
       firstName: ["", Validators.compose([Validators.required])],
       lastName: ["", Validators.compose([Validators.required])],
@@ -83,11 +84,11 @@ export class AccountListComponent implements OnInit {
     if (this.selections[0].id) {
       this.showModal = !this.showModal;
       this.aeMode = AEMode.edit;
-      this.accountService
-        .editAccount(this.selections[0].id)
-        .subscribe(response =>
-          this.form.patchValue(<FormGroup>response.accounts[0])
-        );
+      this.accountService.editAccount(this.selections[0].id).subscribe(response => {
+          console.log(<FormGroup>response.accounts);
+          this.form.patchValue(<FormGroup>response.accounts)
+        }
+      );
     }
   }
 

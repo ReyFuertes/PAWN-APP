@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { ModalService } from '../../../../services/modal.service';
 import { AccountService } from '../../account.service';
 import { Account } from '../../../../models/account.model';
+import { AEMode } from '../../../../models/crud.enum';
 
 @Component({
   selector: 'pa-account-detail',
@@ -15,19 +16,29 @@ export class AccountDetailComponent implements OnInit {
   public pageTitle: string = '';
   @Input()
   public form: FormGroup;
+  @Input()
+  public aeMode: AEMode;
 
   constructor(private renderer: Renderer, private accountService: AccountService, public modalService: ModalService) { 
   }
 
   public onSubmit(): void {
     const data: Account = <Account>this.form.value;
-    this.accountService.saveAccount(data).subscribe(() => {
-      this.form.reset();
-      this.modalService.propagate();
-    })
+    if(this.aeMode === AEMode.add) {
+      this.accountService.saveAccount(data).subscribe(() => {
+        this.form.reset();
+        this.modalService.propagate();
+      })
+    } else {
+      this.accountService.updateAccount(data.id.toString(), data).subscribe(() => {
+        this.form.reset();
+        this.modalService.propagate();
+      })
+    }
   }
 
   ngOnInit() { 
+    console.log(this.form);
   }
 
   public onClose(): void {

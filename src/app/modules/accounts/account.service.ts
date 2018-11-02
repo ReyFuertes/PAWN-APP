@@ -38,6 +38,10 @@ export class AccountService extends GenericService {
     return this.post('account/new', account);
   }
 
+  public updateAccount(id: string, renewal: Account): Observable<any> {
+    return this.update(`account/update/${id}`, renewal);
+  }
+
   public editAccount(id: number): Observable<any> {
     return this.edit('account/edit', id.toString());
   }
