@@ -2,7 +2,7 @@
   <div [formGroup]="parentForm">
     <label *ngIf="label" id="dropdown">{{label}}</label>
     <div id="dropdown" [formGroupName]="childFormGroup" [className]="defaultTheme">
-      <p-dropdown [options]="items" formControlName="id" [(ngModel)]="selectedItem" (onChange)="onChange($event)"
+      <p-dropdown [options]="items" [formControlName]="controlName" [(ngModel)]="selectedItem" (onChange)="onChange($event)"
         [style]="style" [filter]="isFilter">
         <ng-template let-item pTemplate="items">
           <span style="vertical-align:middle; margin-left: .5em">{{item.label}}</span>

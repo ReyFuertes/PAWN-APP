@@ -16,8 +16,15 @@
       </div>
     </div>
   </div>
-  <pa-account-search-table #accountTable (editMode)="editMode = $event" [totalRecords]="totalRecords" (pageVar)="paginate($event)"
-    (selections)="selections = $event" [rows]="accounts"></pa-account-search-table>
+  <pa-account-search-table 
+    *ngIf="totalRecords"
+    #accountTable 
+    (editMode)="editMode = $event" 
+    [totalRecords]="totalRecords" 
+    (pageVar)="paginate($event)"
+    (selections)="selections = $event" 
+    [rows]="accounts"
+  ></pa-account-search-table>
 </div>
 
 <app-base-modal [showModal]="showModal" [headerText]="'New Account'" (closeModal)="onClose($event)" [height]="350"

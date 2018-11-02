@@ -35,10 +35,18 @@ export class RenewalDetailComponent implements OnInit {
 
   public onSubmit(): void {
     const data: Renewal = <Renewal>this.form.value;
-    this.renewalService.saveRenewal(data).subscribe(() => {
-      this.form.reset();
-      this.modalService.propagate();
-    })
+    if(this.aeMode === AEMode.add) {
+      this.renewalService.saveRenewal(data).subscribe(() => {
+        this.form.reset();
+        this.modalService.propagate();
+      })
+    } else {
+      this.renewalService.updateRenewal(data.id.toString(), data).subscribe(() => {
+        this.form.reset();
+        this.modalService.propagate();
+      })
+    }
+
   }
 
   ngOnInit() { 

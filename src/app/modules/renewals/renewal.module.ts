@@ -34,7 +34,7 @@ const primengModules = [FileUploadModule, ToastModule, TabViewModule];
     RenewalListComponent,
     RenewalTableComponent,
     RenewalDetailComponent,
-    // RenewalEditComponent,
+    RenewalEditComponent,
     RenewalNewComponent
   ],
   imports: [ 

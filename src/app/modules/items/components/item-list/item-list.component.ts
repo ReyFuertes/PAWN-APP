@@ -50,7 +50,7 @@ export class ItemListComponent implements OnInit {
     this.itemService.getItems(pageVar).subscribe(response => {
       this.items = response.items;
       this.totalRecords = response.totalCount;
-      console.log("%cItems loaded..", "background:green;color:#fff");
+      console.log("%cItems loaded..", "background:blue;color:#fff");
     });
   }
 
@@ -122,6 +122,7 @@ export class ItemListComponent implements OnInit {
     this.itemService.deleteItem(this.selections[0].id).subscribe(response => {
       this.items = response.items;
       this.messageService.clear("c");
+      this.editMode = null;
     });
   }
 

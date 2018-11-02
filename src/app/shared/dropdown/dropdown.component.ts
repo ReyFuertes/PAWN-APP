@@ -14,7 +14,7 @@ export class DropdownSelectComponent implements OnInit {
   @Input()
   public childFormGroup: FormGroupName;
   @Input()
-  public controlName: FormControlName;
+  public controlName: any;
   @Input()
   public style: any = { width: "100%" };
   @Input()

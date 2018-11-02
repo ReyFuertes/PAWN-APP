@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, Renderer, ElementRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ModalService } from '../../../../services/modal.service';
 import { PawnService } from '../../pawn.service';
 import { Pawn } from '../../../../models/pawn.model';

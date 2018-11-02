@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FilterTableComponent } from "./filter-table/filter-table.component";
-import {DialogModule} from 'primeng/dialog';
+import { DialogModule } from 'primeng/dialog';
 import { BaseModalComponent } from "./modal/base-modal.component";
 import { DatepickerComponent } from "./datepicker/datepicker.component";
 import { CalendarModule } from "primeng/calendar";

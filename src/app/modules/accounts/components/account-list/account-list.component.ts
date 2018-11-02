@@ -108,6 +108,7 @@ export class AccountListComponent implements OnInit {
     this.accountService.deleteAccount(this.selections[0].id).subscribe(response => {
         this.accounts = response.accounts
         this.messageService.clear('c');
+        this.editMode = null;
       }
     );
   }

@@ -30,10 +30,11 @@ export class RenewalTableComponent {
 
   constructor() {
     this.rowIndex = "id";
-    this.cols = [
+    this.cols = [ 
       { field: "id", header: "ID" },
       { field: "renewalPawnTicket", header: "Pawn Ticket" },
       { field: "fullname", header: "Pawner" },
+      { field: "itemName", header: "Item Name" },
       { field: "renewalAmount", header: "Renewal Type" },
       { field: "renewalDate", header: "Renewal Date" },
       { field: "remarks", header: "remark" }

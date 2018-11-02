@@ -67,14 +67,14 @@ export class PawnListComponent implements OnInit {
       })
     });
 
-    this.pawnService.searchPawn(this.searchTerm$).subscribe(results => (this.pawns = results.pawns));
+    this.pawnService.searchPawn(this.searchTerm$).subscribe(results => this.pawns = results.pawns);
   }
 
   public load(pageVar: PageVar): void {
     this.pawnService.getPawns(pageVar).subscribe(response => {
       this.pawns = response.pawns;
       this.totalRecords = response.totalCount;
-      console.log("%cPawns loaded..", "background:green;color:#fff");
+      console.log("%cPawns loaded..", "background:orange;color:#fff");
     });
   }
 
@@ -172,6 +172,7 @@ export class PawnListComponent implements OnInit {
     this.pawnService.deletePawn(this.selections[0].id).subscribe(response => {
       this.pawns = response.pawns;
       this.messageService.clear("c");
+      this.editMode = null;
     });
   }
 

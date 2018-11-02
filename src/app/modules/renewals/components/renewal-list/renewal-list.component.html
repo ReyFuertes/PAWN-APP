@@ -33,7 +33,7 @@
   [height]="350" [contentStyle]="{'max-height':'calc(100vh - 100px)', 'overflow-x': 'hidden'}">
   <ng-container class="body">
     <pa-renewal-new *ngIf="aeMode === 0" [accounts]="accounts" [items]="items" [pawns]="pawns" [form]="form"></pa-renewal-new>
-    <!-- <pa-renewal-edit *ngIf="aeMode === 1" [form]="form"></pa-renewal-edit> -->
+    <pa-renewal-edit *ngIf="aeMode === 1" [accounts]="accounts" [items]="items" [pawns]="pawns" [form]="form"></pa-renewal-edit>
   </ng-container>
   <ng-container class="footer">
     <div class="row">
@@ -47,7 +47,7 @@
   </ng-container>
 </app-base-modal>
 
- <!--  
+  
   <p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
     <ng-template let-message pTemplate="message">
       <div style="text-align: center">
@@ -65,4 +65,4 @@
       </div>
     </ng-template>
   </p-toast>
-   -->
+  

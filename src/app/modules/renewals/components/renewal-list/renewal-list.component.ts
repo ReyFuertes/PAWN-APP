@@ -47,6 +47,7 @@ export class RenewalListComponent implements OnInit {
     this.form = this.formBuilder.group({
       id: [""],
       renewalDate: ["", Validators.compose([Validators.required])],
+      renewalPawnTicket: ["", Validators.compose([Validators.required])],
       renewalAmount: ["", Validators.compose([Validators.required])],
       renewalTotalAmount: ["", Validators.compose([Validators.required])],
       interest: ["", Validators.compose([Validators.required])],
@@ -109,14 +110,13 @@ export class RenewalListComponent implements OnInit {
         this.items.push(option);
       });
     });
-    console.log(this.form);
   }
 
   public load(pageVar: PageVar): void {
     this.renewalService.getRenewals(pageVar).subscribe(response => {
       this.renewals = response.renewals;
       this.totalRecords = response.totalCount;
-      console.log("%cRenewals loaded..", "background:green;color:#fff");
+      console.log("%cRenewals loaded..", "background:gray;color:#fff");
     });
   }
 
@@ -140,7 +140,7 @@ export class RenewalListComponent implements OnInit {
 
   public onRefresh(): void {
     this.load({ limit: 10, offset: 0 });
-    //this.renewalTable.onRowUnselect();
+    this.renewalTable.onRowUnselect();
   }
 
   public onClose(event: boolean): void {
@@ -149,8 +149,7 @@ export class RenewalListComponent implements OnInit {
     if (!this.showModal) {
       this.load({ limit: 10, offset: 0 });
     }
-
-    //this.renewalTable.onRowUnselect();
+    this.renewalTable.onRowUnselect();
   }
 
   public onAdd(): void {
@@ -162,9 +161,7 @@ export class RenewalListComponent implements OnInit {
     if (this.selections[0].id) {
       this.showModal = !this.showModal;
       this.aeMode = AEMode.edit;
-      this.renewalService.editRenewal(this.selections[0].id).subscribe(response => {
-        this.form.patchValue(<FormGroup>response.renewal);
-      });
+      this.renewalService.editRenewal(this.selections[0].id).subscribe(response => this.form.patchValue(<FormGroup>response.renewal));
     }
   }
 
@@ -188,10 +185,11 @@ export class RenewalListComponent implements OnInit {
   }
 
   public onConfirm(): void {
-    // this.renewalService.deleteRenewal(this.selections[0].id).subscribe(response => {
-    //   this.renewals = response.renewals;
-    //   this.messageService.clear("c");
-    // });
+    this.renewalService.deleteRenewal(this.selections[0].id).subscribe(response => {
+      this.renewals = response.renewals;
+      this.messageService.clear("c");
+      this.editMode = null;
+    });
   }
 
   public onReject(): void {
