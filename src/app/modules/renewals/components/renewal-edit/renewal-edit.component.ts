@@ -19,7 +19,7 @@ export class RenewalEditComponent implements OnInit {
   @Input()
   public form: FormGroup;
 
-  public mode: AEMode.add;
+  public mode = AEMode.edit;
 
   constructor() { }
 

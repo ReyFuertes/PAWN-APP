@@ -16,10 +16,6 @@
   padding: 12px;
 }
 
-:host ::ng-deep .ui-datepicker {
-  left: -57px !important;
-}
-
 :host ::ng-deep .ui-inputtext:enabled:hover:not(.ui-state-error) {
   border:thin #ced4da solid;
 }

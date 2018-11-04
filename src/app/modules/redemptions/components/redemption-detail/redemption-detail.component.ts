@@ -4,17 +4,17 @@ import { ModalService } from '../../../../services/modal.service';
 import { Item } from '../../../../models/item.model';
 import { Option } from '../../../../models/option.model';
 import { AEMode } from '../../../../models/crud.enum';
-import { RenewalService } from '../../renewal.service';
-import { Renewal } from '../../../../models/renewal.model';
+import { RedemptionService } from '../../redemption.service';
 import { AccountService } from '../../../accounts/account.service';
 import { ItemService } from '../../../items/item.service';
+import { Redemption } from '../../../../models/redemption.mode';
 
 @Component({
-  selector: 'pa-renewal-detail',
-  templateUrl: './renewal-detail.component.html',
-  styleUrls: ['./renewal-detail.component.scss']
+  selector: 'pa-redemption-detail',
+  templateUrl: './redemption-detail.component.html',
+  styleUrls: ['./redemption-detail.component.scss']
 })
-export class RenewalDetailComponent implements OnInit {
+export class RedemptionDetailComponent implements OnInit {
   @Input()
   public pageTitle: string = '';
   @Input()
@@ -28,21 +28,20 @@ export class RenewalDetailComponent implements OnInit {
   @Input()
   public pawns: Option[];
   
-  public renewalTypes: Option[] = [];
+  public redemptionTypes: Option[] = [];
 
-  constructor(private accountService: AccountService, private itemService: ItemService, private renewalService: RenewalService, public modalService: ModalService) { 
+  constructor(private accountService: AccountService, private itemService: ItemService, private redemptionService: RedemptionService, public modalService: ModalService) { 
   }
 
   public onSubmit(): void {
-    const data: Renewal = <Renewal>this.form.value;
-    console.log(this.aeMode);
+    const data: Redemption = <Redemption>this.form.value;
     if(this.aeMode === AEMode.add) {
-      this.renewalService.saveRenewal(data).subscribe(() => {
+      this.redemptionService.saveRedemption(data).subscribe(() => {
         this.form.reset();
         this.modalService.propagate();
       })
     } else {
-      this.renewalService.updateRenewal(data.id.toString(), data).subscribe(() => {
+      this.redemptionService.updateRedemption(data.id.toString(), data).subscribe(() => {
         this.form.reset();
         this.modalService.propagate();
       })

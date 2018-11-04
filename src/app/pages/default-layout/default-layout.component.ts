@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-default-layout',
@@ -6,15 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./default-layout.component.scss']
 })
 export class DefaultLayoutComponent implements OnInit {
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void { 
-    // const user = {
-    //   n: 'Administrator',
-    //   t: 'eXmT85eHM3sFCkwSJs5H8a142tk8Svwdd943rLnj1xfEmrEQBGf93qPPwvUnbU3nkbvpTWhW60ypGNr6ddkD6A4mrWGUFOzNRe3j',
-    //   p: '1'
-    // }
-    //localStorage.setItem("u", JSON.stringify(user));
-    //localStorage.removeItem("u");
+    const user = localStorage.getItem('u');
+    if (!user) {
+      this.router.navigateByUrl('auth/login');
+    }
   }
 }

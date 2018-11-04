@@ -2,53 +2,47 @@
   <div class="row pa_card-content">
     <div class="col-12">
       <p-tabView>
-        <p-tabPanel header="Renewal Information">
+        <p-tabPanel header="Redemption Information">
           <div class="col-12">
             <div class="row">
               <div class="col-12 form-group">
-                <label for="renewalDate">Renewal Date</label>
-                <app-datepicker [parentForm]="form" tabindex="1" [controlName]="'renewalDate'" [tabIndex]="3"></app-datepicker>
+                <label for="redemptionDate">Redemption Date</label>
+                <app-datepicker [parentForm]="form" tabindex="1" [controlName]="'redemptionDate'" [tabIndex]="3"></app-datepicker>
               </div>
             </div>
             <div class="row">
               <div class="col-4 form-group">
-                <label for="renewalPawnTicket">Renewal Number</label>
-                <input class="form-control" tabindex="1" formControlName="renewalPawnTicket" id="renewalPawnTicket" type="text"
+                <label for="redemptionPawnTicket">Redemption Number</label>
+                <input class="form-control" tabindex="1" formControlName="redemptionPawnTicket" id="redemptionPawnTicket" type="text"
                   autofocus autocomplete="off" />
               </div>
 
               <div class="col-4 form-group">
-                <pa-dropdown [label]="'Old Pawn Number'" [items]="pawns" [isGroup]="false" [parentForm]="form"
+                <pa-dropdown [label]="'Pawn Number'" [items]="pawns" [isGroup]="false" [parentForm]="form"
                   [controlName]="'pawnId'" (onItemChange)="onPawnChange($event)">
                 </pa-dropdown>
               </div>
 
               <div class="col-4 form-group">
-                <label for="newPawnNumber">New Pawn Number</label>
-                <input inputNumber class="form-control" tabindex="3" formControlName="newPawnNumber" id="newPawnNumber"
+                <label for="redemptionAmount">Amount</label>
+                <input inputNumber class="form-control" tabindex="3" formControlName="redemptionAmount" id="redemptionAmount"
                   type="text" autocomplete="off" />
               </div>
             </div>
             <div class="row">
-              <div class="col-3 form-group">
-                <label for="renewalAmount">Amount</label>
-                <input inputNumber class="form-control" tabindex="3" formControlName="renewalAmount" id="renewalAmount"
+              <div class="col-4 form-group">
+                <label for="redemptionTotalAmount">Total Amount</label>
+                <input inputNumber class="form-control" tabindex="4" formControlName="redemptionTotalAmount" id="redemptionTotalAmount"
                   type="text" autocomplete="off" />
               </div>
 
-              <div class="col-3 form-group">
-                <label for="renewalTotalAmount">Total Amount</label>
-                <input inputNumber class="form-control" tabindex="4" formControlName="renewalTotalAmount" id="renewalTotalAmount"
-                  type="text" autocomplete="off" />
-              </div>
-
-              <div class="col-3 form-group">
+              <div class="col-4 form-group">
                 <label for="interest">Interest</label>
                 <input inputNumber class="form-control" tabindex="5" formControlName="interest" id="interest" type="text"
                   autocomplete="off" />
               </div>
 
-              <div class="col-3 form-group">
+              <div class="col-4 form-group">
                 <label for="difference">Difference</label>
                 <input inputNumber class="form-control" tabindex="6" formControlName="difference" id="difference" type="text"
                   autocomplete="off" />

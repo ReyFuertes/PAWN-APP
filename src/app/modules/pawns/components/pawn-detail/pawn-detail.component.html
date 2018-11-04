@@ -1,4 +1,4 @@
-<form *ngIf="form" [formGroup]="form" name="loginForm" role="form" (ngSubmit)="onSubmit()">
+<form *ngIf="form" [formGroup]="form" name="form" role="form" (ngSubmit)="onSubmit()">
   <div class="row pa_card-content">
     <div class="col-3">
       <div class="pa_image-container">
@@ -67,7 +67,7 @@
         <legend>Personal Information:</legend>
         <div class="row">
           <div class="col-7 form-group">
-            <pa-dropdown [label]="'Account Name'" [isGroup]="true" [items]="accounts" [childFormGroup]="'account'" [parentForm]="form" (onItemChange)="onAccountChange($event)">
+            <pa-dropdown [label]="'Account Name'" [isGroup]="true" [items]="accounts" [controlName]="'id'" [childFormGroup]="'account'" [parentForm]="form" (onItemChange)="onAccountChange($event)">
             </pa-dropdown>
           </div>
 
@@ -96,7 +96,7 @@
         <legend>Item Information:</legend>
         <div class="row">
           <div class="col-7 form-group">
-            <pa-dropdown [label]="'Item Name'" [isGroup]="true" [items]="items" [childFormGroup]="'item'" [parentForm]="form" (onItemChange)="onItemChange($event)">
+            <pa-dropdown [label]="'Item Name'" [isGroup]="true" [items]="items" [controlName]="'id'" [childFormGroup]="'item'" [parentForm]="form" (onItemChange)="onItemChange($event)">
             </pa-dropdown>
           </div>
 

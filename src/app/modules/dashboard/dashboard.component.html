@@ -9,7 +9,7 @@
               <div class="dashboard-icon-pawn-circle"><i class="fas fa-gem fa-2x"></i> </div>
             </div>
             <div class="col-11 content-container">
-              <h5 class="margin-0 pa-color-green">306</h5>
+              <h5 class="margin-0 pa-color-green">{{totalPawnCount}}</h5>
               <span>Total Item Pawned</span>
             </div>
           </div>
@@ -24,7 +24,7 @@
               <div class="dashboard-icon-renewal-circle"><i class="fas fa-sync fa-2x"></i></div>
             </div>
             <div class="col-11 content-container">
-              <h5 class="margin-0 pa-color-blue">220</h5>
+              <h5 class="margin-0 pa-color-blue" >{{totalRenewedCount}}</h5>
               <span>Total Item Renewed</span>
             </div>
           </div>
@@ -37,8 +37,8 @@
         <div class="card-header">
           <h4>Engagements Statitics</h4>
         </div>
-        <div class="card-body">
-          <canvas id="myChart" width="400" height="100"></canvas>
+        <div *ngIf="lineChart" class="card-body">
+            <canvas height="40" id="lineChart"></canvas>
         </div>
       </div>
     </div>

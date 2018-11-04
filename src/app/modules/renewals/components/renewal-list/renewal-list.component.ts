@@ -48,6 +48,7 @@ export class RenewalListComponent implements OnInit {
       id: [""],
       renewalDate: ["", Validators.compose([Validators.required])],
       renewalPawnTicket: ["", Validators.compose([Validators.required])],
+      newPawnNumber: ["", Validators.compose([Validators.required])],
       renewalAmount: ["", Validators.compose([Validators.required])],
       renewalTotalAmount: ["", Validators.compose([Validators.required])],
       interest: ["", Validators.compose([Validators.required])],

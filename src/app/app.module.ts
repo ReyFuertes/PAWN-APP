@@ -15,6 +15,7 @@ import { TopnavComponent } from "./shared/topnav/topnav.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LoginService } from "./services/auth.service";
 import { DashboardComponent } from "./modules/dashboard/dashboard.component";
+import { DashboardService } from "./services/dashboard.service";
 
 const appRoutes: Routes = [
   {
@@ -75,6 +76,16 @@ const appRoutes: Routes = [
       }
     ],
     canActivate: [AuthGuard]
+  },{
+    path: "dashboard",
+    component: DefaultLayoutComponent,
+    children: [
+      {
+        path: "",
+        loadChildren: "./modules/redemptions/redemption.module#RedemptionModule"
+      }
+    ],
+    canActivate: [AuthGuard]
   },
   {
     path: "auth/login",
@@ -106,7 +117,7 @@ const appRoutes: Routes = [
     CoreModule,
     FileUploadModule
   ],
-  providers: [AuthGuard, LoginService],
+  providers: [AuthGuard, LoginService, DashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

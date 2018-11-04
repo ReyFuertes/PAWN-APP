@@ -16,7 +16,7 @@ export class PawnNewComponent implements OnInit {
   @Input()
   public form: FormGroup;
 
-  public mode: AEMode.add;
+  public mode = AEMode.add;
 
   constructor() { }
 

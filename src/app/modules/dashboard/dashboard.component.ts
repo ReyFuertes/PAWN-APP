@@ -1,5 +1,6 @@
-import { Component, OnInit, AfterViewInit } from "@angular/core";
-import * as Chart from "chart.js";
+import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectorRef } from "@angular/core";
+import { Chart } from 'chart.js';
+import { DashboardService } from "../../services/dashboard.service";
 
 @Component({
   selector: 'pa-dashboard',
@@ -7,21 +8,38 @@ import * as Chart from "chart.js";
   styleUrls: ['./dashboard.component.scss']
 })
 
-export class DashboardComponent implements AfterViewInit {
-  canvas: any;
-  ctx: any;
+export class DashboardComponent implements OnInit, AfterViewInit {
+  public totalPawnCount: number = 0;
+  public totalRenewedCount: number = 0;
+  public canvas: any;
+  public ctx: any;
 
-  ngAfterViewInit(): void {
-    this.canvas = document.getElementById('myChart');
-    this.ctx = this.canvas.getContext('2d');
+  @ViewChild('lineChart') private chartRef;    
+  public chart: any;   
+  public lineChart = []; 
+
+  constructor(private cdRef: ChangeDetectorRef, private dashboardService: DashboardService) {
     
-    var myChart = new Chart(this.ctx, {
+  }
+
+  ngOnInit(): void {
+    this.dashboardService.getDashboardReports().subscribe(response => {
+      if(response.success === true) {
+        this.totalPawnCount = response.totalPawnedItems;
+        this.totalRenewedCount = response.totalRenewedItems;
+        this.initChart(this.totalPawnCount, this.totalRenewedCount);
+      }
+    });
+  }
+
+  private initChart(totalPawnCount, totalRenewedCount): void {
+    this.lineChart = new Chart('lineChart', {
       type: 'bar',
       data: {
-          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          labels: ["Pawned Items", "Renewed Items"],
           datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
+              label: 'Total Engagements',
+              data: [totalPawnCount, totalRenewedCount],
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -51,6 +69,11 @@ export class DashboardComponent implements AfterViewInit {
           }
       }
     })
+
   }
 
+
+  ngAfterViewInit(): void {
+    this.cdRef.detectChanges();
+  }
 }

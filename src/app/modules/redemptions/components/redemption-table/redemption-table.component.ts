@@ -1,18 +1,18 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild} from "@angular/core";
 import { AEMode } from "../../../../models/crud.enum";
-import { Renewal } from "../../../../models/renewal.model";
+import { Redemption } from "../../../../models/redemption.mode";
 
 @Component({
-  selector: "pa-renewal-search-table",
+  selector: "pa-redemption-search-table",
   templateUrl:"../../../../core/page-components/search-table/search-table.component.html",
   styleUrls: ["../../../../core/page-components/search-table/search-table.component.scss"
   ]
 })
-export class RenewalTableComponent {
+export class RedemptionTableComponent {
   @Input()
-  public rows: Renewal[];
+  public rows: Redemption[];
   @Output()
-  public selections = new EventEmitter<Renewal>();
+  public selections = new EventEmitter<Redemption>();
   @Output()
   public editMode = new EventEmitter<AEMode>();
   @Output()
@@ -32,12 +32,11 @@ export class RenewalTableComponent {
     this.rowIndex = "id";
     this.cols = [ 
       { field: "id", header: "ID" },
-      { field: "renewalPawnTicket", header: "Pawn Ticket" },
-      { field: "newPawnNumber", header: "New Pawn Number" },
+      { field: "redemptionPawnTicket", header: "Pawn Ticket" },
       { field: "fullname", header: "Pawner" },
       { field: "itemName", header: "Item Name" },
-      { field: "renewalAmount", header: "Renewal Type" },
-      { field: "renewalDate", header: "Renewal Date" },
+      { field: "redemptionAmount", header: "Redemption Type" },
+      { field: "redemptionDate", header: "Redemption Date" },
       { field: "remarks", header: "remark" }
     ];
   }

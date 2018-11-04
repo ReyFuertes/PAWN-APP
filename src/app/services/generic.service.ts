@@ -10,27 +10,27 @@ export class GenericService extends BaseService {
     super(http);
   }
 
-  public getOne(endpoint: string, id: string): Observable<any> {
+  protected getOne(endpoint: string, id: string): Observable<any> {
     let params = new HttpParams();
     params = params.set('id', id);
     return this.get(endpoint, { params: params });
   }
 
-  public paginate<T>(endpoint: string, urlOrFilter?: string | object): Observable<T> {
+  protected paginate<T>(endpoint: string, urlOrFilter?: string | object): Observable<T> {
     return this.get(endpoint, { params: this.getParams(endpoint, urlOrFilter) });
   }
   
-  public save<T>(endpoint: string, model: Object): Observable<T> {
+  protected save<T>(endpoint: string, model: Object): Observable<T> {
     return this.post(endpoint, model).pipe(map((response: T) => response ));
   }
 
-  public edit<T>(endpoint: string, id: string): Observable<T> {
+  protected edit<T>(endpoint: string, id: string): Observable<T> {
     let params = new HttpParams();
     params = params.set('id', id);
     return this.get(endpoint, { params: params });
   }
 
-  public remove(endpoint: string): Observable<any> {
+  protected remove(endpoint: string): Observable<any> {
     return this.delete(endpoint).pipe(map((response) => response ));
   }
 

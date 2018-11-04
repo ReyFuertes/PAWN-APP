@@ -4,11 +4,11 @@ import { AEMode } from '../../../../models/crud.enum';
 import { Option } from '../../../../models/option.model';
 
 @Component({
-  selector: 'pa-renewal-new',
-  templateUrl: './renewal-new.component.html',
-  styleUrls: ['./renewal-new.component.scss']
+  selector: 'pa-redemption-new',
+  templateUrl: './redemption-new.component.html',
+  styleUrls: ['./redemption-new.component.scss']
 })
-export class RenewalNewComponent implements OnInit {
+export class RedemptionNewComponent implements OnInit {
   @Input()
   public accounts: Option[];
   @Input()

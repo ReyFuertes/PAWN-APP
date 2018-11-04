@@ -1,14 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Option } from '../../../../models/option.model';
 import { FormGroup } from '@angular/forms';
 import { AEMode } from '../../../../models/crud.enum';
-import { Option } from '../../../../models/option.model';
 
 @Component({
-  selector: 'pa-renewal-new',
-  templateUrl: './renewal-new.component.html',
-  styleUrls: ['./renewal-new.component.scss']
+  selector: 'pa-redemption-edit',
+  templateUrl: './redemption-edit.component.html',
+  styleUrls: ['./redemption-edit.component.scss']
 })
-export class RenewalNewComponent implements OnInit {
+export class RedemptionEditComponent implements OnInit {
   @Input()
   public accounts: Option[];
   @Input()
