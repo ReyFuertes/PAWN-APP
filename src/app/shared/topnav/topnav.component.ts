@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class TopnavComponent implements OnInit {
+  public loginUser: any;
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    if(localStorage.getItem('u')) {
+      this.loginUser = JSON.parse(localStorage.getItem('u')).email;
+    }
+  }
 }

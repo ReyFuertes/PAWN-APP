@@ -16,12 +16,10 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LoginService } from "./services/auth.service";
 import { DashboardComponent } from "./modules/dashboard/dashboard.component";
 import { DashboardService } from "./services/dashboard.service";
+import { SettingsComponent } from "./pages/settings/settings.component";
+import { SlideMenuModule } from "primeng/slidemenu";
 
 const appRoutes: Routes = [
-  {
-    path: "",
-    component: DefaultLayoutComponent
-  },
   {
     path: "dashboard",
     component: DefaultLayoutComponent,
@@ -76,7 +74,8 @@ const appRoutes: Routes = [
       }
     ],
     canActivate: [AuthGuard]
-  },{
+  },
+  {
     path: "dashboard",
     component: DefaultLayoutComponent,
     children: [
@@ -94,6 +93,10 @@ const appRoutes: Routes = [
   {
     path: "**",
     component: NoRouteComponent
+  },
+  {
+    path: "",
+    component: DefaultLayoutComponent
   }
 ];
 
@@ -105,7 +108,8 @@ const appRoutes: Routes = [
     SidebarComponent,
     TopnavComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    SettingsComponent
   ],
   imports: [
     CommonModule,
@@ -115,7 +119,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     CoreModule,
-    FileUploadModule
+    FileUploadModule,
+    SlideMenuModule
   ],
   providers: [AuthGuard, LoginService, DashboardService],
   bootstrap: [AppComponent]
