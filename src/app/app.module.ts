@@ -90,13 +90,10 @@ const appRoutes: Routes = [
     path: "auth/login",
     component: LoginComponent
   },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {
     path: "**",
     component: NoRouteComponent
-  },
-  {
-    path: "",
-    component: DefaultLayoutComponent
   }
 ];
 

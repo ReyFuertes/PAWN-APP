@@ -73,6 +73,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   }
 
   public onLogout(): void {
+    localStorage.removeItem("ss_menu");
     localStorage.removeItem("u");
     this.router.navigateByUrl('auth/login');
   }

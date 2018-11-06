@@ -66,7 +66,6 @@ export class PawnListComponent implements OnInit {
         description: [""]
       })
     });
-    console.log(this.form);
     this.pawnService.searchPawn(this.searchTerm$).subscribe(results => this.pawns = results.pawns);
   }
 

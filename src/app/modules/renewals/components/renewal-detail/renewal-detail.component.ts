@@ -35,7 +35,6 @@ export class RenewalDetailComponent implements OnInit {
 
   public onSubmit(): void {
     const data: Renewal = <Renewal>this.form.value;
-    console.log(this.aeMode);
     if(this.aeMode === AEMode.add) {
       this.renewalService.saveRenewal(data).subscribe(() => {
         this.form.reset();

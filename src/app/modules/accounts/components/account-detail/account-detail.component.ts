@@ -38,7 +38,6 @@ export class AccountDetailComponent implements OnInit {
   }
 
   ngOnInit() { 
-    console.log(this.form);
   }
 
   public onClose(): void {

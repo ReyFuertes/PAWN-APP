@@ -85,7 +85,6 @@ export class AccountListComponent implements OnInit {
       this.showModal = !this.showModal;
       this.aeMode = AEMode.edit;
       this.accountService.editAccount(this.selections[0].id).subscribe(response => {
-          console.log(<FormGroup>response.accounts);
           this.form.patchValue(<FormGroup>response.accounts)
         }
       );
