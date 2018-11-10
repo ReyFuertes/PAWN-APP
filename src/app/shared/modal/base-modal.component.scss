@@ -6,11 +6,6 @@
   font-weight: bold;
 }
 
-@media (min-width: 768px) {
-  :host ::ng-deep .ui-dialog {
-    width: 900px !important;
-  }
-}
 
 @media (max-width: 480px) {
   :host ::ng-deep .ui-dialog {

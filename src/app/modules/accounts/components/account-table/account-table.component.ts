@@ -38,7 +38,8 @@ export class AccountTableComponent implements OnInit {
       { field: "idNumber", header: "ID Number", width: "50%" },
       { field: "fullname", header: "Full Name" },
       { field: "phoneNumber", header: "Phone Number" },
-      { field: "address", header: "Address" }
+      { field: "address", header: "Address" },
+      { field: "created", header: "Created" }
     ];
   }
 

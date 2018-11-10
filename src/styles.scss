@@ -139,6 +139,10 @@ fieldset {
 /* ---------------------------------------------------
     BOOSTRAP CUSTOM
 ----------------------------------------------------- */
+.alert-info {
+  border-color: #50b5c5;
+}
+
 .form-control:disabled,
 .form-control[readonly] {
   cursor: not-allowed;
@@ -280,4 +284,10 @@ ul ul a {
 .btn-success,
 .btn-danger {
   color: #eee;
+}
+
+@media (min-width: 768px) {
+  .ui-dialog {
+    width: 900px;
+  }
 }

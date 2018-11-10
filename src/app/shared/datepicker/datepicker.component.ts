@@ -30,6 +30,8 @@ export class DatepickerComponent implements OnInit {
   public errorText: string = 'Place your customer error text here';
   @Input()
   public inputStyleClass: string = 'bg-color-white';
+  @Input()
+  public style: any;
 
   @Output()
   public isValid = new EventEmitter<boolean>();
@@ -45,6 +47,7 @@ export class DatepickerComponent implements OnInit {
     if(this.parentForm.get(this.controlName).value) {
       this.parentForm.get(this.controlName).patchValue(new Date((this.parentForm.get(this.controlName).value)));
     }
+    console.log(this.style);
   }
 
   public onChange(event: any): void { 

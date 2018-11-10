@@ -13,13 +13,15 @@ export class BaseModalComponent implements OnInit {
   @Input()
   public headerText: string = "Header Text Here";
   @Input()
-  public width: string = "400";
+  public width: string = "900";
   @Input()
-  public height: string = "300";
+  public height: string = "100";
   @Input()
   public positionTop: number = 20;
   @Input()
   public contentStyle: any;
+  @Input()
+  public showFooter: boolean = false;
 
   @Output()
   public closeModal = new EventEmitter<boolean>();

@@ -7,6 +7,7 @@ import {MessageService} from 'primeng/api';
 import { Subject } from "rxjs";
 import { AEMode } from "../../../../models/crud.enum";
 import { AccountTableComponent } from "../account-table/account-table.component";
+import { PrintEntity } from "../../../../models/print-entity.model";
 
 @Component({
   selector: "pa-account-list",
@@ -22,6 +23,7 @@ export class AccountListComponent implements OnInit {
   public aeMode: AEMode;
   public form: FormGroup;
   public searchTerm$ = new Subject<string>();
+  public printEntity = PrintEntity.Account;
 
   @ViewChild("accountTable") accountTable: AccountTableComponent;
 

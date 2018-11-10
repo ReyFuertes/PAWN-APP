@@ -10,7 +10,7 @@
         <button type="button" (click)="onRefresh()" class="btn btn-sm pa_button btn-default"><i class="fas fa-sync"></i> Refresh</button>
         <button type="button" (click)="onDelete()" [disabled]="editMode !== 1" class="btn btn-sm pa_button btn-danger"><i
             class="far fa-trash-alt"></i> Delete</button>
-        <pa-print></pa-print>
+        <pa-print-preview [printEntity]="printEntity" ></pa-print-preview>
       </div>
       <div class="col-4">
         <pa-filter-table (onSearch)="onSearch($event)"></pa-filter-table>

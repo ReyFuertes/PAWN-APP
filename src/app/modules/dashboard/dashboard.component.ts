@@ -11,6 +11,8 @@ import { DashboardService } from "../../services/dashboard.service";
 export class DashboardComponent implements OnInit, AfterViewInit {
   public totalPawnCount: number = 0;
   public totalRenewedCount: number = 0;
+  public totalItems: number = 0;
+  public totalAccounts: number = 0;
   public canvas: any;
   public ctx: any;
 
@@ -27,19 +29,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       if(response.success === true) {
         this.totalPawnCount = response.totalPawnedItems;
         this.totalRenewedCount = response.totalRenewedItems;
-        this.initChart(this.totalPawnCount, this.totalRenewedCount);
+        this.totalItems = response.totalItems;
+        this.totalAccounts = response.totalAccounts;
+        this.initChart(this.totalAccounts, this.totalItems, this.totalPawnCount, this.totalRenewedCount);
       }
     });
   }
 
-  private initChart(totalPawnCount, totalRenewedCount): void {
+  private initChart(totalAccounts, totalItems, totalPawnCount, totalRenewedCount): void {
     this.lineChart = new Chart('lineChart', {
       type: 'bar',
       data: {
-          labels: ["Pawned Items", "Renewed Items"],
+          labels: ["Total Accounts", "Total Items", "Pawned Items", "Renewed Items"],
           datasets: [{
               label: 'Total Engagements',
-              data: [totalPawnCount, totalRenewedCount],
+              data: [totalAccounts, totalItems, totalPawnCount, totalRenewedCount],
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',

@@ -18,6 +18,9 @@ import { DashboardComponent } from "./modules/dashboard/dashboard.component";
 import { DashboardService } from "./services/dashboard.service";
 import { SettingsComponent } from "./pages/settings/settings.component";
 import { SlideMenuModule } from "primeng/slidemenu";
+import { PrintPageComponent } from "./shared/print-page/print-page.component";
+import { AccountPrintTableComponent } from "./modules/accounts/components/account-print-table/account-print-table.component";
+import { AccountService } from "./modules/accounts/account.service";
 
 const appRoutes: Routes = [
   {
@@ -90,7 +93,16 @@ const appRoutes: Routes = [
     path: "auth/login",
     component: LoginComponent
   },
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { 
+    path: '', 
+    redirectTo: 'dashboard', 
+    pathMatch: 'full' 
+  },
+  {
+    path: "print-page",
+    component: PrintPageComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: "**",
     component: NoRouteComponent
@@ -106,7 +118,9 @@ const appRoutes: Routes = [
     TopnavComponent,
     LoginComponent,
     DashboardComponent,
-    SettingsComponent
+    SettingsComponent,
+    PrintPageComponent,
+    AccountPrintTableComponent
   ],
   imports: [
     CommonModule,
@@ -119,7 +133,7 @@ const appRoutes: Routes = [
     FileUploadModule,
     SlideMenuModule
   ],
-  providers: [AuthGuard, LoginService, DashboardService],
+  providers: [AuthGuard, LoginService, DashboardService, AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

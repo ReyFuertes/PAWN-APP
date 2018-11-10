@@ -9,7 +9,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { InputNumberDirective } from "./directive/input-number.directive";
 import { DropdownSelectComponent } from "./dropdown/dropdown.component";
 import { DropdownModule } from "primeng/dropdown";
-import { PrintComponent } from "./print/print.component";
+import {RadioButtonModule} from 'primeng/radiobutton';
+import { PrintPreviewComponent } from "./print-preview/print-preview.component";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { PrintComponent } from "./print/print.component";
     DatepickerComponent,
     InputNumberDirective,
     DropdownSelectComponent,
-    PrintComponent
+    PrintPreviewComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +27,8 @@ import { PrintComponent } from "./print/print.component";
     ReactiveFormsModule,
     CalendarModule,
     DialogModule,
-    DropdownModule
+    DropdownModule,
+    RadioButtonModule
   ],
   exports: [
     FilterTableComponent,
@@ -34,7 +36,7 @@ import { PrintComponent } from "./print/print.component";
     DatepickerComponent,
     InputNumberDirective,
     DropdownSelectComponent,
-    PrintComponent
+    PrintPreviewComponent
   ],
   providers: []
 })

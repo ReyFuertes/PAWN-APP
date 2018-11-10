@@ -15,7 +15,7 @@
   [closable]="true"
  >
   <ng-content select=".body"></ng-content>
-  <!-- <p-footer>
+  <p-footer *ngIf="showFooter">
     <ng-content select=".footer"></ng-content>
-  </p-footer> -->
+  </p-footer>
 </p-dialog>
