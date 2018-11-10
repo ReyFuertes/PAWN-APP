@@ -10,6 +10,7 @@ import { AccountService } from "../../../accounts/account.service";
 import { Option } from "../../../../models/option.model";
 import { ItemService } from "../../../items/item.service";
 import { PawnTableComponent } from "../pawn-table/pawn-table.component";
+import { PrintEntity } from "../../../../models/print-entity.model";
 
 @Component({
   selector: "pa-pawn-list",
@@ -27,6 +28,7 @@ export class PawnListComponent implements OnInit {
   public searchTerm$ = new Subject<string>();
   public accounts: Option[] = [];
   public items: Option[] = [];
+  public printEntity = PrintEntity.Pawn;
 
   @ViewChild("pawnTable") pawnTable: PawnTableComponent;
 
@@ -123,8 +125,8 @@ export class PawnListComponent implements OnInit {
     this.pawnTable.onRowUnselect();
   }
 
-  public onClose(event: boolean): void {
-    this.showModal = event;
+  public onClose(): void {
+    this.showModal = !this.showModal;
 
     if (!this.showModal) {
       this.load({ limit: 10, offset: 0 });

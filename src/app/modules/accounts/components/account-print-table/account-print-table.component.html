@@ -1,10 +1,10 @@
 <div id="print-section" class="container">
-  <div class="row alert alert-info doNotPrint">
+  <div *ngIf="(accounts && accounts.length > 0)" class="row alert alert-danger doNotPrint">
     <strong [ngStyle]="{'margin-right': '5px'}">Note: </strong> Click the button print to show, or back you go to previews page.
   </div>
   
   <h3>Accounts</h3>
-  <table class="table">
+  <table *ngIf="(accounts && accounts.length > 0) else noResultsFound" class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -27,6 +27,11 @@
     </tbody>
   </table>
   <button (click)="onBack()"  class="btn btn-md btn-default doNotPrint" [ngStyle]="{'margin': '0 10px'}" >Back</button>
-  <button (click)="print()" class="btn btn-md btn-primary doNotPrint" >Print</button>
+  <button (click)="print()" [disabled]="!(accounts && accounts.length > 0)" class="btn btn-md btn-primary doNotPrint btn-print" >Print</button>
 </div>
 
+<ng-template #noResultsFound>
+  <div class="alert alert-warning" role="alert">
+    No Results to print! Please check your dates.
+  </div>
+</ng-template>

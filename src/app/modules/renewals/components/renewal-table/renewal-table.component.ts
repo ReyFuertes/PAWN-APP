@@ -33,10 +33,9 @@ export class RenewalTableComponent {
     this.cols = [ 
       { field: "id", header: "ID" },
       { field: "renewalPawnTicket", header: "Pawn Ticket" },
-      { field: "newPawnNumber", header: "New Pawn Number" },
+      { field: "newPawnNumber", header: "New Pawn No." },
       { field: "fullname", header: "Pawner" },
       { field: "itemName", header: "Item Name" },
-      { field: "renewalAmount", header: "Renewal Type" },
       { field: "renewalDate", header: "Renewal Date" },
       { field: "remarks", header: "remark" }
     ];

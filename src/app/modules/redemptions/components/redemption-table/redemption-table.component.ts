@@ -35,7 +35,6 @@ export class RedemptionTableComponent {
       { field: "redemptionPawnTicket", header: "Pawn Ticket" },
       { field: "fullname", header: "Pawner" },
       { field: "itemName", header: "Item Name" },
-      { field: "redemptionAmount", header: "Redemption Type" },
       { field: "redemptionDate", header: "Redemption Date" },
       { field: "remarks", header: "remark" }
     ];

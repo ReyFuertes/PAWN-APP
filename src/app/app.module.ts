@@ -21,6 +21,10 @@ import { SlideMenuModule } from "primeng/slidemenu";
 import { PrintPageComponent } from "./shared/print-page/print-page.component";
 import { AccountPrintTableComponent } from "./modules/accounts/components/account-print-table/account-print-table.component";
 import { AccountService } from "./modules/accounts/account.service";
+import { PawnPrintTableComponent } from "./modules/pawns/components/pawn-print-table/pawn-print-table.component";
+import { PawnService } from "./modules/pawns/pawn.service";
+import { ItemPrintTableComponent } from "./modules/items/components/item-print-table/item-print-table.component";
+import { ItemService } from "./modules/items/item.service";
 
 const appRoutes: Routes = [
   {
@@ -120,7 +124,9 @@ const appRoutes: Routes = [
     DashboardComponent,
     SettingsComponent,
     PrintPageComponent,
-    AccountPrintTableComponent
+    AccountPrintTableComponent,
+    PawnPrintTableComponent,
+    ItemPrintTableComponent
   ],
   imports: [
     CommonModule,
@@ -133,7 +139,7 @@ const appRoutes: Routes = [
     FileUploadModule,
     SlideMenuModule
   ],
-  providers: [AuthGuard, LoginService, DashboardService, AccountService],
+  providers: [AuthGuard, LoginService, DashboardService, AccountService, PawnService, ItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

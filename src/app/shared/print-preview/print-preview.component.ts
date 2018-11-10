@@ -25,8 +25,8 @@ export class PrintPreviewComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  public onClose(event: boolean): void {
-    this.showModal = event;
+  public onClose(): void {
+    this.showModal = !this.showModal;
   }
 
   public onSubmit(): void {

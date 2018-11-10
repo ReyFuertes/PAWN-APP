@@ -10,7 +10,7 @@
         <button type="button" (click)="onRefresh()" class="btn btn-sm pa_button btn-default"><i class="fas fa-sync"></i> Refresh</button>
         <button type="button" (click)="onDelete()" [disabled]="editMode !== 1" class="btn btn-sm pa_button btn-danger"><i
             class="far fa-trash-alt"></i> Delete</button>
-        <pa-print-preview></pa-print-preview>
+        <pa-print-preview [printEntity]="printEntity" ></pa-print-preview>
       </div>
       <div class="col-4">
         <pa-filter-table (onSearch)="onSearch($event)" ></pa-filter-table>
@@ -29,7 +29,7 @@
   ></pa-pawn-search-table>
 </div>
 
-<app-base-modal [showModal]="showModal" [headerText]="'New Pawn'" (closeModal)="onClose($event)" [height]="350"
+<app-base-modal [showModal]="showModal" [headerText]="'New Pawn'" (closeModal)="onClose()" [height]="350"
   [contentStyle]="{'max-height':'calc(100vh - 100px)', 'overflow-x': 'hidden'}">
   <ng-container class="body">
     <pa-pawn-new *ngIf="aeMode === 0" [form]="form" [accounts]="accounts" [items]="items" ></pa-pawn-new>

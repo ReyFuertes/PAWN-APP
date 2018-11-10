@@ -30,7 +30,7 @@
   ></pa-renewal-search-table>
 </div>
 
-<app-base-modal [showModal]="showModal" [headerText]="aeMode === 1 ? 'Edit Renewal': 'New Renewal'" (closeModal)="onClose($event)"
+<app-base-modal [showModal]="showModal" [headerText]="aeMode === 1 ? 'Edit Renewal': 'New Renewal'" (closeModal)="onClose()"
   [height]="350" [contentStyle]="{'max-height':'calc(100vh - 100px)', 'overflow-x': 'hidden'}">
   <ng-container class="body">
     <pa-renewal-new *ngIf="aeMode === 0" [accounts]="accounts" [items]="items" [pawns]="pawns" [form]="form"></pa-renewal-new>

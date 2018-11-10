@@ -143,8 +143,8 @@ export class RedemptionListComponent implements OnInit {
     this.redemptionTable.onRowUnselect();
   }
 
-  public onClose(event: boolean): void {
-    this.showModal = event;
+  public onClose(): void {
+    this.showModal = !this.showModal;
 
     if (!this.showModal) {
       this.load({ limit: 10, offset: 0 });

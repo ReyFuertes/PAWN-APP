@@ -8,12 +8,17 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
+import { PrintParams } from '../../models/print.model';
 
 @Injectable()
 export class AccountService extends GenericService {
 
   constructor(http: HttpClient) {
     super(http);
+  }
+
+  public printAccounts(printParams: PrintParams): Observable<any> {
+    return this.get('accounts/print', printParams);
   }
 
   public getOne(id: string): Observable<any> {

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PrintEntity } from '../../models/print-entity.model';
+import { PrintParams } from '../../models/print.model';
 
 @Component({
   selector: 'app-print-page',
@@ -10,16 +11,17 @@ import { PrintEntity } from '../../models/print-entity.model';
 export class PrintPageComponent implements OnInit {
   public printEntity = PrintEntity;
   public entity: PrintEntity;
-  public printFrom: string;
-  public printTo: string;
+  public printParams: PrintParams;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.entity = params['printEntity'];
-      this.printFrom = params['printValues'];
-      this.printTo = params['printTo'];
+      this.printParams = {
+        from: params['printFrom'],
+        to: params['printTo']
+      };
     })
   }
 }

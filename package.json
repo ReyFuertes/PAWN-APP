@@ -6,8 +6,9 @@
   "scripts": {
     "lint": "tslint ./src/**/*.ts -t verbose",
     "start": "ng serve",
+    "build-qa": "ng build --c=qa",
     "test": "ng test",
-    "build": "ng build --prod",
+    "build-prod": "ng build --c=production",
     "e2e": "ng e2e",
     "ng": "ng"
   },

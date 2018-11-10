@@ -2,6 +2,7 @@ import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { Account } from '../../../../models/account.model';
 import { AccountService } from '../../account.service';
 import { Router } from '@angular/router';
+import { PrintParams } from '../../../../models/print.model';
 
 @Component({
   selector: 'pa-account-print-table',
@@ -10,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class AccountPrintTableComponent implements OnInit, AfterViewInit {
   @Input()
+  public printParams: PrintParams;
+
   public accounts: Account[];
 
   constructor(private router: Router, private accountService: AccountService) { }
@@ -23,12 +26,14 @@ export class AccountPrintTableComponent implements OnInit, AfterViewInit {
   }
 
   public loadAccount(): void {
-    this.accountService.getAccounts({ limit: this.maxNum(), offset: 0 }).subscribe(response => {
+    this.accountService.printAccounts(this.printParams).subscribe(response => {
       this.accounts = response.accounts;
 
-      setTimeout(() => {
-        this.print();
-      }, 1000);
+      if(this.accounts && this.accounts.length > 0) {
+        setTimeout(() => {
+          this.print();
+        }, 1000);
+      }
     });
   }
 

@@ -1,4 +1,14 @@
-<pa-account-print-table 
-  *ngIf="entity === printEntity.Account" 
-  
+<pa-account-print-table
+  *ngIf="entity === printEntity.Account"
+  [printParams]="printParams"
 ></pa-account-print-table>
+
+<pa-pawn-print-table
+  *ngIf="entity === printEntity.Pawn"
+  [printParams]="printParams"
+></pa-pawn-print-table>
+
+<pa-item-print-table
+  *ngIf="entity === printEntity.Item"
+  [printParams]="printParams"
+></pa-item-print-table>

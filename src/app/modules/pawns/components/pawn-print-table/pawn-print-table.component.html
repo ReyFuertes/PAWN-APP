@@ -1,0 +1,37 @@
+<div id="print-section" class="container">
+  <div *ngIf="(pawns && pawns.length > 0)" class="row alert alert-warning doNotPrint">
+    <strong [ngStyle]="{'margin-right': '5px'}">Note: </strong> Click the button print to show, or back you go to previews page.
+  </div>
+  
+  <h3>Pawns</h3>
+  <table *ngIf="(pawns && pawns.length > 0) else noResultsFound" class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Pawn Ticket No.</th>
+        <th scope="col">Full Name</th>
+        <th scope="col">Item Name</th>
+        <th scope="col">Date Granted</th>
+        <th scope="col">Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pawn of pawns; let i = index">
+        <td>{{ i }}</td>
+        <td>{{ pawn.pawnTicketNumber }}</td>
+        <td>{{ pawn.fullname }}</td>
+        <td>{{ pawn.itemName }}</td>
+        <td>{{ pawn.pawnDateGranted }}</td>
+        <td>{{ pawn.created }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="onBack()"  class="btn btn-md btn-default doNotPrint btn-print" [ngStyle]="{'margin': '0 10px'}" >Back</button>
+  <button (click)="print()" [disabled]="!(pawns && pawns.length > 0)" class="btn btn-md btn-primary doNotPrint btn-print" >Print</button>
+</div>
+
+<ng-template #noResultsFound>
+  <div class="alert alert-warning" role="alert">
+    No Results to print! Please check your dates.
+  </div>
+</ng-template>

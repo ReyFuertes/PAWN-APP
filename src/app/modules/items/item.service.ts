@@ -9,12 +9,17 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import { Item } from '../../models/item.model';
+import { PrintParams } from '../../models/print.model';
 
 @Injectable()
 export class ItemService extends GenericService {
 
   constructor(http: HttpClient) {
     super(http);
+  }
+
+  public printItems(printParams: PrintParams): Observable<any> {
+    return this.get('items/print', printParams);
   }
 
   public getTypes(): Observable<any> {

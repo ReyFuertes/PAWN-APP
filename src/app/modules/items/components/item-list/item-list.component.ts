@@ -8,6 +8,7 @@ import { AEMode } from "../../../../models/crud.enum";
 import { AccountService } from "../../../accounts/account.service";
 import { ItemService } from "../../../items/item.service";
 import { ItemTableComponent } from "../item-table/item.table.component";
+import { PrintEntity } from "../../../../models/print-entity.model";
 
 @Component({
   selector: 'pa-item-list',
@@ -23,6 +24,7 @@ export class ItemListComponent implements OnInit {
   public aeMode: AEMode;
   public form: FormGroup;
   public searchTerm$ = new Subject<string>();
+  public printEntity = PrintEntity.Item;
 
   @ViewChild("itemTable") itemTable: ItemTableComponent;
 
@@ -74,8 +76,8 @@ export class ItemListComponent implements OnInit {
     this.itemTable.onRowUnselect();
   }
 
-  public onClose(event: boolean): void {
-    this.showModal = event;
+  public onClose(): void {
+    this.showModal = !this.showModal;
 
     if (!this.showModal) {
       this.load({ limit: 10, offset: 0 });

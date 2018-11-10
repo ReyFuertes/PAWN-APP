@@ -1,4 +1,4 @@
-<p-table #searchTable [columns]="cols" [loadingIcon]="fa-spinner" [value]="rows" selectionMode="multiple" (onRowSelect)="onRowSelect($event)"
+<p-table #searchTable [columns]="cols" [loadingIcon]="'fa-spinner'" [value]="rows" selectionMode="multiple" (onRowSelect)="onRowSelect($event)"
   (onRowUnselect)="onRowUnselect()" [dataKey]="rowIndex" [(selection)]="selectedRows">
   <ng-template pTemplate="header" let-columns>
     <tr>

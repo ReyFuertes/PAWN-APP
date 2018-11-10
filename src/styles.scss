@@ -136,11 +136,23 @@ fieldset {
   margin-bottom: 10px;
 }
 
+.btn-print {
+  width:120px;
+}
+
 /* ---------------------------------------------------
     BOOSTRAP CUSTOM
 ----------------------------------------------------- */
 .alert-info {
   border-color: #50b5c5;
+}
+
+.alert-success {
+  border-color: #00b140;
+}
+
+.alert-warning {
+  border-color: #e1cd48;
 }
 
 .form-control:disabled,
