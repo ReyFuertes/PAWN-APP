@@ -11,6 +11,7 @@ import { AccountService } from "../../../accounts/account.service";
 import { Option } from "../../../../models/option.model";
 import { ItemService } from "../../../items/item.service";
 import { PawnService } from "../../../pawns/pawn.service";
+import { PrintEntity } from "../../../../models/print-entity.model";
 
 @Component({
   selector: 'pa-renewal-list',
@@ -29,6 +30,7 @@ export class RenewalListComponent implements OnInit {
   public accounts: Option[] = [];
   public items: Option[] = [];
   public pawns: Option[] = [];
+  public printEntity = PrintEntity.Renewal;
 
   @ViewChild("renewalTable") renewalTable: RenewalTableComponent;
 

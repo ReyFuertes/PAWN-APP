@@ -8,12 +8,17 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import { Renewal } from '../../models/renewal.model';
+import { PrintParams } from '../../models/print.model';
 
 @Injectable()
 export class RenewalService extends GenericService {
 
   constructor(http: HttpClient) {
     super(http);
+  }
+
+  public printRenewals(printParams: PrintParams): Observable<any> {
+    return this.get('renewals/print', printParams);
   }
 
   public getTypes(): Observable<any> {

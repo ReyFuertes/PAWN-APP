@@ -11,6 +11,7 @@ import { Option } from "../../../../models/option.model";
 import { ItemService } from "../../../items/item.service";
 import { PawnService } from "../../../pawns/pawn.service";
 import { Redemption } from "../../../../models/redemption.mode";
+import { PrintEntity } from "../../../../models/print-entity.model";
 
 @Component({
   selector: 'pa-redemption-list',
@@ -29,6 +30,7 @@ export class RedemptionListComponent implements OnInit {
   public accounts: Option[] = [];
   public items: Option[] = [];
   public pawns: Option[] = [];
+  public printEntity = PrintEntity.Redemption;
 
   @ViewChild("redemptionTable") redemptionTable: RedemptionTableComponent;
 

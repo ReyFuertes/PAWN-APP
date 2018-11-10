@@ -2,16 +2,6 @@
   padding:20px;
 }
 
-table tr td:first-child {
-  text-align: center;
-}
-table tr td:nth-child(2) {
-  width:170px;
-}
-table tr td:nth-child(3) {
-  width:120px;
-}
-
 table tr td, table tr th {
   font-family: "Roboto", sans-serif;
   border: thin #eee solid;
@@ -26,4 +16,17 @@ table tr th {
   background:#f1f1f1;
   background-color:#f1f1f1;
   font-size: 14px;
+}
+
+table tr td:first-child {
+  text-align: center;
+}
+table tr td:nth-child(2) {
+  width:120px;
+}
+table tr td:nth-child(3) {
+  width:120px;
+}
+table tr td:nth-child(4) {
+  width:120px;
 }

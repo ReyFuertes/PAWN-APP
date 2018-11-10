@@ -25,6 +25,10 @@ import { PawnPrintTableComponent } from "./modules/pawns/components/pawn-print-t
 import { PawnService } from "./modules/pawns/pawn.service";
 import { ItemPrintTableComponent } from "./modules/items/components/item-print-table/item-print-table.component";
 import { ItemService } from "./modules/items/item.service";
+import { RenewalPrintTableComponent } from "./modules/renewals/components/renewal-print-table/renewal-print-table.component";
+import { RenewalService } from "./modules/renewals/renewal.service";
+import { RedemptionService } from "./modules/redemptions/redemption.service";
+import { RedemptionPrintTableComponent } from "./modules/redemptions/components/redemption-print-table/redemption-print-table.component";
 
 const appRoutes: Routes = [
   {
@@ -126,7 +130,9 @@ const appRoutes: Routes = [
     PrintPageComponent,
     AccountPrintTableComponent,
     PawnPrintTableComponent,
-    ItemPrintTableComponent
+    ItemPrintTableComponent,
+    RenewalPrintTableComponent,
+    RedemptionPrintTableComponent
   ],
   imports: [
     CommonModule,
@@ -139,7 +145,7 @@ const appRoutes: Routes = [
     FileUploadModule,
     SlideMenuModule
   ],
-  providers: [AuthGuard, LoginService, DashboardService, AccountService, PawnService, ItemService],
+  providers: [AuthGuard, LoginService, DashboardService, AccountService, PawnService, ItemService, RenewalService, RedemptionService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

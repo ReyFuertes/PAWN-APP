@@ -8,12 +8,17 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import { Redemption } from '../../models/redemption.mode';
+import { PrintParams } from '../../models/print.model';
 
 @Injectable()
 export class RedemptionService extends GenericService {
 
   constructor(http: HttpClient) {
     super(http);
+  }
+
+  public printRedemptions(printParams: PrintParams): Observable<any> {
+    return this.get('redemptions/print', printParams);
   }
 
   public getTypes(): Observable<any> {
