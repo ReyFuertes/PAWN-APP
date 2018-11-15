@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild} from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, AfterViewInit} from "@angular/core";
 import { AEMode } from "../../../../models/crud.enum";
 import { Redemption } from "../../../../models/redemption.mode";
 
@@ -8,7 +8,7 @@ import { Redemption } from "../../../../models/redemption.mode";
   styleUrls: ["../../../../core/page-components/search-table/search-table.component.scss"
   ]
 })
-export class RedemptionTableComponent {
+export class RedemptionTableComponent implements AfterViewInit {
   @Input()
   public rows: Redemption[];
   @Output()
@@ -25,10 +25,11 @@ export class RedemptionTableComponent {
 
   public rowIndex: any;
   public selectedRows: any = [];
+  public loading: boolean = true;
 
   @ViewChild("searchTable") searchTable: any;
 
-  constructor() {
+  constructor(private cdRef: ChangeDetectorRef) {
     this.rowIndex = "id";
     this.cols = [ 
       { field: "id", header: "ID" },
@@ -38,6 +39,16 @@ export class RedemptionTableComponent {
       { field: "redemptionDate", header: "Redemption Date" },
       { field: "remarks", header: "remark" }
     ];
+  }
+
+  ngAfterViewInit(): void {
+    if(this.rows) {
+      setTimeout(() => {
+        this.loading = false;
+      }, 1000);
+    }
+
+    this.cdRef.detectChanges();
   }
 
   public onRowSelect(event: any): void {

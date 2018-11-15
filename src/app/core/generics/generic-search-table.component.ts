@@ -1,5 +1,5 @@
 import { Input } from "@angular/core";
-
+import { LazyLoadEvent } from "primeng/api";
 export abstract class GenericSearchTableComponent {
 
   @Input()
@@ -9,6 +9,7 @@ export abstract class GenericSearchTableComponent {
 
   protected rowIndex: any;
   protected selectedRows: any = [];
+  public loading: boolean = false;
 
   protected onRowSelect(event: any): void {
     this.selectedRows = event.data;
@@ -18,5 +19,14 @@ export abstract class GenericSearchTableComponent {
     this.selectedRows = [];
   }
   
+  public loadData(event: LazyLoadEvent) {
+    debugger
+    this.loading = true;
 
+    setTimeout(() => {
+        if (this.rows) {
+            this.loading = false;
+        }
+    }, 1000);
+  }
 }

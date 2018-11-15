@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild} from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, AfterViewInit, ChangeDetectorRef} from "@angular/core";
 import { AEMode } from "../../../../models/crud.enum";
 import { Renewal } from "../../../../models/renewal.model";
 
@@ -8,7 +8,7 @@ import { Renewal } from "../../../../models/renewal.model";
   styleUrls: ["../../../../core/page-components/search-table/search-table.component.scss"
   ]
 })
-export class RenewalTableComponent {
+export class RenewalTableComponent implements AfterViewInit {
   @Input()
   public rows: Renewal[];
   @Output()
@@ -25,10 +25,11 @@ export class RenewalTableComponent {
 
   public rowIndex: any;
   public selectedRows: any = [];
+  public loading: boolean = true;
 
   @ViewChild("searchTable") searchTable: any;
 
-  constructor() {
+  constructor(private cdRef: ChangeDetectorRef) {
     this.rowIndex = "id";
     this.cols = [ 
       { field: "id", header: "ID" },
@@ -39,6 +40,16 @@ export class RenewalTableComponent {
       { field: "renewalDate", header: "Renewal Date" },
       { field: "remarks", header: "Remark" }
     ];
+  }
+
+  ngAfterViewInit(): void {
+    if(this.rows) {
+      setTimeout(() => {
+        this.loading = false;
+      }, 1000);
+    }
+
+    this.cdRef.detectChanges();
   }
 
   public onRowSelect(event: any): void {

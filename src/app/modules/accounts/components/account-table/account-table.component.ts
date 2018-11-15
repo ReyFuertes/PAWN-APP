@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild} from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, AfterViewInit} from "@angular/core";
 import { Account } from "../../../../models/account.model";
 import { AEMode } from "../../../../models/crud.enum";
+import { LazyLoadEvent } from "primeng/api";
 
 @Component({
   selector: "pa-account-search-table",
@@ -8,7 +9,7 @@ import { AEMode } from "../../../../models/crud.enum";
   styleUrls: ["../../../../core/page-components/search-table/search-table.component.scss"
   ]
 })
-export class AccountTableComponent implements OnInit {
+export class AccountTableComponent implements OnInit, AfterViewInit {
   @Input()
   public rows: Account[];
   @Output()
@@ -24,12 +25,11 @@ export class AccountTableComponent implements OnInit {
 
   public rowIndex: any;
   public selectedRows: any = [];
+  public loading: boolean = true;
 
-  @ViewChild("searchTable")
-  searchTable: any;
+  @ViewChild("searchTable") searchTable: any;
 
-  constructor() {
-  }
+  constructor(private cdRef: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.rowIndex = "idNumber";
@@ -41,6 +41,16 @@ export class AccountTableComponent implements OnInit {
       { field: "address", header: "Address" },
       { field: "created", header: "Created" }
     ];
+  }
+
+  ngAfterViewInit(): void {
+    if(this.rows) {
+      setTimeout(() => {
+        this.loading = false;
+      }, 1000);
+    }
+
+    this.cdRef.detectChanges();
   }
 
   public onRowSelect(event: any): void {

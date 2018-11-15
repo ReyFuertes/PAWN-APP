@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild} from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, AfterViewInit} from "@angular/core";
 import { AEMode } from "../../../../models/crud.enum";
 import { Item } from "../../../../models/item.model";
 
@@ -8,7 +8,7 @@ import { Item } from "../../../../models/item.model";
   styleUrls: ["../../../../core/page-components/search-table/search-table.component.scss"
   ]
 })
-export class ItemTableComponent implements OnInit {
+export class ItemTableComponent implements OnInit, AfterViewInit {
   @Input()
   public rows: Item[];
   @Output()
@@ -25,11 +25,11 @@ export class ItemTableComponent implements OnInit {
 
   public rowIndex: any;
   public selectedRows: any = [];
+  public loading: boolean = true;
 
   @ViewChild("searchTable") searchTable: any;
 
-  constructor() {
-  }
+  constructor(private cdRef: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.rowIndex = "sku";
@@ -42,6 +42,16 @@ export class ItemTableComponent implements OnInit {
       { field: "karat", header: "Karat" },
       { field: "description", header: "description" }
     ];
+  }
+  
+  ngAfterViewInit(): void {
+    if(this.rows) {
+      setTimeout(() => {
+        this.loading = false;
+      }, 1000);
+    }
+
+    this.cdRef.detectChanges();
   }
 
   public onRowSelect(event: any): void {

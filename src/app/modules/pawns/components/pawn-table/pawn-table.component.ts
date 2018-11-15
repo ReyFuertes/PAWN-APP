@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild} from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, AfterViewInit} from "@angular/core";
 import { Pawn } from "../../../../models/pawn.model";
 import { AEMode } from "../../../../models/crud.enum";
 import { Subject } from "rxjs";
@@ -9,7 +9,7 @@ import { Subject } from "rxjs";
   styleUrls: ["../../../../core/page-components/search-table/search-table.component.scss"
   ]
 })
-export class PawnTableComponent implements OnInit {
+export class PawnTableComponent implements OnInit, AfterViewInit {
   @Input()
   public rows: Pawn[];
   @Output()
@@ -27,11 +27,11 @@ export class PawnTableComponent implements OnInit {
 
   public rowIndex: any;
   public selectedRows: any = [];
+  public loading: boolean = true;
 
   @ViewChild("searchTable") searchTable: any;
 
-  constructor() {
-  }
+  constructor(private cdRef: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.rowIndex = "pawnTicketNumber";
@@ -43,6 +43,16 @@ export class PawnTableComponent implements OnInit {
       { field: "pawnDateGranted", header: "Pawn Date" },
       { field: "created", header: "Created" }
     ];
+  }
+
+  ngAfterViewInit(): void {
+    if(this.rows) {
+      setTimeout(() => {
+        this.loading = false;
+      }, 1000);
+    }
+
+    this.cdRef.detectChanges();
   }
 
   public onRowSelect(event: any): void {
