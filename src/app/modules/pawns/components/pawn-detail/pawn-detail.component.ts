@@ -7,6 +7,8 @@ import { Option } from '../../../../models/option.model';
 import { AccountService } from '../../../accounts/account.service';
 import { ItemService } from '../../../items/item.service';
 import { AEMode } from '../../../../models/crud.enum';
+import { GenericDetailComponent } from '../../../../core/generics/generic-detail.component';
+import { EntityPrefix } from '../../../../models/entity-prefix.enum';
 
 @Component({
   selector: 'pa-pawn-detail',
@@ -14,7 +16,7 @@ import { AEMode } from '../../../../models/crud.enum';
   styleUrls: [ './pawn-detail.component.scss' ]
 })
 
-export class PawnDetailComponent implements OnInit {
+export class PawnDetailComponent extends GenericDetailComponent implements OnInit {
   @Input()
   public pageTitle: string = '';
   @Input()
@@ -26,7 +28,10 @@ export class PawnDetailComponent implements OnInit {
   @Input()
   public aeMode: AEMode;
 
+  public style: any = {'position': 'fixed', 'overflow': 'visible', 'z-index': '999'};
+
   constructor(private itemService: ItemService, private accountService: AccountService, private pawnService: PawnService, public modalService: ModalService) { 
+    super();
   }
 
   public onSubmit(): void {
@@ -46,6 +51,7 @@ export class PawnDetailComponent implements OnInit {
   }
 
   ngOnInit() { 
+    this.form.get('pawnTicketNumber').patchValue(this.genUuid(EntityPrefix.Pawn));
   }
 
   public onClose(): void {
@@ -57,10 +63,10 @@ export class PawnDetailComponent implements OnInit {
     if(event.value) {
       this.accountService.getOne(event.value).subscribe(response => {
         let control = this.form.controls['account'];
-        control.get('id').setValue(response.account[0].id);
-        control.get('birthDate').setValue(response.account[0].birthDate);
-        control.get('contactNumber').setValue(response.account[0].phoneNumber);
-        control.get('address').setValue(response.account[0].address);
+        control.get('id').patchValue(response.account[0].id);
+        control.get('birthDate').patchValue(response.account[0].birthDate);
+        control.get('contactNumber').patchValue(response.account[0].phoneNumber);
+        control.get('address').patchValue(response.account[0].address);
       })
     }
   }
@@ -69,12 +75,13 @@ export class PawnDetailComponent implements OnInit {
     if(event.value) {
       this.itemService.getOne(event.value).subscribe(response => {
         let control = this.form.controls['item'];
-        control.get('id').setValue(response.item[0].id);
-        control.get('itemName').setValue(response.item[0].itemName);
-        control.get('itemType').setValue(response.item[0].itemType);
-        control.get('grams').setValue(response.item[0].grams);
-        control.get('karat').setValue(response.item[0].karat);
-        control.get('description').setValue(response.item[0].description);
+
+        control.get('id').patchValue(response.item.id);
+        control.get('itemName').patchValue(response.item.itemName);
+        control.get('itemType').patchValue(response.item.itemType);
+        control.get('grams').patchValue(response.item.grams);
+        control.get('karat').patchValue(response.item.karat);
+        control.get('description').patchValue(response.item.description);
       })
     }
   }

@@ -27,21 +27,23 @@ export class BaseModalComponent implements OnInit {
   public closeModal = new EventEmitter<boolean>();
 
   constructor(public modaService: ModalService) {
-    this.modaService.subscribe(this, this.close);
+    if(!this.showModal) {
+      this.modaService.subscribe(this, this.close);
+    }
   }
 
   ngOnInit(): void {}
 
   public close(): void {
-    this.showModal = false;
+    this.showModal = !this.showModal;
     this.closeModal.emit(this.showModal);
   }
 
-  @HostListener("document:keydown.escape", ["$event"])
-  onKeydownHandler(event: KeyboardEvent) {
-    event.preventDefault();
-    if(document.querySelector('.lpa-modal')) {
-      this.close();
-    }
-  }
+  // @HostListener("document:keydown.escape", ["$event"])
+  // onKeydownHandler(event: KeyboardEvent) {
+  //   event.preventDefault();
+  //   if(document.querySelector('.lpa-modal')) {
+  //     this.close();
+  //   }
+  // }
 }

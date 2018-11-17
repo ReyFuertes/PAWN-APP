@@ -13,7 +13,7 @@ export class PrintPreviewComponent implements OnInit {
   public printEntity: PrintEntity;
 
   public style = {position: 'fixed', overflow: 'visible', 'z-index': '999'};
-  public showModal: boolean = false;
+  public showPrintModal: boolean = false;
   public form: FormGroup;
   
   constructor(private router: Router, private formBuilder: FormBuilder,) {
@@ -26,7 +26,7 @@ export class PrintPreviewComponent implements OnInit {
   ngOnInit(): void { }
 
   public onClose(): void {
-    this.showModal = !this.showModal;
+    this.showPrintModal = !this.showPrintModal;
   }
 
   public onSubmit(): void {

@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 
 export abstract class GenericDetailComponent {
-  public save(): void {
-    console.log("save");
-  }
+  constructor() {
 
-  public cancel(): void {
-    console.log("cancel");
+  }
+ 
+  public genUuid(prefix: string): string {
+    return `${prefix}-${Math.random().toString(36).toUpperCase().substr(2, 10)}`;
   }
 }

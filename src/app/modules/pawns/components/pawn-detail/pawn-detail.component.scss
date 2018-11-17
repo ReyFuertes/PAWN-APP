@@ -6,6 +6,8 @@
 
 .pa_card-content {
   padding: 20px 20px 0 20px;
+  min-height: 300px;
+  height:320px;
 
   .pa_image-container {
     height: 180px;
@@ -28,8 +30,12 @@
   }
 }
 
-:host ::ng-deep .ui-dialog-content  {
-  overflow: auto !important;
+:host ::ng-deep .ui-dialog.ui-dialog-content {
+  overflow: hidden !important;
+}
+
+:host ::ng-deep .ui-tabview .ui-tabview-panels {
+  padding: 20px 10px !important;
 }
 
 @media only screen and (min-width: 767px) {

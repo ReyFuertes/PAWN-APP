@@ -19,8 +19,7 @@ export abstract class GenericSearchTableComponent {
     this.selectedRows = [];
   }
   
-  public loadData(event: LazyLoadEvent) {
-    debugger
+  public loadData(event: LazyLoadEvent) {   
     this.loading = true;
 
     setTimeout(() => {

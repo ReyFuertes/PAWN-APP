@@ -47,7 +47,6 @@ export class DatepickerComponent implements OnInit {
     if(this.parentForm.get(this.controlName).value) {
       this.parentForm.get(this.controlName).patchValue(new Date((this.parentForm.get(this.controlName).value)));
     }
-    console.log(this.style);
   }
 
   public onChange(event: any): void { 

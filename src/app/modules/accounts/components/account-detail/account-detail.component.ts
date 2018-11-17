@@ -4,6 +4,8 @@ import { ModalService } from '../../../../services/modal.service';
 import { AccountService } from '../../account.service';
 import { Account } from '../../../../models/account.model';
 import { AEMode } from '../../../../models/crud.enum';
+import { GenericDetailComponent } from '../../../../core/generics/generic-detail.component';
+import { EntityPrefix } from '../../../../models/entity-prefix.enum';
 
 @Component({
   selector: 'pa-account-detail',
@@ -11,7 +13,7 @@ import { AEMode } from '../../../../models/crud.enum';
   styleUrls: [ './account-detail.component.scss' ]
 })
 
-export class AccountDetailComponent implements OnInit {
+export class AccountDetailComponent extends GenericDetailComponent implements OnInit {
   @Input()
   public pageTitle: string = '';
   @Input()
@@ -20,6 +22,7 @@ export class AccountDetailComponent implements OnInit {
   public aeMode: AEMode;
 
   constructor(private renderer: Renderer, private accountService: AccountService, public modalService: ModalService) { 
+    super();
   }
 
   public onSubmit(): void {
@@ -38,6 +41,7 @@ export class AccountDetailComponent implements OnInit {
   }
 
   ngOnInit() { 
+    this.form.get('idNumber').patchValue(this.genUuid(EntityPrefix.Account));
   }
 
   public onClose(): void {

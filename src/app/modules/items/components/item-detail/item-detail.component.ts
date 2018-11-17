@@ -5,13 +5,15 @@ import { ItemService } from '../../item.service';
 import { Item } from '../../../../models/item.model';
 import { Option } from '../../../../models/option.model';
 import { AEMode } from '../../../../models/crud.enum';
+import { GenericDetailComponent } from '../../../../core/generics/generic-detail.component';
+import { EntityPrefix } from '../../../../models/entity-prefix.enum';
 
 @Component({
   selector: 'pa-item-detail',
   templateUrl: './item-detail.component.html',
   styleUrls: ['./item-detail.component.scss']
 })
-export class ItemDetailComponent implements OnInit {
+export class ItemDetailComponent extends GenericDetailComponent implements OnInit {
   @Input()
   public pageTitle: string = '';
   @Input()
@@ -22,6 +24,7 @@ export class ItemDetailComponent implements OnInit {
   public itemTypes: Option[] = [];
 
   constructor( private itemService: ItemService, public modalService: ModalService) { 
+    super();
   }
 
   public onSubmit(): void {
@@ -46,6 +49,8 @@ export class ItemDetailComponent implements OnInit {
 
   ngOnInit() { 
     this.getTypes();
+
+    this.form.get('sku').patchValue(this.genUuid(EntityPrefix.Item));
   }
 
   public onClose(): void {

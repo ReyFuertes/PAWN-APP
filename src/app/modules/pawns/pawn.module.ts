@@ -17,6 +17,7 @@ import { PawnEditComponent } from './components/pawn-edit/pawn-edit.component';
 import { PawnDetailComponent } from './components/pawn-detail/pawn-detail.component';
 import { AccountService } from '../accounts/account.service';
 import { ItemService } from '../items/item.service';
+import {TabViewModule} from 'primeng/tabview';
 
 export const routes: Routes = [
   {
@@ -25,7 +26,7 @@ export const routes: Routes = [
   }
 ];
 
-const primengModules = [FileUploadModule, ToastModule];
+const primengModules = [FileUploadModule, ToastModule, TabViewModule];
 
 @NgModule({
   declarations: [ 
