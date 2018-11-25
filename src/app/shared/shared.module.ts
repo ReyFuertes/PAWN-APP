@@ -13,7 +13,7 @@ import {RadioButtonModule} from 'primeng/radiobutton';
 import { PrintPreviewComponent } from "./print-preview/print-preview.component";
 import { ImageUploadComponent } from "./image-upload/image-upload.component";
 import { FileValueAccessor } from "./directive/upload.directive";
-import { ImageCropperComponent } from "ng2-img-cropper";
+import { ImageCropperModule } from "ng2-img-cropper";
 import { DndDirective } from "./directive/drop-file.directive";
 @NgModule({
   declarations: [
@@ -25,7 +25,6 @@ import { DndDirective } from "./directive/drop-file.directive";
     PrintPreviewComponent,
     ImageUploadComponent,
     FileValueAccessor,
-    ImageCropperComponent,
     DndDirective
   ],
   imports: [
@@ -35,7 +34,8 @@ import { DndDirective } from "./directive/drop-file.directive";
     CalendarModule,
     DialogModule,
     DropdownModule,
-    RadioButtonModule
+    RadioButtonModule,
+    ImageCropperModule
   ],
   exports: [
     FilterTableComponent,

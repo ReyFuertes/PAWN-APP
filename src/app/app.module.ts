@@ -101,10 +101,10 @@ const appRoutes: Routes = [
     path: "auth/login",
     component: LoginComponent
   },
-  { 
-    path: '', 
-    redirectTo: 'dashboard', 
-    pathMatch: 'full' 
+  {
+    path: "",
+    redirectTo: "dashboard",
+    pathMatch: "full"
   },
   {
     path: "print-page",
@@ -145,7 +145,16 @@ const appRoutes: Routes = [
     FileUploadModule,
     SlideMenuModule
   ],
-  providers: [AuthGuard, LoginService, DashboardService, AccountService, PawnService, ItemService, RenewalService, RedemptionService],
+  providers: [
+    AuthGuard,
+    LoginService,
+    DashboardService,
+    AccountService,
+    PawnService,
+    ItemService,
+    RenewalService,
+    RedemptionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
