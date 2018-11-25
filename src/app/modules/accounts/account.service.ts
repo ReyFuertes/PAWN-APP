@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Account } from '../../models/account.model';
 import { GenericService } from '../../services/generic.service';
@@ -40,7 +40,7 @@ export class AccountService extends GenericService {
   }
 
   public saveAccount(account: Account): Observable<any> {
-    return this.post('account/new', account);
+    return this.post('account/new', account, this.accountHeaders());
   }
 
   public updateAccount(id: string, renewal: Account): Observable<any> {
@@ -54,4 +54,11 @@ export class AccountService extends GenericService {
   public deleteAccount(id: number): Observable<any> {
     return this.delete(`account/delete/${id.toString()}`);
   }
+
+  private accountHeaders(): HttpHeaders {
+    return new HttpHeaders({
+      'Accept': 'application/json',
+      'Authorization': ''
+    });
+  } 
 }

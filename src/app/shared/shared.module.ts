@@ -11,7 +11,10 @@ import { DropdownSelectComponent } from "./dropdown/dropdown.component";
 import { DropdownModule } from "primeng/dropdown";
 import {RadioButtonModule} from 'primeng/radiobutton';
 import { PrintPreviewComponent } from "./print-preview/print-preview.component";
-
+import { ImageUploadComponent } from "./image-upload/image-upload.component";
+import { FileValueAccessor } from "./directive/upload.directive";
+import { ImageCropperComponent } from "ng2-img-cropper";
+import { DndDirective } from "./directive/drop-file.directive";
 @NgModule({
   declarations: [
     FilterTableComponent,
@@ -19,7 +22,11 @@ import { PrintPreviewComponent } from "./print-preview/print-preview.component";
     DatepickerComponent,
     InputNumberDirective,
     DropdownSelectComponent,
-    PrintPreviewComponent
+    PrintPreviewComponent,
+    ImageUploadComponent,
+    FileValueAccessor,
+    ImageCropperComponent,
+    DndDirective
   ],
   imports: [
     CommonModule,
@@ -36,7 +43,10 @@ import { PrintPreviewComponent } from "./print-preview/print-preview.component";
     DatepickerComponent,
     InputNumberDirective,
     DropdownSelectComponent,
-    PrintPreviewComponent
+    PrintPreviewComponent,
+    ImageUploadComponent,
+    FileValueAccessor,
+    DndDirective
   ],
   providers: []
 })

@@ -1,61 +1,61 @@
 <form *ngIf="form" [formGroup]="form" name="form" role="form" (ngSubmit)="onSubmit()">
   <div class="row pa_card-content">
-    <div class="col-3">
-      <div class="pa_image-container">
-        <i class="far fa-image fa-4x"></i>
-      </div>
-      <div class="pa_button-upload-container pa_button-upload">
-        <p-fileUpload [style]="{'width': '150px'}" mode="basic" name="demo[]" chooseLabel="Upload Image" url="./upload.php"
-          accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload>
-      </div>
+    <div class="col-4">
+      <app-image-upload 
+          (onChange)="handleImageChange($event)" 
+          [imageDisplayUrl]="imageDisplayUrl" 
+          [parentForm]="form" 
+        >
+      </app-image-upload>
     </div>
     
-    <div class="col-9">
+    <div class="col-8">
       <p-tabView>
         <p-tabPanel header="Pawn Information">
             <div class="row">
-              <div class="col-4 form-group">
+              <div class="col-7 form-group">
                 <label for="pawnTicketNumber">Ticket Number</label>
                 <input class="form-control" tabindex="1" formControlName="pawnTicketNumber" id="pawnTicketNumber" type="text"
                   autocomplete="off" />
               </div>
-    
-              <div class="col-4 form-group">
-                <label for="pawnDateGranted">Date Granted</label>
-                <div [ngStyle]="{'height': '40px'}">
-                  <app-datepicker [parentForm]="form" tabindex="2" [style]="style" [controlName]="'pawnDateGranted'" [tabIndex]="3"></app-datepicker>
-                </div>
-              </div>
-    
-              <div class="col-4 form-group">
-                <label for="pawnMaturityDate">Maturity Date</label>
-                <div [ngStyle]="{'height': '40px'}">
-                  <app-datepicker [parentForm]="form" tabindex="3" [style]="style" [controlName]="'pawnMaturityDate'" [tabIndex]="3"></app-datepicker>
-                </div>
-              </div>
             </div>
     
             <div class="row">
+                <div class="col-4 form-group">
+                  <label for="pawnDateGranted">Date Granted</label>
+                  <div [ngStyle]="{'height': '40px'}">
+                    <app-datepicker [parentForm]="form" tabindex="2" [style]="style" [controlName]="'pawnDateGranted'" [tabIndex]="3"></app-datepicker>
+                  </div>
+                </div>
+      
+                <div class="col-4 form-group">
+                  <label for="pawnMaturityDate">Maturity Date</label>
+                  <div [ngStyle]="{'height': '40px'}">
+                    <app-datepicker [parentForm]="form" tabindex="3" [style]="style" [controlName]="'pawnMaturityDate'" [tabIndex]="3"></app-datepicker>
+                  </div>
+                </div>
+                
               <div class="col-4 form-group">
                 <label for="pawnExpiryDate">Expiry Date</label>
                 <div [ngStyle]="{'height': '40px'}">
                   <app-datepicker [parentForm]="form" tabindex="4" [style]="style" [controlName]="'pawnExpiryDate'" [tabIndex]="3"></app-datepicker>
                 </div>
               </div>
-    
-              <div class="col-2 form-group">
+            </div>
+            <div class="row">
+              <div class="col-4 form-group">
                 <label for="pawnInterest">Interest</label>
                 <input class="form-control" inputNumber maxlength="4" tabindex="5" formControlName="pawnInterest" id="pawnInterest"
                   type="text" autocomplete="off" />
               </div>
-    
-              <div class="col-3 form-group">
+
+              <div class="col-4 form-group">
                 <label for="pawnAmount">Amount</label>
                 <input class="form-control" inputNumber tabindex="6" formControlName="pawnAmount" id="pawnAmount" type="text"
                   autocomplete="off" />
               </div>
     
-              <div class="col-3 form-group">
+              <div class="col-4 form-group">
                 <label for="pawnTotalAmount">Total Amount</label>
                 <input class="form-control" inputNumber tabindex="7" formControlName="pawnTotalAmount" id="pawnTotalAmount"
                   type="text" autocomplete="off" />

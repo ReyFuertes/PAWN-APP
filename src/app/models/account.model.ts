@@ -10,5 +10,7 @@ export interface Account {
   validId?: string;
   birthDate?: string;
   address?: string;
+  image?: any;
+  file?: any;
   created?: string;
 }

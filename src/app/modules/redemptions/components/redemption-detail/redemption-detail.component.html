@@ -88,13 +88,12 @@
         <p-tabPanel header="Item Information">
           <div formGroupName="item" class="row">
             <div class="col-4">
-              <div class="pa_image-container">
-                <i class="far fa-image fa-4x"></i>
-              </div>
-              <div class="pa_button-upload-container pa_button-upload">
-                <p-fileUpload [style]="{'width': '150px'}" mode="basic" name="demo[]" chooseLabel="Upload Image" url="./upload.php"
-                  accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload>
-              </div>
+              <app-image-upload 
+                (onChange)="handleImageChange($event)" 
+                [imageDisplayUrl]="imageDisplayUrl" 
+                [parentForm]="form" 
+              >
+              </app-image-upload>
             </div>
 
             <div class="col-8">

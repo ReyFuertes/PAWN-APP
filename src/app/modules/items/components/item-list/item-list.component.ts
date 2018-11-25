@@ -42,7 +42,8 @@ export class ItemListComponent implements OnInit {
       itemType: ["", Validators.compose([Validators.required])],
       grams: ["", Validators.compose([Validators.required])],
       karat: ["", Validators.compose([Validators.required])],
-      description: ["", Validators.compose([Validators.required])]
+      description: ["", Validators.compose([Validators.required])],
+      image: [""]
     });
 
     this.itemService.searchItem(this.searchTerm$).subscribe(results => (this.items = results.items));

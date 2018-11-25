@@ -66,7 +66,8 @@ export class PawnListComponent implements OnInit {
         karat: [""],
         grams: [""],
         description: [""]
-      })
+      }),
+      image: [""]
     });
     this.pawnService.searchPawn(this.searchTerm$).subscribe(results => this.pawns = results.pawns);
   }

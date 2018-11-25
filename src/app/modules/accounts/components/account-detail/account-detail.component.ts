@@ -21,13 +21,18 @@ export class AccountDetailComponent extends GenericDetailComponent implements On
   @Input()
   public aeMode: AEMode;
 
+  public imageDisplayUrl: string = '';
+  public blob: any;
+
   constructor(private renderer: Renderer, private accountService: AccountService, public modalService: ModalService) { 
     super();
   }
 
   public onSubmit(): void {
     const data: Account = <Account>this.form.value;
+    
     if(this.aeMode === AEMode.add) {
+      debugger
       this.accountService.saveAccount(data).subscribe(() => {
         this.form.reset();
         this.modalService.propagate();
@@ -47,5 +52,9 @@ export class AccountDetailComponent extends GenericDetailComponent implements On
   public onClose(): void {
     this.modalService.propagate();
     this.form.reset();
+  }
+
+  public handleImageChange(event: any): void {
+    this.blob = event;
   }
 }

@@ -13,7 +13,7 @@
 
 :host ::ng-deep .ui-inputtext {
   border:thin #ced4da solid;
-  padding: 12px;
+  width: auto;
 }
 
 :host ::ng-deep .ui-inputtext:enabled:hover:not(.ui-state-error) {
@@ -41,10 +41,10 @@ p-togglebutton.ng-dirty.ng-invalid .ui-button {
 i.fa-calendar-alt {
   position: absolute;
   top: 35px;
-  left: 175px;
+  left: 162px;
   color: #888;
   cursor: pointer;
-  z-index: 99;
+  z-index: 999;
 }
 
 :host ::ng-deep .ui-datepicker table td {

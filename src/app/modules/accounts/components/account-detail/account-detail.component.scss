@@ -32,6 +32,14 @@
   }
 }
 
+:host ::ng-deep .ui-inputtext {
+  width:250px !important;
+}
+
+:host ::ng-deep i.fa-calendar-alt {
+  left: 240px !important;
+}
+
 :host ::ng-deep .ui-dialog-content  {
   overflow: auto !important;
 }
