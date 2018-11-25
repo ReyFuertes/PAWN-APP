@@ -19,7 +19,7 @@ export abstract class BaseService {
     });
   }
 
-  protected get<T>(route: string, params: any) {
+  protected get<T>(route: string, params?: any) {
     let url = this.getAPIBaseUrl() + route;
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 

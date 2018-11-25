@@ -20,5 +20,7 @@ export class LoginService extends GenericService {
     return this.post('auth/login', userLogin);
   }
 
-
+  public getBranches(): Observable<any> {
+    return this.get('branches');
+  }
 }

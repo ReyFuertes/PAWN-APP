@@ -29,6 +29,7 @@ import { RenewalPrintTableComponent } from "./modules/renewals/components/renewa
 import { RenewalService } from "./modules/renewals/renewal.service";
 import { RedemptionService } from "./modules/redemptions/redemption.service";
 import { RedemptionPrintTableComponent } from "./modules/redemptions/components/redemption-print-table/redemption-print-table.component";
+import { SharedModule } from "./shared/shared.module";
 
 const appRoutes: Routes = [
   {
@@ -143,7 +144,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     CoreModule,
     FileUploadModule,
-    SlideMenuModule
+    SlideMenuModule,
+    SharedModule
   ],
   providers: [
     AuthGuard,
