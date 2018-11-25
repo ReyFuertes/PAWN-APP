@@ -29,8 +29,7 @@ export abstract class BaseService {
     });
   }
 
-  protected post(route: string, object: any, customHeader?: HttpHeaders): Observable < any > {
-    debugger
+  protected post(route: string, object: any, customHeader?: HttpHeaders): Observable < any > {  
     return this.http.post(this.getAPIBaseUrl(route), object, {
       headers: !customHeader ? this.commonHeaders() : customHeader
     });
@@ -46,6 +45,16 @@ export abstract class BaseService {
     return this.http.delete(this.getAPIBaseUrl(route), {
       headers: this.commonHeaders()
     });
+  }
+
+  protected upload(route: string, object: any): Observable<any> {
+    let headers = new HttpHeaders({
+      Authorization: `Bearer `,
+      Accept: "application/json"
+    });
+    headers.set('Content-Type', 'multipart/form-data');
+
+    return this.http.post(this.getAPIBaseUrl(route), object, { headers: headers });
   }
 
   protected put(route: string, object: any, excluder: (key: string, value: any) => any = null): Observable < any > {

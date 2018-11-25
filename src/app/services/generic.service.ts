@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BaseService } from './base.service';
+import { ImageResponse } from '../models/image.model';
 
 @Injectable()
 export class GenericService extends BaseService {
@@ -28,6 +29,10 @@ export class GenericService extends BaseService {
     let params = new HttpParams();
     params = params.set('id', id);
     return this.get(endpoint, { params: params });
+  }
+
+  public uploadImage(formData: FormData): Observable<ImageResponse> {
+    return this.upload("/api/photo/upload", formData);
   }
 
   protected remove(endpoint: string): Observable<any> {

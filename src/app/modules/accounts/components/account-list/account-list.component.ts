@@ -35,13 +35,13 @@ export class AccountListComponent implements OnInit {
     this.form = this.formBuilder.group({
       id: [""],
       idNumber: ["", Validators.compose([Validators.required])],
-      firstName: ["test1", Validators.compose([Validators.required])],
-      lastName: ["test1", Validators.compose([Validators.required])],
-      phoneNumber: ["test1", Validators.compose([Validators.required])],
+      firstName: ["", Validators.compose([Validators.required])],
+      lastName: ["", Validators.compose([Validators.required])],
+      phoneNumber: ["", Validators.compose([Validators.required])],
       birthDate: ["", Validators.compose([Validators.required])],
-      validId: ["test1", Validators.compose([Validators.required])],
-      validIdNumber: ["test1", Validators.compose([Validators.required])],
-      address: ["test1", Validators.compose([Validators.required])],
+      validId: ["", Validators.compose([Validators.required])],
+      validIdNumber: ["", Validators.compose([Validators.required])],
+      address: ["", Validators.compose([Validators.required])],
       image: [null]
     });
 

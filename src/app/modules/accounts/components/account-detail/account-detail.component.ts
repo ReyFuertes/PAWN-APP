@@ -32,7 +32,6 @@ export class AccountDetailComponent extends GenericDetailComponent implements On
     const data: Account = <Account>this.form.value;
     
     if(this.aeMode === AEMode.add) {
-      debugger
       this.accountService.saveAccount(data).subscribe(() => {
         this.form.reset();
         this.modalService.propagate();
