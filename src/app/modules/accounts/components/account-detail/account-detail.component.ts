@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, Renderer, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Renderer } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ModalService } from '../../../../services/modal.service';
 import { AccountService } from '../../account.service';

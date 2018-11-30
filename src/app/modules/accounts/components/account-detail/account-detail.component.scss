@@ -1,9 +1,3 @@
-.pa_picture-container {
-  height: 100px;
-  width: 100px;
-  background: #ddd;
-}
-
 .pa_card-content {
   padding: 50px;
 
@@ -30,14 +24,28 @@
     padding: 20px 0;
     text-align: center;
   }
+
+  .pa_picture-container {
+    height: 100px;
+    width: 100px;
+    background: #ddd;
+  }
+}
+
+:host ::ng-deep .ui-datepicker {
+  z-index: 1004;
+  top: 41px;
+  left: -81px !important;
+  transform: translateY(0px);
+  opacity: 1;
 }
 
 :host ::ng-deep .ui-inputtext {
-  width:250px !important;
+  width: 160px;
 }
 
 :host ::ng-deep i.fa-calendar-alt {
-  left: 240px !important;
+  left: 153px;
 }
 
 :host ::ng-deep .ui-dialog-content  {

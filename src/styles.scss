@@ -106,7 +106,6 @@ a:focus {
   padding: 15px 10px 10px;
   border: thin #ccc solid;
   border-radius: 4px 4px 0 0;
-  // border-bottom: none;
   border-top: 3px #99ca3d solid;
 
   h3 {
@@ -138,6 +137,10 @@ fieldset {
 
 .btn-print {
   width:120px;
+}
+
+.pa_text-bold {
+  font-weight: bold;
 }
 
 /* ---------------------------------------------------
@@ -233,6 +236,12 @@ button:focus {
 }
 
 #sidebar ul li {
+  &.active > a {
+    color: #fff;
+    background: #777;
+    border-left: 4px #99ca3d solid;
+  }
+
   a {
     padding: 10px 20px;
     font-size: 1em;
@@ -256,11 +265,6 @@ button:focus {
   }
 }
 
-#sidebar ul li.active > a {
-  color: #fff;
-  background: #777;
-  border-left: 4px #99ca3d solid;
-}
 
 .dropdown-toggle::after {
   display: block;
@@ -298,8 +302,18 @@ ul ul a {
   color: #eee;
 }
 
+.form-control:disabled, .form-control[readonly] {
+  background-color: #fcfce3;
+}
+
+.btn.focus, .btn:focus {
+  box-shadow: none !important;
+  color: #FFF;
+  padding: 6px;
+}
+
 @media (min-width: 768px) {
   .ui-dialog {
-    width: 900px;
+    min-width: 900px;
   }
 }
