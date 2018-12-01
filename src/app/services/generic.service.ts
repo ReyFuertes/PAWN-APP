@@ -31,8 +31,8 @@ export class GenericService extends BaseService {
     return this.get(endpoint, { params: params });
   }
 
-  public uploadImage(formData: FormData): Observable<ImageResponse> {
-    return this.upload("/api/photo/upload", formData);
+  public uploadImage(form: any, categoryPath: string): Observable<ImageResponse> {
+    return this.upload(`image/upload/${categoryPath}`, form);
   }
 
   protected remove(endpoint: string): Observable<any> {

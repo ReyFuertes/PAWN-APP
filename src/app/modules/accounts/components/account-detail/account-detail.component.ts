@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Renderer } from '@angular/core';
+import { Component, OnInit, Input, Renderer, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ModalService } from '../../../../services/modal.service';
 import { AccountService } from '../../account.service';
@@ -6,6 +6,7 @@ import { Account } from '../../../../models/account.model';
 import { AEMode } from '../../../../models/crud.enum';
 import { GenericDetailComponent } from '../../../../core/generics/generic-detail.component';
 import { EntityPrefix } from '../../../../models/entity-prefix.enum';
+import { UploadFolder } from '../../../../models/upload.enum';
 
 @Component({
   selector: 'pa-account-detail',
@@ -29,8 +30,27 @@ export class AccountDetailComponent extends GenericDetailComponent implements On
   }
 
   public onSubmit(): void {
+    if(this.blob) {
+      let formData = new FormData();
+      formData.append("file", this.blob, this.blob.name.split('.')[1]);
+      this.uploadImage(formData, this.saveAccount);
+    } else {
+      this.saveAccount();
+    }
+  }
+
+  private uploadImage(formData: any, callback: any) {
+    this.accountService.uploadImage(formData, UploadFolder.account).subscribe((response: any) => {
+      callback(response);
+    })
+  }
+
+  public saveAccount = (image?: any) => {   
+    if(image) {
+      this.form.get('image').patchValue(image.files[0].filename);
+    }
+
     const data: Account = <Account>this.form.value;
-    
     if(this.aeMode === AEMode.add) {
       this.accountService.saveAccount(data).subscribe(() => {
         this.form.reset();

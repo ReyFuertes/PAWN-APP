@@ -28,8 +28,8 @@
   ></pa-account-search-table>
 </div>
 
-<app-base-modal [showModal]="showModal" [headerText]="aeMode === 1 ? 'Edit Account': 'New Account'" (closeModal)="onClose($event)" [height]="350"
-  [contentStyle]="{'max-height':'calc(100vh - 100px)', 'overflow-x': 'hidden'}">
+<app-base-modal [showModal]="showModal" [headerText]="aeMode === 1 ? 'Edit Account': 'New Account'" (closeModal)="onClose($event)" 
+  [contentStyle]="{'min-height':'550px', 'overflow-x': 'hidden'}">
   <ng-container class="body">
     <pa-account-new *ngIf="aeMode === 0" [form]="form"></pa-account-new>
     <pa-account-edit *ngIf="aeMode === 1" [form]="form"></pa-account-edit>

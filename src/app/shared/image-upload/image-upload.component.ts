@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, EventEmitter, Output} from "@angular/core";
+import { Component, OnInit, ViewChild, Input, EventEmitter, Output, ChangeDetectorRef} from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { ImageCropperComponent, CropperSettings, Bounds} from "ng2-img-cropper";
 
@@ -15,10 +15,11 @@ export class ImageUploadComponent implements OnInit {
 
   public data: any;
   public imageFile: File;
-  public displayImage: boolean;
+  public showPlaceholder: boolean;
   public showCroppingDialog: boolean = false;
-  public isDropping: boolean = false;
-
+  public isDropping: boolean;
+  public showLoadingImage: boolean = false;
+  
   @ViewChild("profileImage") profileImage;
   @ViewChild("droppedImage") droppedImage;
 
@@ -32,25 +33,25 @@ export class ImageUploadComponent implements OnInit {
   public croppedWidth: number;
   public croppedHeight: number;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private cdRef: ChangeDetectorRef) {
     this.cropperSettings = new CropperSettings();
     this.cropperSettings.noFileInput = true;
-    this.cropperSettings.width = 250;
-    this.cropperSettings.height = 200;
-    this.cropperSettings.croppedWidth = 250;
-    this.cropperSettings.croppedHeight = 200;
-    this.cropperSettings.canvasWidth = 250;
-    this.cropperSettings.canvasHeight = 200;
+    this.cropperSettings.width = 450;
+    this.cropperSettings.height = 400;
+    this.cropperSettings.croppedWidth = 450;
+    this.cropperSettings.croppedHeight = 400;
+    this.cropperSettings.canvasWidth = 450;
+    this.cropperSettings.canvasHeight = 400;
 
     this.data = {};
   }
 
   ngOnInit() {
-    if (this.imageDisplayUrl) 
-      this.displayImage = false;
+    if (this.imageDisplayUrl) {
+      this.showPlaceholder = false;
+    }
     else 
-      this.displayImage = true;
-      
+      this.showPlaceholder = true;
   }
 
   public getBase64(file) {
@@ -63,14 +64,17 @@ export class ImageUploadComponent implements OnInit {
     });
   }
 
-  public dragOver(event: any): void {
-    this.displayImage = !event;
+  public onDragleave(event: boolean): void {
+    this.isDropping = false;
+  }
+
+  public onDragOver(event: boolean): void {
     this.isDropping = true;
   }
 
   public onFilesChange(file: any) {
     this.imageFile = file;
-
+    
     this.getBase64(file).then(data => {
       this.data.image = <string>data;
 

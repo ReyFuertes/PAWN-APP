@@ -1,4 +1,4 @@
-<form *ngIf="form" [formGroup]="form" name="loginForm" role="form" (ngSubmit)="onSubmit()">
+<form *ngIf="form" [formGroup]="form" name="form" role="form" (ngSubmit)="onSubmit()">
   <div class="row pa_card-content">
     <div class="col-4">
       <div class="pa_button-upload-container pa_button-upload">
@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-6 form-group">
           <label for="idNumber">ID Number</label>
-          <input class="form-control pa_text-bold" readonly tabindex="1" formControlName="idNumber" id="idNumber" type="text"
+          <input class="form-control" readonly tabindex="1" formControlName="idNumber" id="idNumber" type="text"
             autocomplete="off" />
         </div>
       </div>
@@ -85,9 +85,10 @@
   <hr />
   <div class="row">
     <div class="col-12">
+      <!-- [disabled]="!form.valid"  -->
       <a href="javascript:void(0)" (click)="onClose()" class="btn btn-sm btn-secondary pa_button pa_button-black float-right"><i
           class="fas fa-ban"></i> Cancel</a>
-      <button type="submit" [disabled]="!form.valid" class="btn btn-sm btn-success pa_button pa_button-green float-right"><i
+      <button type="submit" class="btn btn-sm btn-success pa_button pa_button-green float-right"><i
           class="fas fa-plus"></i> Save</button>
     </div>
   </div>
