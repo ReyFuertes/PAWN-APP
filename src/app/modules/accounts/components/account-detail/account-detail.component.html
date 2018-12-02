@@ -4,7 +4,7 @@
       <div class="pa_button-upload-container pa_button-upload">
         <app-image-upload 
           (onChange)="handleImageChange($event)" 
-          [imageDisplayUrl]="imageDisplayUrl" 
+          [imageDisplayUrl]="form.get('image').value ? form.get('image').value: null" 
           [parentForm]="form" 
         ></app-image-upload>
       </div>

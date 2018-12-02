@@ -6,7 +6,8 @@ import { Account } from '../../../../models/account.model';
 import { AEMode } from '../../../../models/crud.enum';
 import { GenericDetailComponent } from '../../../../core/generics/generic-detail.component';
 import { EntityPrefix } from '../../../../models/entity-prefix.enum';
-import { UploadFolder } from '../../../../models/upload.enum';
+import { ImageFolder } from '../../../../models/image.enum';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'pa-account-detail',
@@ -22,7 +23,6 @@ export class AccountDetailComponent extends GenericDetailComponent implements On
   @Input()
   public aeMode: AEMode;
 
-  public imageDisplayUrl: string = '';
   public blob: any;
 
   constructor(private renderer: Renderer, private accountService: AccountService, public modalService: ModalService) { 
@@ -40,7 +40,7 @@ export class AccountDetailComponent extends GenericDetailComponent implements On
   }
 
   private uploadImage(formData: any, callback: any) {
-    this.accountService.uploadImage(formData, UploadFolder.account).subscribe((response: any) => {
+    this.accountService.uploadImage(formData, ImageFolder.account).subscribe((response: any) => {
       callback(response);
     })
   }
@@ -53,19 +53,19 @@ export class AccountDetailComponent extends GenericDetailComponent implements On
     const data: Account = <Account>this.form.value;
     if(this.aeMode === AEMode.add) {
       this.accountService.saveAccount(data).subscribe(() => {
-        this.form.reset();
         this.modalService.propagate();
       })
     } else {
       this.accountService.updateAccount(data.id.toString(), data).subscribe(() => {
-        this.form.reset();
         this.modalService.propagate();
       })
     }
   }
 
   ngOnInit() { 
-    this.form.get('idNumber').patchValue(this.genUuid(EntityPrefix.Account));
+    if(this.aeMode === AEMode.add) {
+      this.form.get('idNumber').patchValue(this.genUuid(EntityPrefix.Account));
+    }
   }
 
   public onClose(): void {

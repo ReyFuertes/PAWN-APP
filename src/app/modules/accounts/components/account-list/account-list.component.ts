@@ -8,6 +8,7 @@ import { Subject } from "rxjs";
 import { AEMode } from "../../../../models/crud.enum";
 import { AccountTableComponent } from "../account-table/account-table.component";
 import { PrintEntity } from "../../../../models/print-entity.model";
+import { environment } from "../../../../../environments/environment";
 
 @Component({
   selector: "pa-account-list",
@@ -87,10 +88,13 @@ export class AccountListComponent implements OnInit {
 
   public onEdit(): void {
     if (this.selections[0].id) {
-      this.showModal = !this.showModal;
-      this.aeMode = AEMode.edit;
       this.accountService.editAccount(this.selections[0].id).subscribe(response => {
-          this.form.patchValue(<FormGroup>response.accounts)
+          this.form.patchValue(<FormGroup>response.accounts);
+          this.showModal = !this.showModal;
+          this.aeMode = AEMode.edit;
+
+          if(this.form.get('image').value)
+            this.form.get('image').patchValue(`${environment.apiUrl}account/images/${this.form.get('image').value}`);
         }
       );
     }

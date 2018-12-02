@@ -1,11 +1,26 @@
 import { Component, OnInit, ViewChild, Input, EventEmitter, Output, ChangeDetectorRef} from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { ImageCropperComponent, CropperSettings, Bounds} from "ng2-img-cropper";
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: "app-image-upload",
   templateUrl: "./image-upload.component.html",
-  styleUrls: ["./image-upload.component.scss"]
+  styleUrls: ["./image-upload.component.scss"],
+  animations: [
+    trigger(
+      'enterAnimation', [
+        transition(':enter', [
+          style({ opacity:0 }),
+          animate('1000ms ease-in-out', style({ opacity:1 }))
+        ]),
+        transition(':leave', [
+          style({ opacity: 1}),
+          animate('1000ms ease-in-out', style({ opacity: 0 }))
+        ])
+      ]
+    )
+  ]
 })
 export class ImageUploadComponent implements OnInit {
   @Input()

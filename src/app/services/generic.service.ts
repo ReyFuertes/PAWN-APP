@@ -35,6 +35,10 @@ export class GenericService extends BaseService {
     return this.upload(`image/upload/${categoryPath}`, form);
   }
 
+  protected getImage(path: string): any {
+    return this.get(path, {});
+  }
+
   protected remove(endpoint: string): Observable<any> {
     return this.delete(endpoint).pipe(map((response) => response ));
   }
