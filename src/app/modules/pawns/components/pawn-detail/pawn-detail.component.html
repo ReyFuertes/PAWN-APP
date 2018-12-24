@@ -1,0 +1,179 @@
+<form *ngIf="form" [formGroup]="form" name="form" role="form" (ngSubmit)="onSubmit()">
+  <div class="row pa_card-content">
+    <div class="col-4">
+      <app-image-upload 
+          (onChange)="handleImageChange($event)" 
+          [imageDisplayUrl]="imageDisplayUrl" 
+          [parentForm]="form" 
+        >
+      </app-image-upload>
+    </div>
+    
+    <div class="col-8">
+      <p-tabView>
+        <p-tabPanel header="Pawn Information">
+            <div class="row">
+              <div class="col-8 form-group">
+                <label for="pawnTicketNumber">PT Number</label>
+                <input class="form-control" tabindex="1" formControlName="pawnTicketNumber" id="pawnTicketNumber" type="text"
+                  autocomplete="off" />
+              </div>
+
+              <div class="col-4 form-group">
+                <label for="pawnDateGranted">Date Loan Granted</label>
+                <div [ngStyle]="{'height': '40px'}">
+                  <app-datepicker [parentForm]="form" tabindex="2" [style]="style" [controlName]="'pawnDateGranted'" [tabIndex]="3"></app-datepicker>
+                </div>
+              </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-4 form-group">
+                  <label for="pawnMaturityDate">Maturity Date</label>
+                  <div [ngStyle]="{'height': '40px'}">
+                    <app-datepicker [parentForm]="form" tabindex="3" [style]="style" [controlName]="'pawnMaturityDate'" [tabIndex]="3"></app-datepicker>
+                  </div>
+                </div>
+
+                <div class="col-4 form-group">
+                  <label for="pawnExpiryDate">Expiry Date</label>
+                  <div [ngStyle]="{'height': '40px'}">
+                    <app-datepicker [parentForm]="form" tabindex="4" [style]="style" [controlName]="'pawnExpiryDate'" [tabIndex]="3"></app-datepicker>
+                  </div>
+                </div>
+
+                <div class="col-4 form-group">
+                  <label for="auctionDate">Auction Date</label>
+                  <div [ngStyle]="{'height': '40px'}">
+                    <app-datepicker [parentForm]="form" tabindex="2" [style]="style" [controlName]="'auctionDate'" [tabIndex]="3"></app-datepicker>
+                  </div>
+                </div>
+                
+              
+            </div>
+            <div class="row">
+              <div class="col-4 form-group">
+                <!-- <label for="pawnInterest">Interest</label> -->
+                <!-- <input class="form-control" inputNumber maxlength="4" tabindex="5" formControlName="pawnInterest" id="pawnInterest"
+                  type="text" autocomplete="off" /> -->
+                  <pa-dropdown [label]="'Interest'" [isGroup]="true" [isFilter]="false" [items]="interestOptions" [controlName]="'id'" [childFormGroup]="'account'" [parentForm]="form" (onItemChange)="onAccountChange($event)">
+                  </pa-dropdown>
+              </div>
+
+              <div class="col-2 form-group">
+                <label for="pawnAmount">Terms</label>
+                <input class="form-control" inputNumber tabindex="6" formControlName="pawnAmount" id="pawnAmount" type="text"
+                  autocomplete="off" />
+              </div>
+    
+              <div class="col-2 form-group">
+                <label for="pawnTotalAmount">Interest</label>
+                <input class="form-control" inputNumber tabindex="7" formControlName="pawnTotalAmount" id="pawnTotalAmount"
+                  type="text" autocomplete="off" />
+              </div>
+
+              <div class="col-2 form-group">
+                <label for="pawnTotalAmount">Discount</label>
+                <input class="form-control" inputNumber tabindex="7" formControlName="pawnTotalAmount" id="pawnTotalAmount"
+                  type="text" autocomplete="off" />
+              </div>
+
+              <div class="col-2 form-group">
+                <label for="pawnTotalAmount">Period</label>
+                <input class="form-control" inputNumber tabindex="7" formControlName="pawnTotalAmount" id="pawnTotalAmount"
+                  type="text" autocomplete="off" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-4 form-group">
+                <label for="pawnAmount">Amount</label>
+                <input class="form-control" inputNumber tabindex="6" formControlName="pawnAmount" id="pawnAmount" type="text"
+                  autocomplete="off" />
+              </div>
+    
+              <div class="col-4 form-group">
+                <label for="pawnTotalAmount">Total Amount</label>
+                <input class="form-control" inputNumber tabindex="7" formControlName="pawnTotalAmount" id="pawnTotalAmount"
+                  type="text" autocomplete="off" />
+              </div>
+            </div>
+        </p-tabPanel>
+
+        <p-tabPanel header="Personal Information">
+          <div formGroupName="account">
+            <div class="row">
+              <div class="col-7 form-group">
+                <pa-dropdown [label]="'Account Name'" [isGroup]="true" [items]="accounts" [controlName]="'id'" [childFormGroup]="'account'" [parentForm]="form" (onItemChange)="onAccountChange($event)">
+                </pa-dropdown>
+              </div>
+    
+              <div class="col-5 form-group">
+                <label for="contactNumber">Contact Number</label>
+                <input class="form-control" readonly inputNumber tabindex="8" formControlName="contactNumber" id="contactNumber"
+                  type="text" autocomplete="off" />
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="col-4 form-group">
+                <label for="birthDate">Birthday</label>
+                <input class="form-control" readonly tabindex="9" formControlName="birthDate" id="birthDate" type="text"
+                  autocomplete="off" />
+              </div>
+    
+              <div class="col-8 form-group">
+                <label for="address">Address</label>
+                <textarea class="form-control" readonly rows="4" tabindex="10" formControlName="address" id="address"></textarea>
+              </div>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Item Information">
+          <div formGroupName="item">
+            <div class="row">
+              <div class="col-7 form-group">
+                <pa-dropdown [label]="'Item Name'" [isGroup]="true" [items]="items" [controlName]="'id'" [childFormGroup]="'item'" [parentForm]="form" (onItemChange)="onItemChange($event)">
+                </pa-dropdown>
+              </div>
+    
+              <div class="col-5 form-group">
+                <label for="itemType">Item Type</label>
+                <input class="form-control" readonly formControlName="itemType" id="itemType" type="text" autocomplete="off" />
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="col-3 form-group">
+                <label for="karat">Karat</label>
+                <input class="form-control" readonly formControlName="karat" id="karat" type="text"
+                  autocomplete="off" />
+              </div>
+    
+              <div class="col-3 form-group">
+                <label for="grams">Grams</label>
+                <input class="form-control" readonly formControlName="grams" id="grams" type="text"
+                  autocomplete="off" />
+              </div>
+    
+              <div class="col-6 form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" readonly rows="4" formControlName="description" id="description"></textarea>
+              </div>
+            </div>
+    
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-12">
+      <a href="javascript:void(0)" (click)="onClose()" class="btn btn-sm btn-secondary pa_button pa_button-black float-right"><i
+          class="fas fa-ban"></i> Cancel</a>
+      <button type="submit" [disabled]="!form.valid" class="btn btn-sm btn-success pa_button pa_button-green float-right"><i
+          class="fas fa-plus"></i> Save</button>
+    </div>
+  </div>
+</form>

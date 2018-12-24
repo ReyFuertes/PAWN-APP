@@ -1,0 +1,12 @@
+<div class="row">
+  <!-- Sidebar  -->
+  <div id="sidebar" class="col-2">
+    <pa-sidebar></pa-sidebar>
+  </div>
+
+  <!-- Page Content  -->
+  <div class="col-9" [ngStyle]="{'flex': '0 0 82%', 'max-width': '100%'}">
+    <pa-topnav></pa-topnav>
+    <router-outlet></router-outlet>
+  </div>
+</div>

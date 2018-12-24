@@ -1,0 +1,65 @@
+<form *ngIf="form" [formGroup]="form" name="form" role="form" (ngSubmit)="onSubmit()">
+  <div class="row pa_card-content">
+    <div class="col-4">
+      <app-image-upload 
+          (onChange)="handleImageChange($event)" 
+          [imageDisplayUrl]="imageDisplayUrl" 
+          [parentForm]="form" 
+        >
+      </app-image-upload>
+    </div>
+
+    <div class="col-8">
+      <div class="row">
+        <div class="col-4 form-group">
+          <label for="sku">SKU</label>
+          <input class="form-control" tabindex="1" formControlName="sku" id="sku" type="text" autofocus
+            autocomplete="off" />
+        </div>
+
+        <div class="col-8 form-group">
+          <label for="idNumber">Item Name</label>
+          <input class="form-control" tabindex="2" formControlName="itemName" id="itemName" type="text"
+            autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4 form-group">
+          <pa-dropdown [label]="'Item Type'" [items]="itemTypes" [isFilter]="false" [controlName]="'itemType'" [parentForm]="form"
+            (onItemChange)="onItemChange($event)">
+          </pa-dropdown>
+        </div>
+
+        <div class="col-4 form-group">
+          <label for="grams">Grams</label>
+          <input #sku class="form-control" tabindex="4" formControlName="grams" id="grams" type="text" 
+            autocomplete="off" />
+        </div>
+
+        <div class="col-4 form-group">
+          <label for="karat">Karat</label>
+          <input #sku class="form-control" tabindex="5" formControlName="karat" id="karat" type="text" 
+            autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" tabindex="6" rows="5" formControlName="description" id="description"></textarea>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-12">
+      <a href="javascript:void(0)" (click)="onClose()" class="btn btn-sm btn-secondary pa_button pa_button-black float-right"><i
+          class="fas fa-ban"></i> Cancel</a>
+      <button type="submit" [disabled]="!form.valid" class="btn btn-sm btn-success pa_button pa_button-green float-right"><i
+          class="fas fa-plus"></i> Save</button>
+    </div>
+  </div>
+</form>

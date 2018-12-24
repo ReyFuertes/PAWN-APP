@@ -1,0 +1,24 @@
+<pa-account-print-table
+  *ngIf="entity === printEntity.Account"
+  [printParams]="printParams"
+></pa-account-print-table>
+
+<pa-pawn-print-table
+  *ngIf="entity === printEntity.Pawn"
+  [printParams]="printParams"
+></pa-pawn-print-table>
+
+<pa-item-print-table
+  *ngIf="entity === printEntity.Item"
+  [printParams]="printParams"
+></pa-item-print-table>
+
+<pa-renewal-print-table
+  *ngIf="entity === printEntity.Renewal"
+  [printParams]="printParams"
+></pa-renewal-print-table>
+
+<pa-redemption-print-table
+*ngIf="entity === printEntity.Redemption"
+[printParams]="printParams"
+></pa-redemption-print-table>

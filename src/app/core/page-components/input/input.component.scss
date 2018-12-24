@@ -1,0 +1,11 @@
+@import "../../assets/css/floating-labels.scss";
+
+.form-control:focus {
+  border-color: #007ad9;
+  outline: 0;
+  box-shadow: none;
+}
+
+.input-group .has-float-label .form-control {
+  border-radius: 0.1rem;
+}

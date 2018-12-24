@@ -1,0 +1,23 @@
+.pa_search-container {
+  .col-1,
+  .col-10 {
+    padding: 0 2px;
+  }
+
+  input {
+    padding-left: 30px;
+  }
+
+  i {
+    position: absolute;
+    top: 14px;
+    left: 25px;
+    z-index: 99;
+    color:#999;
+  }
+
+  button {
+    float: right;
+  }
+}
+

@@ -1,0 +1,38 @@
+<div id="print-section" class="container">
+  <div *ngIf="(redemptions && redemptions.length > 0)" class="row alert alert-danger doNotPrint">
+    <strong [ngStyle]="{'margin-right': '5px'}">Note: </strong> Click the button print to show, or back you go to previews page.
+  </div>
+  
+  <h3>Redemptions</h3>
+  <table *ngIf="(redemptions && redemptions.length > 0) else noResultsFound" class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Pawn Ticket</th>
+        <th scope="col">Pawner</th>
+        <th scope="col">Item Name</th>
+        <th scope="col">Remark</th>
+        <th scope="col">Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let redemption of redemptions; let i = index">
+        <td>{{ i }}</td>
+        <td>{{ redemption.redemptionPawnTicket }}</td>
+        <td>{{ redemption.fullname }}</td>
+        <td>{{ redemption.itemName }}</td>
+        <td>{{ redemption.remarks }}</td>
+        <td>{{ redemption.created }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="onBack()"  class="btn btn-md btn-default doNotPrint" [ngStyle]="{'margin': '0 10px'}" >Back</button>
+  <button (click)="print()" [disabled]="!(redemptions && redemptions.length > 0)" class="btn btn-md btn-primary doNotPrint btn-print" >Print</button>
+</div>
+
+<ng-template #noResultsFound>
+  <div class="alert alert-warning" role="alert">
+    No Results to print! Please check your dates.
+  </div>
+</ng-template>
+

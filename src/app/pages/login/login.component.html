@@ -1,0 +1,30 @@
+<div id="wrapper">
+  <div class="card login-container">
+    <form [formGroup]="loginForm" class="form-signin" (ngSubmit)="onLogin()">
+      <div [ngStyle]="{'text-align': 'center'}">
+        <h3><i class="fas fa-gem"></i> <span class="pa-color-green"> Pawn</span>App</h3>
+      </div>
+
+      <div class="form-group">
+        <pa-dropdown [label]="'Branch'" [items]="branches" [isFilter]="false" [controlName]="'branchName'" [parentForm]="loginForm"
+          (onItemChange)="onChange($event)">
+        </pa-dropdown>
+      </div>
+
+      <div class="form-group">
+        <label>Username</label>
+        <input type="email" name="email" formControlName="email" class="form-control" placeholder="Email address"
+          autofocus autocomplete="off" >
+      </div>
+
+      <div class="form-group">
+          <label>Password</label>
+        <input type="password" name="password" formControlName="password" class="form-control" placeholder="Password" autocomplete="off">
+      </div>
+
+      <div>
+        <button [disabled]="!loginForm.valid" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </div>
+    </form>
+  </div>
+</div>

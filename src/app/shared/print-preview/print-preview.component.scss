@@ -1,0 +1,9 @@
+
+
+label {
+  font-weight: bold;
+}
+
+:host ::ng-deep .ui-dialog-content {
+  overflow: hidden;
+}

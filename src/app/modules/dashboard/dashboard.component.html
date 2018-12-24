@@ -1,0 +1,45 @@
+
+
+  <div class="row">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-1">
+              <div class="dashboard-icon-pawn-circle"><i class="fas fa-gem fa-2x"></i> </div>
+            </div>
+            <div class="col-11 content-container">
+              <h5 class="margin-0 pa-color-green">{{totalPawnCount}}</h5>
+              <span>Total Item Pawned</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-1">
+              <div class="dashboard-icon-renewal-circle"><i class="fas fa-sync fa-2x"></i></div>
+            </div>
+            <div class="col-11 content-container">
+              <h5 class="margin-0 pa-color-blue" >{{totalRenewedCount}}</h5>
+              <span>Total Item Renewed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12" style="margin-top:20px;">
+      <div class="card">
+        <div class="card-header">
+          <h4>Engagements Statitics</h4>
+        </div>
+        <div *ngIf="lineChart" class="card-body">
+            <canvas height="40" id="lineChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>

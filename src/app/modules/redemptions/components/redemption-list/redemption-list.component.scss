@@ -1,0 +1,24 @@
+:host ::ng-deep .table-header {
+  &:nth-child(2) {
+    width: 110px;
+  }
+  &:nth-child(3) {
+    width: 140px;
+  }
+  &:nth-child(4) {
+    width: 170px;
+  }
+  &:nth-child(5) {
+    width: 200px;
+  }
+  &:nth-child(6) {
+    width: 130px;
+  }
+  &:last-child {
+    width: auto;
+  }
+}
+
+:host ::ng-deep .ui-datepicker {
+  left: 0 !important;
+}

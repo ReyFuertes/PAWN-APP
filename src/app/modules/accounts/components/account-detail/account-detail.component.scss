@@ -1,0 +1,55 @@
+.pa_card-content {
+  padding: 50px;
+
+  label {
+    color:#666;
+  }
+
+  .pa_image-container {
+    height: 200px;
+    width: 200px;
+    background: #ddd;
+    border-radius: 50%;
+    margin: 0 auto;
+    padding: 70px;
+
+    i {
+      color:#888;
+    }
+  }
+
+  .pa_button-upload-container {
+    margin: 0 auto;
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  .pa_picture-container {
+    height: 100px;
+    width: 100px;
+    background: #ddd;
+  }
+}
+
+:host ::ng-deep .ui-datepicker {
+  z-index: 1004;
+  top: 41px;
+  left: -81px !important;
+  transform: translateY(0px);
+  opacity: 1;
+}
+
+:host ::ng-deep .ui-inputtext {
+  width: 160px;
+}
+
+:host ::ng-deep i.fa-calendar-alt {
+  left: 153px;
+}
+
+@media only screen and (min-width: 767px) {
+  .pa_card-content {
+    padding: 20px;
+  }
+}

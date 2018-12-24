@@ -1,0 +1,37 @@
+:host {
+  padding:20px;
+}
+
+table tr td, table tr th {
+  font-family: "Roboto", sans-serif;
+  border: thin #eee solid;
+}
+
+table {
+  width:100%;
+  border-collapse: collapse;
+}
+
+table tr th {
+  background:#f1f1f1;
+  background-color:#f1f1f1;
+  font-size: 14px;
+}
+
+table tr td:first-child {
+  text-align: center;
+}
+table tr td:nth-child(2) {
+  width:120px;
+}
+table tr td:nth-child(3) {
+  width:120px;
+}
+
+table tr td:nth-child(4) {
+  width:200px;
+}
+
+table tr td:nth-child(5) {
+  width:200px;
+}

@@ -1,0 +1,159 @@
+<form *ngIf="form" [formGroup]="form" name="form" role="form" (ngSubmit)="onSubmit()">
+  <div class="row pa_card-content">
+    <div class="col-12">
+      <p-tabView>
+        <p-tabPanel header="Renewal Information">
+          <div class="col-12">
+            <div class="row">
+              <div class="col-12 form-group">
+                <label for="renewalDate">Renewal Date</label>
+                <app-datepicker [parentForm]="form" tabindex="1" [controlName]="'renewalDate'" [tabIndex]="3"></app-datepicker>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4 form-group">
+                <label for="renewalPawnTicket">Renewal Number</label>
+                <input class="form-control" tabindex="1" formControlName="renewalPawnTicket" id="renewalPawnTicket" type="text"
+                  autofocus autocomplete="off" />
+              </div>
+
+              <div class="col-4 form-group">
+                <pa-dropdown [label]="'Old Pawn Number'" [items]="pawns" [isGroup]="false" [parentForm]="form"
+                  [controlName]="'pawnId'" (onItemChange)="onPawnChange($event)">
+                </pa-dropdown>
+              </div>
+
+              <div class="col-4 form-group">
+                <label for="newPawnNumber">New Pawn Number</label>
+                <input inputNumber class="form-control" tabindex="3" formControlName="newPawnNumber" id="newPawnNumber"
+                  type="text" autocomplete="off" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-3 form-group">
+                <label for="renewalAmount">Amount</label>
+                <input inputNumber class="form-control" tabindex="3" formControlName="renewalAmount" id="renewalAmount"
+                  type="text" autocomplete="off" />
+              </div>
+
+              <div class="col-3 form-group">
+                <label for="renewalTotalAmount">Total Amount</label>
+                <input inputNumber class="form-control" tabindex="4" formControlName="renewalTotalAmount" id="renewalTotalAmount"
+                  type="text" autocomplete="off" />
+              </div>
+
+              <div class="col-3 form-group">
+                <label for="interest">Interest</label>
+                <input inputNumber class="form-control" tabindex="5" formControlName="interest" id="interest" type="text"
+                  autocomplete="off" />
+              </div>
+
+              <div class="col-3 form-group">
+                <label for="difference">Difference</label>
+                <input inputNumber class="form-control" tabindex="6" formControlName="difference" id="difference" type="text"
+                  autocomplete="off" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 form-group">
+                <label for="description">Remarks</label>
+                <textarea class="form-control" tabindex="7" formControlName="remarks" id="remarks"></textarea>
+              </div>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Account Information">
+          <div formGroupName="account" class="col-12">
+            <div class="row">
+              <div class="col-6 form-group">
+                <pa-dropdown [label]="'Account Name'" [isGroup]="true" [items]="accounts" [controlName]="'id'" [childFormGroup]="'account'"
+                  [parentForm]="form" (onItemChange)="onAccountChange($event)">
+                </pa-dropdown>
+              </div>
+
+              <div class="col-3 form-group">
+                <label for="contactNumber">Contact Number</label>
+                <input class="form-control" readonly inputNumber formControlName="contactNumber" id="contactNumber"
+                  type="text" autocomplete="off" />
+              </div>
+
+              <div class="col-3 form-group">
+                <label for="birthDate">Birthday</label>
+                <input class="form-control" readonly formControlName="birthDate" id="birthDate" type="text"
+                  autocomplete="off" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 form-group">
+                <label for="address">Address</label>
+                <textarea class="form-control" readonly formControlName="address" id="address"></textarea>
+              </div>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Item Information">
+          <div formGroupName="item" class="row">
+            <div class="col-4">
+              <app-image-upload 
+                  (onChange)="handleImageChange($event)" 
+                  [imageDisplayUrl]="imageDisplayUrl" 
+                  [parentForm]="form" 
+                >
+              </app-image-upload>
+            </div>
+
+            <div class="col-8">
+              <div class="row">
+                <div class="col-8 form-group">
+                  <pa-dropdown [label]="'Item Name'" [isGroup]="true" [items]="items" [controlName]="'id'" [childFormGroup]="'item'"
+                    [parentForm]="form" (onItemChange)="onItemChange($event)">
+                  </pa-dropdown>
+                </div>
+
+                <div class="col-4 form-group">
+                  <label for="idNumber">SKU</label>
+                  <input #sku class="form-control" readonly formControlName="sku" id="sku" type="text" autofocus
+                    autocomplete="off" />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-4 form-group">
+                  <label for="itemType">Item Type</label>
+                  <input class="form-control" readonly formControlName="itemType" id="itemType" type="text"
+                    autocomplete="off" />
+                </div>
+
+                <div class="col-4 form-group">
+                  <label for="grams">Grams</label>
+                  <input class="form-control" readonly formControlName="grams" id="grams" type="text" autocomplete="off" />
+                </div>
+
+                <div class="col-4 form-group">
+                  <label for="karat">Karat</label>
+                  <input class="form-control" readonly formControlName="karat" id="karat" type="text" autocomplete="off" />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 form-group">
+                  <label for="description">Description</label>
+                  <textarea class="form-control" readonly rows="5" formControlName="description" id="description"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-12">
+      <a href="javascript:void(0)" (click)="onClose()" class="btn btn-sm btn-secondary pa_button pa_button-black float-right"><i
+          class="fas fa-ban"></i> Cancel</a>
+      <button type="submit" [disabled]="!form.valid" class="btn btn-sm btn-success pa_button pa_button-green float-right"><i
+          class="fas fa-plus"></i> Save</button>
+    </div>
+  </div>
+</form>

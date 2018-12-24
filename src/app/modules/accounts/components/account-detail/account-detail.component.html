@@ -1,0 +1,95 @@
+<form *ngIf="form" [formGroup]="form" name="form" role="form" (ngSubmit)="onSubmit()">
+  <div class="row pa_card-content">
+    <div class="col-4">
+      <div class="pa_button-upload-container pa_button-upload">
+        <app-image-upload 
+          (onChange)="handleImageChange($event)" 
+          [imageDisplayUrl]="form.get('image').value ? form.get('image').value: null" 
+          [parentForm]="form" 
+        ></app-image-upload>
+      </div>
+    </div>
+
+    <div class="col-8">
+      <div class="row">
+        <div class="col-6 form-group">
+          <label for="idNumber">ID Number</label>
+          <input class="form-control" readonly tabindex="1" formControlName="idNumber" id="idNumber" type="text"
+            autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4 form-group">
+          <label for="firstName">Firstname</label>
+          <input class="form-control" tabindex="2" formControlName="firstName" id="firstName" type="text" autofocus autocomplete="off" />
+        </div>
+
+        <div class="col-4 form-group">
+          <label for="middleName">Middlename</label>
+          <input class="form-control" tabindex="3" formControlName="middleName" id="middleName" type="text" autocomplete="off" />
+        </div>
+
+        <div class="col-4 form-group">
+          <label for="lastName">Lastname</label>
+          <input class="form-control" tabindex="3" formControlName="lastName" id="lastName" type="text" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4 form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input class="form-control" tabindex="4" formControlName="phoneNumber" id="phoneNumber" type="text"
+            autocomplete="off" />
+        </div>
+
+        <div class="col-4 form-group">
+          <label for="mobileNumber">Mobile Number</label>
+          <input class="form-control" tabindex="3" formControlName="mobileNumber" id="mobileNumber" type="text" autocomplete="off" />
+        </div>
+
+        <div class="col-4 form-group">
+          <label for="identificationId">Birthdate</label>
+          <div [ngStyle]="{'height': '40px'}">
+            <app-datepicker [parentForm]="form" tabindex="5" [controlName]="'birthDate'" [tabIndex]="3"></app-datepicker>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4 form-group">
+          <label for="identificationId">Email Address</label>
+          <input class="form-control" tabindex="6" formControlName="validId" id="validId" type="text" autocomplete="off">
+        </div>
+
+        <div class="col-4 form-group">
+          <label for="identificationId">Valid ID</label>
+          <input class="form-control" tabindex="6" formControlName="validId" id="validId" type="text" autocomplete="off">
+        </div>
+        <div class="col-4 form-group">
+          <label for="identificationNumber">Valid ID Number</label>
+          <input class="form-control" tabindex="7" formControlName="validIdNumber" id="validIdNumber" type="text"
+            autocomplete="off">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 form-group">
+          <label for="address">Address</label>
+          <textarea class="form-control" rows="3" tabindex="8" formControlName="address" id="address" type="text"
+            autocomplete="off"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-12">
+      <!-- [disabled]="!form.valid"  -->
+      <a href="javascript:void(0)" (click)="onClose()" class="btn btn-sm btn-secondary pa_button pa_button-black float-right"><i
+          class="fas fa-ban"></i> Cancel</a>
+      <button type="submit" class="btn btn-sm btn-success pa_button pa_button-green float-right"><i
+          class="fas fa-plus"></i> Save</button>
+    </div>
+  </div>
+</form>
