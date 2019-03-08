@@ -140,15 +140,10 @@ export class PawnListComponent implements OnInit {
   }
 
   public onAdd(): void {
-<<<<<<< HEAD
     this.aeMode = AEMode.add;
     this.showModal = !this.showModal;
     
     //this.router.navigateByUrl('dashboard/pawn/add');
-=======
-    this.showModal = !this.showModal;
-    this.aeMode = AEMode.add;
->>>>>>> 6ddc1a3af2b31eb6069fe0a7925e7023b3a612ce
   }
 
   public onEdit(): void {

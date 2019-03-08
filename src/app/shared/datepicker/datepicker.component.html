@@ -1,5 +1,4 @@
 <div *ngIf="parentForm" [formGroup]="parentForm">
-<<<<<<< HEAD
   <p-calendar
     #calendar
     (onSelect)="onChange($event)"
@@ -22,27 +21,3 @@
   <i (click)="openCalendar($event)" class="far fa-calendar-alt"></i>
   <span class="highlight"></span> <span class="bar"></span>
 </div>
-=======
-    <p-calendar 
-      #calendar
-      (onSelect)="onChange($event)"
-      [tabindex]="tabIndex" 
-      [formControlName]="controlName" 
-      [readonlyInput]="true" 
-      [monthNavigator]="true"
-      [yearNavigator]="true" 
-      yearRange="1950:2030"
-      [dateFormat]="customFormat" 
-      [minDate]="minDateValue" 
-      [maxDate]="maxDateValue"
-      [readonlyInput]="true"
-      [placeholder]="placeholder"
-      [style]="style"
-    >
-    </p-calendar>
-  
-    <i (click)="openCalendar($event)" class="far fa-calendar-alt"></i>
-    <span class="highlight"></span>
-    <span class="bar"></span>
-  </div>
->>>>>>> 6ddc1a3af2b31eb6069fe0a7925e7023b3a612ce
