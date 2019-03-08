@@ -31,9 +31,13 @@ export class DatepickerComponent implements OnInit {
   @Input()
   public inputStyleClass: string = 'bg-color-white';
   @Input()
+<<<<<<< HEAD
   public style: any = {'overflow': 'visible', 'z-index': '9999','opacity':'1'};
   @Input()
   public appendToEl: any;
+=======
+  public style: any;
+>>>>>>> 6ddc1a3af2b31eb6069fe0a7925e7023b3a612ce
 
   @Output()
   public isValid = new EventEmitter<boolean>();
@@ -56,6 +60,7 @@ export class DatepickerComponent implements OnInit {
   }
 
   public openCalendar(event: any) {
+<<<<<<< HEAD
     console.log(event);
     this.calendar.showOverlay(this.calendar.inputfieldViewChild.nativeElement);
     event.stopPropagation();
@@ -65,4 +70,9 @@ export class DatepickerComponent implements OnInit {
     this.calendar.onClose(this.calendar.inputfieldViewChild.nativeElement);
     event.stopPropagation();
   }
+=======
+    this.calendar.showOverlay(this.calendar.inputfieldViewChild.nativeElement);
+    event.stopPropagation();
+  }
+>>>>>>> 6ddc1a3af2b31eb6069fe0a7925e7023b3a612ce
 }

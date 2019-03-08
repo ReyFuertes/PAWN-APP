@@ -41,9 +41,16 @@ p-togglebutton.ng-dirty.ng-invalid .ui-button {
 i.fa-calendar-alt {
   position: absolute;
   top: 35px;
+<<<<<<< HEAD
   left: 147px;
   color: #888;
   cursor: pointer;
+=======
+  left: 162px;
+  color: #888;
+  cursor: pointer;
+  z-index: 999;
+>>>>>>> 6ddc1a3af2b31eb6069fe0a7925e7023b3a612ce
 }
 
 :host ::ng-deep .ui-datepicker table td {
@@ -52,7 +59,10 @@ i.fa-calendar-alt {
 
 :host ::ng-deep .ui-datepicker {
   padding: 5px;
+<<<<<<< HEAD
   width: 300px;
   min-width: 300px;
   left: -145px !important;
+=======
+>>>>>>> 6ddc1a3af2b31eb6069fe0a7925e7023b3a612ce
 }
