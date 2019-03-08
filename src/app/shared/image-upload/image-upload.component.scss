@@ -105,6 +105,10 @@ input[type="file"]::-webkit-file-upload-button {
   text-align: center;
 }
 
-:host ::ng-deep .ui-dialog .ui-dialog-content {
-  background-color: #666;
+:host ::ng-deep .ui-dialog {
+  z-index: 9999 !important;
+
+  .ui-dialog-content {
+    background-color: #666;
+  }
 }

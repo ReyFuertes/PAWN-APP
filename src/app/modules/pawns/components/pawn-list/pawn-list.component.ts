@@ -11,6 +11,7 @@ import { Option } from "../../../../models/option.model";
 import { ItemService } from "../../../items/item.service";
 import { PawnTableComponent } from "../pawn-table/pawn-table.component";
 import { PrintEntity } from "../../../../models/print-entity.model";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "pa-pawn-list",
@@ -37,7 +38,8 @@ export class PawnListComponent implements OnInit {
     private pawnService: PawnService,
     private messageService: MessageService,
     private accountService: AccountService,
-    private itemService: ItemService
+    private itemService: ItemService,
+    private router: Router
   ) {
     this.accounts = [{ value: null, label: "Select an Account" }];
     this.items = [{ value: null, label: "Select an Item" }];
@@ -138,8 +140,10 @@ export class PawnListComponent implements OnInit {
   }
 
   public onAdd(): void {
-    this.showModal = !this.showModal;
     this.aeMode = AEMode.add;
+    this.showModal = !this.showModal;
+    
+    //this.router.navigateByUrl('dashboard/pawn/add');
   }
 
   public onEdit(): void {

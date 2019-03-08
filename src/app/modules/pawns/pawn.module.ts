@@ -23,6 +23,14 @@ export const routes: Routes = [
   {
     path: 'pawns',
     component: PawnListComponent
+  },
+  {
+    path: 'pawn/add',
+    component: PawnNewComponent
+  },
+  {
+    path: 'pawn/edit/:id',
+    component: PawnEditComponent
   }
 ];
 

@@ -13,9 +13,9 @@ export class BaseModalComponent implements OnInit {
   @Input()
   public headerText: string = "Header Text Here";
   @Input()
-  public width: string = "900";
+  public width: string = "100%";
   @Input()
-  public height: string = "100";
+  public height: string = "100%";
   @Input()
   public positionTop: number = 20;
   @Input()
