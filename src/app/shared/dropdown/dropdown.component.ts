@@ -34,6 +34,6 @@ export class DropdownSelectComponent implements OnInit {
   }
 
   public onChange(event: any): void {
-    this.onItemChange.emit(event);
+    this.onItemChange.emit(event.value);
   }
 }

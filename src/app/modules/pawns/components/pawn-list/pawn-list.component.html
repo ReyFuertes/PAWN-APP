@@ -7,43 +7,36 @@
           Add</button>
         <button type="button" (click)="onEdit()" [disabled]="editMode !== 1" class="btn btn-sm pa_button btn-default"><i
             class="fas fa-pen"></i> Edit</button>
-        <button type="button" (click)="onRefresh()" class="btn btn-sm pa_button btn-default"><i class="fas fa-sync"></i> Refresh</button>
+        <button type="button" (click)="onRefresh()" class="btn btn-sm pa_button btn-default"><i class="fas fa-sync"></i>
+          Refresh</button>
         <button type="button" (click)="onDelete()" [disabled]="editMode !== 1" class="btn btn-sm pa_button btn-danger"><i
             class="far fa-trash-alt"></i> Delete</button>
-        <pa-print-preview [printEntity]="printEntity" ></pa-print-preview>
+        <pa-print-preview [printEntity]="printEntity"></pa-print-preview>
       </div>
       <div class="col-4">
-        <pa-filter-table (onSearch)="onSearch($event)" ></pa-filter-table>
+        <pa-filter-table (onSearch)="onSearch($event)"></pa-filter-table>
       </div>
     </div>
   </div>
-  <pa-pawn-search-table 
-    *ngIf="totalRecords"
-    #pawnTable 
-    (editMode)="editMode = $event" 
-    [totalRecords]="totalRecords" 
-    (pageVar)="paginate($event)"
-    (selections)="selections = $event" 
-    (onClear)="onClearSelectedRows($event)" 
-    [rows]="pawns"
-  ></pa-pawn-search-table>
+  <pa-pawn-search-table *ngIf="totalRecords" #pawnTable (editMode)="editMode = $event" [totalRecords]="totalRecords"
+    (pageVar)="paginate($event)" (selections)="selections = $event" (onClear)="onClearSelectedRows($event)" [rows]="pawns"></pa-pawn-search-table>
 </div>
 
-<app-base-modal [showModal]="showModal" [headerText]="aeMode == 0 ? 'New Pawn': 'Edit Pawn'" (closeModal)="onClose()" [width]="920"
-  [contentStyle]="{'max-height':'calc(100vh - 100px)', 'overflow-x': 'hidden'}">
+<app-base-modal [showModal]="showModal" [headerText]="aeMode == 0 ? 'New Pawn': 'Edit Pawn'" (closeModal)="onClose()"
+  [width]="920" [contentStyle]="{'max-height':'calc(100vh - 100px)', 'overflow-x': 'hidden'}">
   <ng-container class="body">
-    <pa-pawn-new *ngIf="aeMode === 0" [form]="form" [accounts]="accounts" [items]="items" ></pa-pawn-new>
+    <pa-pawn-new *ngIf="aeMode === 0" [form]="form" [accounts]="accounts" [items]="items"></pa-pawn-new>
     <pa-pawn-edit *ngIf="aeMode === 1" [form]="form" [accounts]="accounts" [items]="items"></pa-pawn-edit>
   </ng-container>
-  <ng-container class="footer" >
-      <div class="row">
-        <div class="col-12">
-          <a href="javascript:void(0)" (click)="onClose()" class="btn btn-sm btn-secondary pa_button pa_button-black float-right"><i
-              class="fas fa-ban"></i> Cancel</a>
-          <button type="submit" [disabled]="!form.valid" class="btn btn-sm btn-success pa_button pa_button-green float-right"><i
-              class="fas fa-plus"></i> Save</button>
-        </div>
+  <ng-container class="footer">
+    <div class="row">
+      <div class="col-12">
+        <a href="javascript:void(0)" (click)="onClose()" class="btn btn-sm btn-secondary pa_button pa_button-black float-right"><i
+            class="fas fa-ban"></i> Cancel</a>
+        <button type="submit" [disabled]="!form.valid" class="btn btn-sm btn-success pa_button pa_button-green float-right"><i
+            class="fas fa-plus"></i> Save</button>
       </div>
+    </div>
   </ng-container>
 </app-base-modal>
 
@@ -64,4 +57,3 @@
     </div>
   </ng-template>
 </p-toast>
-

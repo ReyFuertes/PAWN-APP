@@ -74,6 +74,7 @@ export class AccountDetailComponent extends GenericDetailComponent implements On
   }
 
   public handleImageChange(event: any): void {
+    console.log(event);
     this.blob = event;
   }
 }

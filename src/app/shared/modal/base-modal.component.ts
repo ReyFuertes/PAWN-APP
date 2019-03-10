@@ -1,5 +1,4 @@
-import { Component, OnInit, Input,  Output,  EventEmitter,  HostListener} from "@angular/core";
-import { GenericModalComponent } from "../../core/generics/generic-modal.component";
+import { Component, OnInit, Input,  Output,  EventEmitter,  HostListener, ViewChild} from "@angular/core";
 import { ModalService } from "../../services/modal.service";
 
 @Component({
@@ -19,12 +18,14 @@ export class BaseModalComponent implements OnInit {
   @Input()
   public positionTop: number = 20;
   @Input()
-  public contentStyle: any;
+  public contentStyle: any = {'width': '900px', 'max-height':'calc(100vh - 100px)', 'overflow-x': 'hidden'};
   @Input()
   public showFooter: boolean = false;
 
   @Output()
   public closeModal = new EventEmitter<boolean>();
+
+  @ViewChild('dialog') dialog: any;
 
   constructor(public modaService: ModalService) {
     if(!this.showModal) {
@@ -39,11 +40,11 @@ export class BaseModalComponent implements OnInit {
     this.closeModal.emit(this.showModal);
   }
 
-  // @HostListener("document:keydown.escape", ["$event"])
-  // onKeydownHandler(event: KeyboardEvent) {
-  //   event.preventDefault();
-  //   if(document.querySelector('.lpa-modal')) {
-  //     this.close();
-  //   }
-  // }
+  @HostListener("document:keydown.escape", ["$event"])
+  onKeydownHandler(event: KeyboardEvent) {
+    event.preventDefault();
+    if(this.dialog) {
+      this.closeModal.emit(false);
+    }
+  }
 }

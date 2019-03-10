@@ -13,7 +13,7 @@ import { EntityPrefix } from '../../../../models/entity-prefix.enum';
 @Component({
   selector: 'pa-pawn-detail',
   templateUrl: './pawn-detail.component.html',
-  styleUrls: [ './pawn-detail.component.scss' ]
+  styleUrls: ['./pawn-detail.component.scss']
 })
 
 export class PawnDetailComponent extends GenericDetailComponent implements OnInit {
@@ -32,36 +32,43 @@ export class PawnDetailComponent extends GenericDetailComponent implements OnIni
 
   public interestOptions: any[];
 
-  constructor(private itemService: ItemService, private accountService: AccountService, private pawnService: PawnService, public modalService: ModalService) { 
+  constructor(private itemService: ItemService, private accountService: AccountService, private pawnService: PawnService, public modalService: ModalService) {
     super();
 
-    this.interestOptions = [ {
-      value: 'In Advance',
-      label: 'In Advance'
-    }, {
-      value: 'In Arrears',
-      label: 'In Arrears'
-    } ]
+    this.interestOptions = [
+      {
+        value: null,
+        label: 'Select Options'
+      },
+      {
+        value: 'In Advance',
+        label: 'In Advance'
+      }, {
+        value: 'In Arrears',
+        label: 'In Arrears'
+      }
+    ]
   }
 
   public onSubmit(): void {
-    const data: Pawn = <Pawn>this.form.value;
-    
-    if(this.aeMode === AEMode.add) {
-      this.pawnService.savePawn(data).subscribe(() => {
+    const payload: Pawn = <Pawn>this.form.value;
+
+    if (this.aeMode === AEMode.add) {
+      this.pawnService.savePawn(payload).subscribe(() => {
         this.form.reset();
         this.modalService.propagate();
       })
     } else {
-      this.pawnService.updatePawn(data.id.toString(), data).subscribe(() => {
+      this.pawnService.updatePawn(payload.id.toString(), payload).subscribe(() => {
         this.form.reset();
         this.modalService.propagate();
       })
     }
   }
 
-  ngOnInit() { 
-    this.form.get('pawnTicketNumber').patchValue(this.genUuid(EntityPrefix.Pawn));
+  ngOnInit() {
+    if (this.form && this.aeMode === AEMode.add)
+      this.form.get('pawnTicketNumber').patchValue(this.genUuid(EntityPrefix.Pawn));
   }
 
   public onClose(): void {
@@ -69,9 +76,9 @@ export class PawnDetailComponent extends GenericDetailComponent implements OnIni
     this.form.reset();
   }
 
-  public onAccountChange(event: any): void {
-    if(event.value) {
-      this.accountService.getOne(event.value).subscribe(response => {
+  public onAccountChange(value: any): void {
+    if (value) {
+      this.accountService.getOne(value).subscribe(response => {
         let control = this.form.controls['account'];
         control.get('id').patchValue(response.account[0].id);
         control.get('birthDate').patchValue(response.account[0].birthDate);
@@ -81,9 +88,9 @@ export class PawnDetailComponent extends GenericDetailComponent implements OnIni
     }
   }
 
-  public onItemChange(event: any): void {
-    if(event.value) {
-      this.itemService.getOne(event.value).subscribe(response => {
+  public onItemChange(value: any): void {
+    if (value) {
+      this.itemService.getOne(value).subscribe(response => {
         let control = this.form.controls['item'];
 
         control.get('id').patchValue(response.item.id);

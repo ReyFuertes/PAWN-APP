@@ -49,15 +49,11 @@
               </div>
             </div>
 
-
           </div>
           <div class="row">
             <div class="col-4 form-group">
-              <!-- <label for="pawnInterest">Interest</label> -->
-              <!-- <input class="form-control" inputNumber maxlength="4" tabindex="5" formControlName="pawnInterest" id="pawnInterest"
-                  type="text" autocomplete="off" /> -->
-              <pa-dropdown [label]="'Interest'" [isGroup]="true" [isFilter]="false" [items]="interestOptions"
-                [controlName]="'id'" [childFormGroup]="'account'" [parentForm]="form" (onItemChange)="onAccountChange($event)">
+              <pa-dropdown [label]="'Interest Rate'" [isFilter]="false" [items]="interestOptions" [controlName]="'pawnInterestRate'"
+                [parentForm]="form">
               </pa-dropdown>
             </div>
 
@@ -68,8 +64,8 @@
             </div>
 
             <div class="col-4 form-group">
-              <label for="pawnTotalAmount">Interest</label>
-              <input class="form-control" inputNumber tabindex="7" formControlName="pawnTotalAmount" id="pawnTotalAmount"
+              <label for="pawnInterestAmount">Interest Amount</label>
+              <input class="form-control" inputNumber tabindex="7" formControlName="pawnInterestAmount" id="pawnInterestAmount"
                 type="text" autocomplete="off" />
             </div>
           </div>
@@ -77,8 +73,8 @@
           <div class="row">
             <div class="col-4 form-group"></div>
             <div class="col-4 form-group">
-              <label for="pawnTotalAmount">Discount</label>
-              <input class="form-control" inputNumber tabindex="7" formControlName="pawnTotalAmount" id="pawnTotalAmount"
+              <label for="pawnDiscount">Discount</label>
+              <input class="form-control" inputNumber tabindex="7" formControlName="pawnDiscount" id="pawnDiscount"
                 type="text" autocomplete="off" />
             </div>
 
@@ -133,6 +129,7 @@
             </div>
           </div>
         </p-tabPanel>
+
         <p-tabPanel header="Item Information">
           <div formGroupName="item">
             <div class="row">
@@ -174,8 +171,8 @@
     <div class="col-12">
       <a href="javascript:void(0)" (click)="onClose()" class="btn btn-sm btn-secondary pa_button pa_button-black float-right"><i
           class="fas fa-ban"></i> Cancel</a>
-      <button type="submit" [disabled]="!form.valid" class="btn btn-sm btn-success pa_button pa_button-green float-right"><i
-          class="fas fa-plus"></i> Save</button>
+      <button type="submit" [disabled]="!form.valid" class="btn btn-sm btn-success pa_button pa_button-green float-right">
+        <i class="fas fa-plus"></i> Save</button>
     </div>
   </div>
 </form>

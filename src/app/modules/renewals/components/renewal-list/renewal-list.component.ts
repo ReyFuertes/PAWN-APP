@@ -63,7 +63,8 @@ export class RenewalListComponent implements OnInit {
         firstName: [""],
         lastName: [""],
         contactNumber: [""],
-        address: [""]
+        address: [""],
+        image: [""]
       }),
       item: this.formBuilder.group({
         id: ["", Validators.compose([Validators.required])],

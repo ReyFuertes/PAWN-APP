@@ -1,12 +1,10 @@
 <p-dialog 
-  #modal
+  #dialog
   [header]="headerText" 
-  [width]="width" 
-  [height]="height" 
   [(visible)]="showModal" 
   [modal]="true" 
   [responsive]="true"
-  [maximizable]="true" 
+  [maximizable]="false" 
   [baseZIndex]="10000"
   [positionTop]="positionTop"
   [contentStyle]="contentStyle"

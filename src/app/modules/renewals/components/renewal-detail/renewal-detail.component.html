@@ -93,16 +93,16 @@
         </p-tabPanel>
         <p-tabPanel header="Item Information">
           <div formGroupName="item" class="row">
-            <div class="col-4">
+            <!-- <div class="col-4">
               <app-image-upload 
                   (onChange)="handleImageChange($event)" 
                   [imageDisplayUrl]="imageDisplayUrl" 
                   [parentForm]="form" 
                 >
               </app-image-upload>
-            </div>
+            </div> -->
 
-            <div class="col-8">
+            <div class="col-12">
               <div class="row">
                 <div class="col-8 form-group">
                   <pa-dropdown [label]="'Item Name'" [isGroup]="true" [items]="items" [controlName]="'id'" [childFormGroup]="'item'"

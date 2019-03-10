@@ -30,7 +30,7 @@ export class PawnListComponent implements OnInit {
   public accounts: Option[] = [];
   public items: Option[] = [];
   public printEntity = PrintEntity.Pawn;
-
+  private defaultInterest
   @ViewChild("pawnTable") pawnTable: PawnTableComponent;
 
   constructor(
@@ -45,25 +45,28 @@ export class PawnListComponent implements OnInit {
     this.items = [{ value: null, label: "Select an Item" }];
 
     this.form = this.formBuilder.group({
-      id: [""],
+      id: [null],
       pawnTicketNumber: ["", Validators.compose([Validators.required])],
       pawnDateGranted: ["", Validators.compose([Validators.required])],
       pawnMaturityDate: ["", Validators.compose([Validators.required])],
-      pawnExpiryDate: ["", Validators.compose([Validators.required])], 
-      auctionDate: ["", Validators.compose([Validators.required])], 
-      pawnInterest: ["", Validators.compose([Validators.required])],
+      pawnExpiryDate: ["", Validators.compose([Validators.required])],
+      auctionDate: ["", Validators.compose([Validators.required])],
+      pawnInterestRate: ["", Validators.compose([Validators.required])],
+      pawnInterestAmount: ["", Validators.compose([Validators.required])],
       pawnAmount: ["", Validators.compose([Validators.required])],
       pawnTotalAmount: ["", Validators.compose([Validators.required])],
+      pawnDiscount: [null],
       account: this.formBuilder.group({
-        id: ["", Validators.compose([Validators.required])],
+        id: [null, Validators.compose([Validators.required])],
         birthDate: [""],
         firstName: [""],
         lastName: [""],
         contactNumber: [""],
-        address: [""]
+        address: [""],
+        image: [""]
       }),
       item: this.formBuilder.group({
-        id: ["", Validators.compose([Validators.required])],
+        id: [null, Validators.compose([Validators.required])],
         itemName: [""],
         itemType: [""],
         karat: [""],
@@ -91,14 +94,14 @@ export class PawnListComponent implements OnInit {
 
   public loadAccounts(): void {
     this.accountService.getAccounts({ limit: this.maxNum(), offset: 0 }).subscribe(response => {
-        response.accounts.forEach(account => {
-          const option = {
-            value: account.id,
-            label: account.fullname
-          };
-          this.accounts.push(option);
-        });
+      response.accounts.forEach(account => {
+        const option = {
+          value: account.id,
+          label: account.fullname
+        };
+        this.accounts.push(option);
       });
+    });
   }
 
   public loadItems(): void {
@@ -142,7 +145,7 @@ export class PawnListComponent implements OnInit {
   public onAdd(): void {
     this.aeMode = AEMode.add;
     this.showModal = !this.showModal;
-    
+
     //this.router.navigateByUrl('dashboard/pawn/add');
   }
 
