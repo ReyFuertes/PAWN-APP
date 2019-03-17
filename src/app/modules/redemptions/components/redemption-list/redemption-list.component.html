@@ -11,27 +11,18 @@
           Refresh</button>
         <button type="button" (click)="onDelete()" [disabled]="editMode !== 1" class="btn btn-sm pa_button btn-danger"><i
             class="far fa-trash-alt"></i> Delete</button>
-        <pa-print-preview [printEntity]="printEntity" ></pa-print-preview>
+        <pa-print-preview [printEntity]="printEntity"></pa-print-preview>
       </div>
       <div class="col-4">
         <pa-filter-table (onSearch)="onSearch($event)"></pa-filter-table>
       </div>
     </div>
   </div>
-  <pa-redemption-search-table 
-    *ngIf="totalRecords"
-    #redemptionTable 
-    (editMode)="editMode = $event" 
-    [totalRecords]="totalRecords" 
-    (pageVar)="paginate($event)"
-    (selections)="selections = $event" 
-    (onClear)="onClearSelectedRows($event)" 
-    [rows]="redemptions"
-  ></pa-redemption-search-table>
+  <pa-redemption-search-table *ngIf="totalRecords" #redemptionTable (editMode)="editMode = $event" [totalRecords]="totalRecords"
+    (pageVar)="paginate($event)" (selections)="selections = $event" (onClear)="onClearSelectedRows($event)" [rows]="redemptions"></pa-redemption-search-table>
 </div>
 
-<app-base-modal [showModal]="showModal" [headerText]="aeMode === 1 ? 'Edit Redemption': 'New Redemption'" (closeModal)="onClose()"
-  [height]="350" [contentStyle]="{'max-height':'calc(100vh - 100px)', 'overflow-x': 'hidden'}">
+<app-base-modal [showModal]="showModal" [headerText]="aeMode === 1 ? 'Edit Redemption': 'New Redemption'" (closeModal)="onClose()">
   <ng-container class="body">
     <pa-redemption-new *ngIf="aeMode === 0" [accounts]="accounts" [items]="items" [pawns]="pawns" [form]="form"></pa-redemption-new>
     <pa-redemption-edit *ngIf="aeMode === 1" [accounts]="accounts" [items]="items" [pawns]="pawns" [form]="form"></pa-redemption-edit>
@@ -48,7 +39,7 @@
   </ng-container>
 </app-base-modal>
 
-  
+
 <p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
   <ng-template let-message pTemplate="message">
     <div style="text-align: center">

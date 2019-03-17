@@ -1,6 +1,6 @@
 export interface Account {
   id?: number;
-  idNumber: string;
+  clientNumber: string;
   firstName?: string;
   lastName?: string;
   fullname?: string;

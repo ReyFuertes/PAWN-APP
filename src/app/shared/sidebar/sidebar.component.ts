@@ -22,16 +22,16 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       index: 2
     },
     {
-      text: "Pawns",
-      icon: "fa-gem",
-      route: "/dashboard/pawns",
-      index: 3
-    },
-    {
       text: "Items",
       icon: "fa-align-justify",
       route: "/dashboard/items",
       index: 4
+    },
+    {
+      text: "New Loans",
+      icon: "fa-gem",
+      route: "/dashboard/pawns",
+      index: 3
     },
     {
       text: "Renewals",

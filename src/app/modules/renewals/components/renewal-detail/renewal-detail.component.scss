@@ -6,7 +6,7 @@
 
 .pa_card-content {
   padding: 0 !important;
-  height: 370px;
+  height: 405px;
 
   label {
     color: #666;
@@ -43,6 +43,10 @@
 
 :host ::ng-deep .ui-tabview .ui-tabview-panels {
   padding: 20px 10px;
+}
+
+:host ::ng-deep  .ui-datepicker {
+  left: 0 !important;
 }
 
 @media only screen and (min-width: 767px) {

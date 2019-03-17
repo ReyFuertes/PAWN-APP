@@ -1,5 +1,5 @@
 <div class="pa_search-table">
-  <h3 class="pa_header-title pa_font-w-300">Pawns</h3>
+  <h3 class="pa_header-title pa_font-w-300">Loans</h3>
   <div class="pa_header">
     <div class="row">
       <div class="col-8" [ngStyle]="{'padding': '3px 20px'}">
@@ -22,7 +22,7 @@
     (pageVar)="paginate($event)" (selections)="selections = $event" (onClear)="onClearSelectedRows($event)" [rows]="pawns"></pa-pawn-search-table>
 </div>
 
-<app-base-modal [showModal]="showModal" [headerText]="aeMode == 0 ? 'New Pawn': 'Edit Pawn'" (closeModal)="onClose()"
+<app-base-modal [showModal]="showModal" [headerText]="aeMode == 0 ? 'New Loan': 'Edit Loan'" (closeModal)="onClose()"
   [width]="920" [contentStyle]="{'max-height':'calc(100vh - 100px)', 'overflow-x': 'hidden'}">
   <ng-container class="body">
     <pa-pawn-new *ngIf="aeMode === 0" [form]="form" [accounts]="accounts" [items]="items"></pa-pawn-new>

@@ -52,9 +52,9 @@ export class RenewalDetailComponent implements OnInit {
   ngOnInit() { 
   }
 
-  public onAccountChange(event: any): void {
-    if(event.value) {
-      this.accountService.getOne(event.value).subscribe(response => {
+  public onAccountChange(value: any): void {
+    if(value) {
+      this.accountService.getOne(value).subscribe(response => {
         let control = this.form.controls['account'];
         control.get('id').setValue(response.account[0].id);
         control.get('birthDate').setValue(response.account[0].birthDate);
@@ -64,9 +64,9 @@ export class RenewalDetailComponent implements OnInit {
     }
   }
 
-  public onItemChange(event: any): void {
-    if(event.value) {
-      this.itemService.getOne(event.value).subscribe(response => {
+  public onItemChange(value: any): void {
+    if(value) {
+      this.itemService.getOne(value).subscribe(response => {
         let control = this.form.controls['item'];
         control.get('id').setValue(response.item.id);
         control.get('sku').setValue(response.item.sku);

@@ -8,6 +8,7 @@ export abstract class GenericDetailComponent {
   }
  
   protected genUuid(prefix: string): string {
-    return `${this.getBranch()}-${prefix}-${Math.random().toString(36).toUpperCase().substr(2, 10)}`;
+    const d = new Date();
+    return `${d.getFullYear()}-${prefix}-${Math.random().toString(36).toUpperCase().substr(2, 10)}`;
   }
 }
