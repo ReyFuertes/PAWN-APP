@@ -7,7 +7,6 @@ import { AEMode } from '../../../../models/crud.enum';
 import { GenericDetailComponent } from '../../../../core/generics/generic-detail.component';
 import { EntityPrefix } from '../../../../models/entity-prefix.enum';
 import { ImageFolder } from '../../../../models/image.enum';
-import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'pa-account-detail',
@@ -74,7 +73,6 @@ export class AccountDetailComponent extends GenericDetailComponent implements On
   }
 
   public handleImageChange(event: any): void {
-    console.log(event);
     this.blob = event;
   }
 }

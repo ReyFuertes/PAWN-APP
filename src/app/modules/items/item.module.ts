@@ -16,6 +16,7 @@ import { ItemTableComponent } from './components/item-table/item.table.component
 import { ItemNewComponent } from './components/item-new/item-new.component';
 import { ItemEditComponent } from './components/item-edit/item-edit.component';
 import { ItemDetailComponent } from './components/item-detail/item-detail.component';
+import { TooltipModule } from 'primeng/tooltip';
 
 export const routes: Routes = [
   {
@@ -24,17 +25,17 @@ export const routes: Routes = [
   }
 ];
 
-const primengModules = [FileUploadModule, ToastModule];
+const primengModules = [TooltipModule, FileUploadModule, ToastModule];
 
 @NgModule({
-  declarations: [ 
+  declarations: [
     ItemListComponent,
     ItemTableComponent,
     ItemNewComponent,
     ItemEditComponent,
     ItemDetailComponent
   ],
-  imports: [ 
+  imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -44,9 +45,9 @@ const primengModules = [FileUploadModule, ToastModule];
     ...primengModules,
 
     RouterModule.forChild(routes)
-   ],
+  ],
   exports: [],
   providers: [ItemService, AccountService, ItemService, ModalService, MessageService],
 })
-export class ItemModule {}
+export class ItemModule { }
 

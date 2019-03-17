@@ -25,6 +25,9 @@ export class DropdownSelectComponent implements OnInit {
   public items: any[];
   @Input()
   public selectedItem: any;
+  @Input()
+  public placeholder: string;
+
   @Output()
   public onItemChange = new EventEmitter<any>();
 

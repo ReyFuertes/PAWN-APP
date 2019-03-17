@@ -7,10 +7,10 @@
 .pa_card-content {
   padding: 20px 20px 0 20px;
   min-height: 300px;
-  height:320px;
+  height: 100%;
 
   label {
-    color:#666;
+    color: #666;
   }
 
   .pa_button-upload-container {
@@ -21,7 +21,7 @@
   }
 }
 
-:host ::ng-deep .ui-dialog-content  {
+:host ::ng-deep .ui-dialog-content {
   overflow: auto !important;
 }
 

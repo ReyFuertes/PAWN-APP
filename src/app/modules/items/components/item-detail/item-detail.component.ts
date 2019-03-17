@@ -1,9 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ModalService } from '../../../../services/modal.service';
 import { ItemService } from '../../item.service';
-import { Item } from '../../../../models/item.model';
-import { Option } from '../../../../models/option.model';
+import { Item, ItemTypeEnum, ItemColorEnum, ItemBirthstoneEnum } from '../../../../models/item.model';
 import { AEMode } from '../../../../models/crud.enum';
 import { GenericDetailComponent } from '../../../../core/generics/generic-detail.component';
 import { EntityPrefix } from '../../../../models/entity-prefix.enum';
@@ -21,10 +20,41 @@ export class ItemDetailComponent extends GenericDetailComponent implements OnIni
   @Input()
   public aeMode: AEMode;
 
-  public itemTypes: Option[] = [];
+  public itemTypeEnum = ItemTypeEnum;
+  public itemTypes: any[] = [];
+
+  public itemColorEnum = ItemColorEnum;
+  public itemColors: any[] = [];
+
+  public itemBirthstoneEnum = ItemBirthstoneEnum;
+  public itemBirthstones: any[] = [];
+  
+  @ViewChild('bdTooltip') bdTooltip: any;
 
   constructor( private itemService: ItemService, public modalService: ModalService) { 
     super();
+
+    //item types
+    let typeEnum = Object.keys(this.itemTypeEnum);
+    typeEnum = typeEnum.slice(typeEnum.length / 2);
+    typeEnum.forEach(val => {
+      this.itemTypes.push({ label: val, value: val })
+    });
+    
+    //item color
+    let ColorsEnum = Object.keys(this.itemColorEnum);
+    ColorsEnum = ColorsEnum.slice(ColorsEnum.length / 2);
+    ColorsEnum.forEach(val => {
+      this.itemColors.push({ label: val, value: val })
+    });
+
+    //item birthstones
+    let BirthstonesEnum = Object.keys(this.itemBirthstoneEnum);
+    BirthstonesEnum = BirthstonesEnum.slice(BirthstonesEnum.length / 2);
+    BirthstonesEnum.forEach(val => {
+      this.itemBirthstones.push({ label: val, value: val })
+    });
+    
   }
 
   public onSubmit(): void {
@@ -36,15 +66,15 @@ export class ItemDetailComponent extends GenericDetailComponent implements OnIni
   }
 
   public getTypes(): void {
-    this.itemService.getTypes().subscribe(response => {
-      response.types.forEach(type => {
-        const _type = {
-          label: type.name,
-          value: type.name
-        }
-        this.itemTypes.push(_type);
-      });
-    });
+    // this.itemService.getTypes().subscribe(response => {
+    //   response.types.forEach(type => {
+    //     const _type = {
+    //       label: type.name,
+    //       value: type.name
+    //     }
+    //     this.itemTypes.push(_type);
+    //   });
+    // });
   }
 
   ngOnInit() { 

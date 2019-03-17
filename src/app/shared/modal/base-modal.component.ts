@@ -12,10 +12,6 @@ export class BaseModalComponent implements OnInit {
   @Input()
   public headerText: string = "Header Text Here";
   @Input()
-  public width: string = "100%";
-  @Input()
-  public height: string = "100%";
-  @Input()
   public positionTop: number = 20;
   @Input()
   public contentStyle: any = {'width': '900px', 'max-height':'calc(100vh - 100px)', 'overflow-x': 'hidden'};

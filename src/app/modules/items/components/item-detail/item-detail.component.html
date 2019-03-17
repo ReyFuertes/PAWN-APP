@@ -1,46 +1,77 @@
-<form *ngIf="form" [formGroup]="form" name="form" role="form" (ngSubmit)="onSubmit()">
+<form #itemForm *ngIf="form" [formGroup]="form" name="form" role="form" (ngSubmit)="onSubmit()">
   <div class="row pa_card-content">
     <div class="col-4">
-      <app-image-upload 
-          (onChange)="handleImageChange($event)" 
-          [imageDisplayUrl]="imageDisplayUrl" 
-          [parentForm]="form" 
-        >
+      <app-image-upload (onChange)="handleImageChange($event)" [imageDisplayUrl]="imageDisplayUrl" [parentForm]="form">
       </app-image-upload>
     </div>
 
     <div class="col-8">
       <div class="row">
-        <div class="col-4 form-group">
+        <div class="col-8 form-group">
           <label for="sku">SKU</label>
-          <input class="form-control" tabindex="1" formControlName="sku" id="sku" type="text" autofocus
-            autocomplete="off" />
+          <input class="form-control" tabindex="1" formControlName="sku" id="sku" type="text" autofocus autocomplete="off" />
         </div>
 
-        <div class="col-8 form-group">
-          <label for="idNumber">Item Name</label>
-          <input class="form-control" tabindex="2" formControlName="itemName" id="itemName" type="text"
-            autocomplete="off" />
+        <div class="col-4 form-group">
+          <pa-dropdown [label]="'Branch'" [items]="itemTypes" [isFilter]="false" [controlName]="'itemType'"
+                       [parentForm]="form" (onItemChange)="onItemChange($event)">
+          </pa-dropdown>
         </div>
       </div>
 
       <div class="row">
+        <div class="col-8 form-group">
+          <label for="idNumber">Item Name</label>
+          <input class="form-control" tabindex="2" formControlName="itemName" id="itemName" type="text" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="row">
+
         <div class="col-4 form-group">
-          <pa-dropdown [label]="'Item Type'" [items]="itemTypes" [isFilter]="false" [controlName]="'itemType'" [parentForm]="form"
-            (onItemChange)="onItemChange($event)">
+          <pa-dropdown [label]="'Item Type'" [placeholder]="'Select Type'"  [items]="itemTypes" [isFilter]="false" [controlName]="'itemType'"
+                       [parentForm]="form" >
           </pa-dropdown>
         </div>
 
         <div class="col-4 form-group">
           <label for="grams">Grams</label>
-          <input #sku class="form-control" tabindex="4" formControlName="grams" id="grams" type="text" 
-            autocomplete="off" />
+          <input class="form-control" tabindex="4" formControlName="grams" id="grams" type="text" autocomplete="off" />
         </div>
 
         <div class="col-4 form-group">
           <label for="karat">Karat</label>
-          <input #sku class="form-control" tabindex="5" formControlName="karat" id="karat" type="text" 
-            autocomplete="off" />
+          <input class="form-control" tabindex="5" formControlName="karat" id="karat" type="text" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4 form-group">
+          <pa-dropdown [label]="'Colors'" [placeholder]="'Select Color'" [items]="itemColors" [isFilter]="false" [controlName]="'itemType'"
+                       [parentForm]="form">
+          </pa-dropdown>
+        </div>
+        <div class="col-4 form-group">
+          <pa-dropdown [label]="'Birthstone'" [placeholder]="'Select Birthstone'" [items]="itemBirthstones" [isFilter]="false" [controlName]="'itemType'"
+                       [parentForm]="form">
+          </pa-dropdown>
+        </div>
+
+        <div #bdTooltip class="col-4 form-group ">
+          <label for="grams">Birthstone Details</label>
+          <input class="form-control" tabindex="4" formControlName="grams" type="text" pTooltip="(# of pcs/carat/shape)" tooltipPosition="left" [appendTo]="bdTooltip" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4 form-group">
+          <label for="karat">Titus Details</label>
+          <input class="form-control" tabindex="5" formControlName="karat" id="karat" type="text" autocomplete="off" />
+        </div>
+
+        <div class="col-4 form-group">
+          <label for="karat">Others Non-Jewelry</label>
+          <input class="form-control" tabindex="5" formControlName="karat" id="karat" type="text" autocomplete="off" />
         </div>
       </div>
 
@@ -57,9 +88,9 @@
   <div class="row">
     <div class="col-12">
       <a href="javascript:void(0)" (click)="onClose()" class="btn btn-sm btn-secondary pa_button pa_button-black float-right"><i
-          class="fas fa-ban"></i> Cancel</a>
+           class="fas fa-ban"></i> Cancel</a>
       <button type="submit" [disabled]="!form.valid" class="btn btn-sm btn-success pa_button pa_button-green float-right"><i
-          class="fas fa-plus"></i> Save</button>
+           class="fas fa-plus"></i> Save</button>
     </div>
   </div>
 </form>
