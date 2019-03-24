@@ -27,6 +27,8 @@ export class DropdownSelectComponent implements OnInit {
   public selectedItem: any;
   @Input()
   public placeholder: string;
+  @Input()
+  public autoDisplayFirst: boolean = false;
 
   @Output()
   public onItemChange = new EventEmitter<any>();

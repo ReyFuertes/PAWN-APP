@@ -17,6 +17,7 @@ import { ItemNewComponent } from './components/item-new/item-new.component';
 import { ItemEditComponent } from './components/item-edit/item-edit.component';
 import { ItemDetailComponent } from './components/item-detail/item-detail.component';
 import { TooltipModule } from 'primeng/tooltip';
+import { DialogModule } from "primeng/dialog";
 
 export const routes: Routes = [
   {
@@ -25,7 +26,7 @@ export const routes: Routes = [
   }
 ];
 
-const primengModules = [TooltipModule, FileUploadModule, ToastModule];
+const primengModules = [DialogModule, TooltipModule, FileUploadModule, ToastModule];
 
 @NgModule({
   declarations: [

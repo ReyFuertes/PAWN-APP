@@ -21,10 +21,6 @@
   }
 }
 
-:host ::ng-deep .ui-dialog-content {
-  overflow: auto !important;
-}
-
 @media only screen and (min-width: 767px) {
   .pa_card-content {
     padding: 20px;

@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalService } from '../../../../services/modal.service';
 import { ItemService } from '../../item.service';
 import { Item, ItemTypeEnum, ItemColorEnum, ItemBirthstoneEnum } from '../../../../models/item.model';
 import { AEMode } from '../../../../models/crud.enum';
 import { GenericDetailComponent } from '../../../../core/generics/generic-detail.component';
 import { EntityPrefix } from '../../../../models/entity-prefix.enum';
+import { BranchesEnum } from '../../../../models/branch.enum';
 
 @Component({
   selector: 'pa-item-detail',
@@ -16,23 +17,47 @@ export class ItemDetailComponent extends GenericDetailComponent implements OnIni
   @Input()
   public pageTitle: string = '';
   @Input()
-  public form: FormGroup;
-  @Input()
   public aeMode: AEMode;
+  @Input()
+  public item: Item;
 
+  public form: FormGroup;
+  public branchesEnum = BranchesEnum;
+  public branches: any[] = [];
   public itemTypeEnum = ItemTypeEnum;
   public itemTypes: any[] = [];
-
   public itemColorEnum = ItemColorEnum;
   public itemColors: any[] = [];
-
   public itemBirthstoneEnum = ItemBirthstoneEnum;
   public itemBirthstones: any[] = [];
   
-  @ViewChild('bdTooltip') bdTooltip: any;
+  @Output()
+  public formEmitter = new EventEmitter<any>();
 
-  constructor( private itemService: ItemService, public modalService: ModalService) { 
+  constructor(private formBuilder: FormBuilder, private itemService: ItemService, public modalService: ModalService) { 
     super();
+
+    this.form = this.formBuilder.group({
+      id: [""],
+      branches: ["", Validators.compose([Validators.required])],
+      sku: ["", Validators.compose([Validators.required])],
+      itemName: ["", Validators.compose([Validators.required])],
+      itemType: ["", Validators.compose([Validators.required])],
+      grams: ["", Validators.compose([Validators.required])],
+      karat: ["", Validators.compose([Validators.required])],
+      description: ["", Validators.compose([Validators.required])],
+      image: [""],
+      noneJewelry: [""],
+      birthStoneDetails: ["", Validators.compose([Validators.required])],
+      titusDetails: ["", Validators.compose([Validators.required])],
+    });
+
+    //BRANCHES
+    let branchesEnum = Object.keys(this.branchesEnum);
+    branchesEnum = branchesEnum.slice(branchesEnum.length / 2);
+    branchesEnum.forEach(val => {
+      this.branches.push({ label: val, value: val })
+    });
 
     //item types
     let typeEnum = Object.keys(this.itemTypeEnum);
@@ -55,6 +80,7 @@ export class ItemDetailComponent extends GenericDetailComponent implements OnIni
       this.itemBirthstones.push({ label: val, value: val })
     });
     
+    this.form.valueChanges.subscribe(() => this.formEmitter.emit(this.form));
   }
 
   public onSubmit(): void {

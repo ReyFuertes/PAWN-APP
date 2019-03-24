@@ -9,6 +9,7 @@ import { AccountService } from "../../../accounts/account.service";
 import { ItemService } from "../../../items/item.service";
 import { ItemTableComponent } from "../item-table/item.table.component";
 import { PrintEntity } from "../../../../models/print-entity.model";
+import { ItemDetailComponent } from "../item-detail/item-detail.component";
 
 @Component({
   selector: 'pa-item-list',
@@ -22,11 +23,13 @@ export class ItemListComponent implements OnInit {
   public editMode: AEMode;
   public totalRecords: number;
   public aeMode: AEMode;
-  public form: FormGroup;
   public searchTerm$ = new Subject<string>();
   public printEntity = PrintEntity.Item;
+  public selectedItem: Item;
+  public contentStyle: any = {'width': '950px', 'overflow-x': 'hidden'};
 
   @ViewChild("itemTable") itemTable: ItemTableComponent;
+  @ViewChild(ItemDetailComponent) itemDetailComponent: ItemDetailComponent;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,17 +37,6 @@ export class ItemListComponent implements OnInit {
     private accountService: AccountService,
     private itemService: ItemService
   ) {
-
-    this.form = this.formBuilder.group({
-      id: [""],
-      sku: ["", Validators.compose([Validators.required])],
-      itemName: ["", Validators.compose([Validators.required])],
-      itemType: ["", Validators.compose([Validators.required])],
-      grams: ["", Validators.compose([Validators.required])],
-      karat: ["", Validators.compose([Validators.required])],
-      description: ["", Validators.compose([Validators.required])],
-      image: [""]
-    });
 
     this.itemService.searchItem(this.searchTerm$).subscribe(results => (this.items = results.items));
   }
@@ -77,6 +69,11 @@ export class ItemListComponent implements OnInit {
     this.itemTable.onRowUnselect();
   }
 
+  public onItemSaveUpdate(): void {
+    this.showModal = false;
+    this.itemDetailComponent.onSubmit();
+  }
+
   public onClose(): void {
     this.showModal = !this.showModal;
 
@@ -96,8 +93,8 @@ export class ItemListComponent implements OnInit {
     if (this.selections[0].id) {
       this.showModal = !this.showModal;
       this.aeMode = AEMode.edit;
-      this.itemService.editItem(this.selections[0].id).subscribe(response => {
-        this.form.patchValue(<FormGroup>response.item);
+      this.itemService.editItem(this.selections[0].id).subscribe(item => {
+        this.selectedItem = item;
       });
     }
   }

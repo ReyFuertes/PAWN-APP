@@ -9,8 +9,8 @@
              class="fas fa-pen"></i> Edit</button>
         <button type="button" (click)="onRefresh()" class="btn btn-sm pa_button btn-default"><i class="fas fa-sync"></i>
           Refresh</button>
-        <button type="button" (click)="onDelete()" [disabled]="editMode !== 1" class="btn btn-sm pa_button btn-danger"><i
-             class="far fa-trash-alt"></i> Delete</button>
+        <button type="button" (click)="onDelete()" [disabled]="editMode !== 1"
+                class="btn btn-sm pa_button btn-danger"><i class="far fa-trash-alt"></i> Delete</button>
         <pa-print-preview [printEntity]="printEntity"></pa-print-preview>
       </div>
       <div class="col-4">
@@ -19,11 +19,27 @@
     </div>
   </div>
   <pa-item-search-table *ngIf="totalRecords" #itemTable (editMode)="editMode = $event" [totalRecords]="totalRecords"
-                        (pageVar)="paginate($event)" (selections)="selections = $event" (onClear)="onClearSelectedRows($event)"
-                        [rows]="items"></pa-item-search-table>
+                        (pageVar)="paginate($event)" (selections)="selections = $event"
+                        (onClear)="onClearSelectedRows($event)" [rows]="items"></pa-item-search-table>
 </div>
 
-<app-base-modal [showModal]="showModal" [headerText]="aeMode === 1 ? 'Edit Item': 'New Item'" (closeModal)="onClose()"
+<p-dialog #dialog [header]="aeMode === 1 ? 'Edit Item': 'New Item'" [(visible)]="showModal" [modal]="true"
+          [responsive]="true" [maximizable]="false" [baseZIndex]="10000" positionTop="20" [contentStyle]="contentStyle"
+          class="lpa-modal" [closeOnEscape]="true" [closable]="true" appendTo="body">
+  <pa-item-detail [aeMode]="aeMode === 0 ? 0 : 1" [item]="selectedItem" [pageTitle]="'New Item'"></pa-item-detail>
+  <p-footer>
+    <button type="button" [disabled]="!itemDetailComponent.form.valid" (click)="onItemSaveUpdate()"
+            class="btn btn-sm btn-success pa_button pa_button-green">
+      <i class="fas fa-plus"></i>
+      Save</button>
+    <a href="javascript:void(0)" (click)="showModal=false" class="btn btn-sm btn-secondary pa_button pa_button-black">
+      <i class="fas fa-ban"></i> Cancel</a>
+
+  </p-footer>
+</p-dialog>
+
+
+<!-- <app-base-modal [showModal]="showModal" [headerText]="aeMode === 1 ? 'Edit Item': 'New Item'" (closeModal)="onClose()"
                 [contentStyle]="{'min-height':'550px', 'max-height':'calc(100vh - 100px)', 'overflow-x': 'hidden'}">
   <ng-container class="body">
     <pa-item-new *ngIf="aeMode === 0" [form]="form"></pa-item-new>
@@ -39,7 +55,7 @@
       </div>
     </div>
   </ng-container>
-</app-base-modal>
+</app-base-modal> -->
 
 <p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
   <ng-template let-message pTemplate="message">

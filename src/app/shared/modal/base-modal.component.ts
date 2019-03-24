@@ -14,7 +14,7 @@ export class BaseModalComponent implements OnInit {
   @Input()
   public positionTop: number = 20;
   @Input()
-  public contentStyle: any = {'width': '900px', 'max-height':'calc(100vh - 100px)', 'overflow-x': 'hidden'};
+  public contentStyle: any = {'width': '950px', 'max-height':'calc(100vh - 100px)', 'overflow-x': 'hidden'};
   @Input()
   public showFooter: boolean = false;
 
