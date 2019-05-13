@@ -28,13 +28,30 @@
   ></pa-account-search-table>
 </div>
 
-<app-base-modal [showModal]="showModal" [headerText]="aeMode === 1 ? 'Edit Account': 'New Account'" (closeModal)="onClose($event)" 
-  [contentStyle]="{'min-height':'550px', 'overflow-x': 'hidden'}">
-  <ng-container class="body">
-    <pa-account-new *ngIf="aeMode === 0" [form]="form"></pa-account-new>
-    <pa-account-edit *ngIf="aeMode === 1" [form]="form"></pa-account-edit>
-  </ng-container>
-</app-base-modal>
+<p-dialog 
+  [(visible)]="showModal" 
+  [header]="aeMode === 1 ? 'Edit Item': 'New Item'" 
+  [(visible)]="showModal" 
+  [modal]="true"
+  [responsive]="true" 
+  [maximizable]="false" 
+  [baseZIndex]="10000" 
+  positionTop="20" 
+  [contentStyle]="contentStyle"
+  class="lpa-modal" 
+  [closeOnEscape]="true" 
+  [closable]="true" 
+  appendTo="body"
+>
+  <pa-account-detail></pa-account-detail>
+  <p-footer>
+    <button type="button" [disabled]="!accountDetailComponent.form.valid" (click)="save()" 
+      class="btn btn-sm btn-success pa_button pa_button-green">
+      <i class="fas fa-plus"></i>Save</button>
+    <a href="javascript:void(0)" (click)="showModal=false" class="btn btn-sm btn-secondary pa_button pa_button-black">
+      <i class="fas fa-ban"></i> Cancel</a>
+  </p-footer>
+</p-dialog>
 
 <p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
   <ng-template let-message pTemplate="message">

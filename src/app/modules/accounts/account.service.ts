@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, ReplaySubject } from 'rxjs';
 import { Account } from '../../models/account.model';
 import { GenericService } from '../../services/generic.service';
 import { PageVar } from '../../models/pages.model';
@@ -61,4 +61,19 @@ export class AccountService extends GenericService {
       'Authorization': ''
     });
   } 
+}
+
+
+@Injectable()
+export class AccountEntityService {
+  public account$: Observable<any>;
+  private _setAccount: ReplaySubject<any> = new ReplaySubject();
+
+  constructor() {
+    this.account$ = this._setAccount.asObservable();
+  }
+
+  public setEntity(entity) {
+    this._setAccount.next(entity);
+  }
 }

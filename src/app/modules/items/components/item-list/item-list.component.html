@@ -23,9 +23,21 @@
                         (onClear)="onClearSelectedRows($event)" [rows]="items"></pa-item-search-table>
 </div>
 
-<p-dialog #dialog [header]="aeMode === 1 ? 'Edit Item': 'New Item'" [(visible)]="showModal" [modal]="true"
-          [responsive]="true" [maximizable]="false" [baseZIndex]="10000" positionTop="20" [contentStyle]="contentStyle"
-          class="lpa-modal" [closeOnEscape]="true" [closable]="true" appendTo="body">
+<p-dialog 
+  #dialog 
+  [header]="aeMode === 1 ? 'Edit Item': 'New Item'" 
+  [(visible)]="showModal" 
+  [modal]="true"
+  [responsive]="true" 
+  [maximizable]="false" 
+  [baseZIndex]="10000" 
+  positionTop="20" 
+  [contentStyle]="contentStyle"
+  class="lpa-modal" 
+  [closeOnEscape]="true" 
+  [closable]="true" 
+  appendTo="body"
+>
   <pa-item-detail [aeMode]="aeMode === 0 ? 0 : 1" [item]="selectedItem" [pageTitle]="'New Item'"></pa-item-detail>
   <p-footer>
     <button type="button" [disabled]="!itemDetailComponent.form.valid" (click)="onItemSaveUpdate()"

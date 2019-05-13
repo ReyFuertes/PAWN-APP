@@ -15,6 +15,7 @@ import { ImageUploadComponent } from "./image-upload/image-upload.component";
 import { FileValueAccessor } from "./directive/upload.directive";
 import { ImageCropperModule } from "ng2-img-cropper";
 import { DndDirective } from "./directive/drop-file.directive";
+
 @NgModule({
   declarations: [
     FilterTableComponent,

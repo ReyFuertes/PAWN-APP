@@ -1,14 +1,17 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { AccountService } from "../../account.service";
+import { AccountService, AccountEntityService } from "../../account.service";
 import { PageVar } from "../../../../models/pages.model";
 import { Account } from "../../../../models/account.model";
 import { FormGroup, Validators, FormBuilder, NgForm } from "@angular/forms";
-import {MessageService} from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { Subject } from "rxjs";
 import { AEMode } from "../../../../models/crud.enum";
 import { AccountTableComponent } from "../account-table/account-table.component";
 import { PrintEntity } from "../../../../models/print-entity.model";
 import { environment } from "../../../../../environments/environment";
+import { AccountDetailComponent } from "../account-detail/account-detail.component";
+import { ActionService } from "../../../../services/action.service";
+import { map, take } from "rxjs/operators";
 
 @Component({
   selector: "pa-account-list",
@@ -22,32 +25,21 @@ export class AccountListComponent implements OnInit {
   public editMode: AEMode;
   public totalRecords: number;
   public aeMode: AEMode;
-  public form: FormGroup;
+
   public searchTerm$ = new Subject<string>();
   public printEntity = PrintEntity.Account;
+  public selectedItem: any;
+  public contentStyle: any = { 'width': '950px', 'overflow-x': 'hidden', 'min-height': '550px' };
 
   @ViewChild("accountTable") accountTable: AccountTableComponent;
+  @ViewChild(AccountDetailComponent) accountDetailComponent: AccountDetailComponent;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private accountEntityService: AccountEntityService,
     private accountService: AccountService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private actionService: ActionService
   ) {
-    this.form = this.formBuilder.group({
-      id: [""],
-      idNumber: ["", Validators.compose([Validators.required])],
-      firstName: ["", Validators.compose([Validators.required])],
-      middleName: ["", Validators.compose([Validators.required])],
-      lastName: ["", Validators.compose([Validators.required])],
-      phoneNumber: ["", Validators.compose([Validators.required])],
-      mobileNumber: ["", Validators.compose([Validators.required])],
-      birthDate: ["", Validators.compose([Validators.required])],
-      validId: ["", Validators.compose([Validators.required])],
-      validIdNumber: ["", Validators.compose([Validators.required])],
-      address: ["", Validators.compose([Validators.required])],
-      image: [null]
-    });
-
     this.accountService.searchAccount(this.searchTerm$).subscribe(results => this.accounts = results.accounts);
   }
 
@@ -82,21 +74,24 @@ export class AccountListComponent implements OnInit {
   }
 
   public onAdd(): void {
+    this.actionService.setEntity(AEMode.add);
     this.showModal = !this.showModal;
-    this.aeMode = AEMode.add;
+  }
+
+  public save(): void {
+    this.showModal = false;
+    this.accountDetailComponent.onSubmit();
+    this.onRefresh();
   }
 
   public onEdit(): void {
     if (this.selections[0].id) {
-      this.accountService.editAccount(this.selections[0].id).subscribe(response => {
-          this.form.patchValue(<FormGroup>response.accounts);
-          this.showModal = !this.showModal;
-          this.aeMode = AEMode.edit;
+      this.actionService.setEntity(AEMode.edit);
+      this.showModal = !this.showModal;
 
-          if(this.form.get('image').value)
-            this.form.get('image').patchValue(`${environment.apiUrl}account/images/${this.form.get('image').value}`);
-        }
-      );
+      this.accountService.editAccount(this.selections[0].id).pipe(map(acc => acc.accounts), take(1)).subscribe(account => {
+        this.accountEntityService.setEntity(account);
+      });
     }
   }
 
@@ -110,15 +105,15 @@ export class AccountListComponent implements OnInit {
 
   public showConfirm(): void {
     this.messageService.clear();
-    this.messageService.add({key: 'c', sticky: true, severity:'warn', summary:'Are you sure?', detail:'Confirm to Delete'});
+    this.messageService.add({ key: 'c', sticky: true, severity: 'warn', summary: 'Are you sure?', detail: 'Confirm to Delete' });
   }
 
   public onConfirm(): void {
     this.accountService.deleteAccount(this.selections[0].id).subscribe(response => {
-        this.accounts = response.accounts
-        this.messageService.clear('c');
-        this.editMode = null;
-      }
+      this.accounts = response.accounts
+      this.messageService.clear('c');
+      this.editMode = null;
+    }
     );
   }
 
