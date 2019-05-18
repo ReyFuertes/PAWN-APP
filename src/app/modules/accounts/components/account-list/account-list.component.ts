@@ -12,6 +12,7 @@ import { environment } from "../../../../../environments/environment";
 import { AccountDetailComponent } from "../account-detail/account-detail.component";
 import { ActionService } from "../../../../services/action.service";
 import { map, take } from "rxjs/operators";
+import { ModalService } from "../../../../services/modal.service";
 
 @Component({
   selector: "pa-account-list",
@@ -38,9 +39,12 @@ export class AccountListComponent implements OnInit {
     private accountEntityService: AccountEntityService,
     private accountService: AccountService,
     private messageService: MessageService,
-    private actionService: ActionService
+    private actionService: ActionService,
+    public modalService: ModalService
   ) {
     this.accountService.searchAccount(this.searchTerm$).subscribe(results => this.accounts = results.accounts);
+
+    this.modalService.subscribe(this, this.onRefresh);
   }
 
   public load(pageVar: PageVar): void {
@@ -64,7 +68,7 @@ export class AccountListComponent implements OnInit {
     this.accountTable.onRowUnselect();
   }
 
-  public onClose(event: boolean): void {
+  public onClose(event: boolean = false): void {
     this.showModal = event;
 
     if (!this.showModal) {

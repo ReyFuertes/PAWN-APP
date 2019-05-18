@@ -83,15 +83,15 @@ export class AccountDetailComponent extends GenericDetailComponent implements On
       this.accountService.updateAccount(data.id.toString(), data).subscribe()
     }
 
-    this.modalService.propagate();
+    this.onClose();
   }
 
   ngOnInit() { }
 
   public onClose(): void {
     this.form.reset();
-    this.modalService.propagate();
     this.actionService.setEntity(null);
+    this.modalService.propagate();
   }
 
   public handleImageChange(event: any): void {

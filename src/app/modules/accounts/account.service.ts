@@ -27,8 +27,8 @@ export class AccountService extends GenericService {
 
   public searchAccount(terms: Observable<string>) {
     return terms.debounceTime(400)
-      .distinctUntilChanged()
-      .switchMap(term => this.search(term));
+                .distinctUntilChanged()
+                .switchMap(term => this.search(term));
   }
 
   private search(searchTerm: string): Observable<any> {
@@ -43,8 +43,8 @@ export class AccountService extends GenericService {
     return this.post('account/new', account, this.accountHeaders());
   }
 
-  public updateAccount(id: string, renewal: Account): Observable<any> {
-    return this.update(`account/update/${id}`, renewal);
+  public updateAccount(id: string, account: Account): Observable<any> {
+    return this.update(`account/update/${id}`, account);
   }
 
   public editAccount(id: number): Observable<any> {
